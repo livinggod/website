@@ -2,10 +2,13 @@
 
 namespace App\Providers;
 
+use App\Policies\PermissionPolicy;
+use App\Policies\RolePolicy;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Cards\Help;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
+use Vyuldashev\NovaPermission\NovaPermissionTool;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
@@ -27,9 +30,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function routes()
     {
         Nova::routes()
-                ->withAuthenticationRoutes()
-                ->withPasswordResetRoutes()
-                ->register();
+            ->withAuthenticationRoutes()
+            ->withPasswordResetRoutes()
+            ->register();
     }
 
     /**
@@ -42,8 +45,10 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function gate()
     {
         Gate::define('viewNova', function ($user) {
-            return in_array($user->email, [
-                //
+            return $user->hasAnyRole([
+                'super_admin',
+                'admin',
+                'writer',
             ]);
         });
     }
@@ -77,7 +82,11 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     public function tools()
     {
-        return [];
+        return [
+            NovaPermissionTool::make()
+                ->rolePolicy(RolePolicy::class)
+                ->permissionPolicy(PermissionPolicy::class),
+        ];
     }
 
     /**
