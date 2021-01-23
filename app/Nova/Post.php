@@ -11,6 +11,8 @@ use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Slug;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Trix;
+use Froala\NovaFroalaField\Froala;
+
 
 class Post extends Resource
 {
@@ -55,7 +57,7 @@ class Post extends Resource
             Image::make('Image')
                 ->disk('public')
                 ->path('posts')
-                ->rules('required'),
+                ->creationRules('required'),
 
             Text::make('Title')
                 ->sortable()
@@ -72,8 +74,12 @@ class Post extends Resource
             Boolean::make('Published')
                 ->sortable(),
 
-            Trix::make('Content')
-                ->rules('required'),
+//            Trix::make('Content')
+//                ->withFiles('public')
+//                ->rules('required'),
+
+            Froala::make('Content')
+                ->withFiles('public'),
         ];
     }
 
