@@ -36,7 +36,7 @@ class Post extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'title', 'user'
+        'id', 'title', 'user', 'title'
     ];
 
     /**

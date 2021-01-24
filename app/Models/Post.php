@@ -20,4 +20,14 @@ class Post extends Model
     {
         return $query->where('published', 1);
     }
+
+    public function canShow()
+    {
+        return $this->isPublished() || auth()->user()->can('see_drafts');
+    }
+
+    public function isPublished()
+    {
+        return $this->published == 1;
+    }
 }

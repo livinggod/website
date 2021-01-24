@@ -1,4 +1,8 @@
 <x-guest-layout>
+    @if(!$post->isPublished())
+        <x-draft />
+    @endif
+
     <div class="relative py-16 bg-white overflow-hidden">
         <div class="relative px-4 sm:px-6 lg:px-8">
 

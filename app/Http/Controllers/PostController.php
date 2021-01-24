@@ -9,6 +9,10 @@ class PostController extends Controller
 {
     public function show(Post $post)
     {
+        if (!$post->canShow()) {
+            abort(404);
+        }
+
         return view('post.show', compact('post'));
     }
 }
