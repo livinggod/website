@@ -2,7 +2,7 @@
     <div class="flex-shrink-0">
         <a href="{{ route('post.show', $post) }}">
             <img class="h-48 w-full object-cover"
-                 src="{{ asset('storage/' .$post->image) }}"
+                 src="{{ asset('storage/' . $post->image) }}"
                  alt="">
         </a>
     </div>
