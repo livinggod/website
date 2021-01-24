@@ -30,12 +30,12 @@
         "nunomaduro/collision": "^5.0",
         "phpunit/phpunit": "^9.3.3"
     },
-    "repositories": [
-        {
+    "repositories": {
+        "laravel/nova": {
             "type": "composer",
             "url": "https://nova.laravel.com"
         }
-    ],
+    },
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
