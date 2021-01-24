@@ -5,11 +5,12 @@
             <div class="mt-6 prose prose-indigo prose-lg text-gray-500 mx-auto">
                 <div class="text-lg max-w-prose mx-auto">
                     <h1>
-                        <span class="block text-base text-center text-indigo-600 font-semibold tracking-wide uppercase">Introducing</span>
                         <span
                             class="mt-2 block text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">{{ $post->title }}</span>
                     </h1>
-                    <img src="{{ asset($post->image) }}" alt="">
+                    <div class="flex justify-center">
+                        <img src="{{ asset($post->image) }}" alt="">
+                    </div>
                 </div>
                 {!! $post->content !!}
             </div>
@@ -22,18 +23,18 @@
                 bibleVersion: "ESV",
                 roundCorners: true,
                 socialSharing: [],
-                customStyle : {
+                customStyle: {
                     heading: {
-                        backgroundColor : "#ffffff",
-                        color : "#000000"
+                        backgroundColor: "#ffffff",
+                        color: "#000000"
                     },
-                    body   : {
-                        color : "#000000"
+                    body: {
+                        color: "#000000"
                     }
                 }
             }
         };
-        (function(d, t) {
+        (function (d, t) {
             var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
             g.src = "//api.reftagger.com/v2/RefTagger.js";
             s.parentNode.insertBefore(g, s);
