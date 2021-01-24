@@ -23,7 +23,7 @@ class Post extends Model
 
     public function canShow()
     {
-        return $this->isPublished() || auth()->user()->can('see_drafts');
+        return $this->isPublished() || auth()->user()->role->hasPermissionTo('see_drafts');
     }
 
     public function isPublished()
