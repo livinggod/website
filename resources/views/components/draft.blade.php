@@ -1,4 +1,4 @@
-<div class="animate-pulse fixed inset-x-0 bottom-0">
+<div class="z-10 animate-pulse fixed inset-x-0 bottom-0">
     <div class="bg-yellow-400">
         <div class="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between flex-wrap">
