@@ -10,7 +10,8 @@ class PostObserver
     public function creating(Post $post)
     {
         $user = auth()->user();
-        if ($user->isSuperAdmin()) {
+
+        if ($user == null || $user->isSuperAdmin()) {
             return;
         }
         $post->user_id = $user->id;
