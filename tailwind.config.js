@@ -12,6 +12,9 @@ module.exports = {
                 custom: {
                     red: '#E52B2B'
                 }
+            },
+            height: {
+                50: '50vh'
             }
         },
     },

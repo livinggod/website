@@ -1,53 +1,61 @@
 <x-guest-layout>
-    <div class="relative pt-16 pb-20 px-4 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8">
-        <div class="relative max-w-7xl mx-auto">
-            <div class="text-center">
-                <h2 class="text-3xl tracking-tight font-extrabold text-gray-900 sm:text-4xl">
-                    From the blog
-                </h2>
-                <p class="mt-3 max-w-2xl mx-auto text-xl text-gray-500 sm:mt-4">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa libero labore natus atque, ducimus
-                    sed.
-                </p>
+    <div class="pt-16 pb-20 px-4 sm:px-6 lg:pt-16 lg:pb-28 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <a href="#" class="flex rounded-lg shadow-lg h-25">
+                <div class="w-1/2 px-20 pt-4 rounded-l-lg">
+                    <h2 class="text-sm md:text-lg text-gray-400">Article</h2>
+                    <div class="mt-16">
+                        <h1 class="text-lg md:text-5xl font-bold">Lorem ipsum dolor sit amet, consectetur adipisicing
+                            elit.</h1>
+                    </div>
+                </div>
+                <div class="w-1/2 relative">
+                    <svg class="absolute h-full" viewBox="0 0 106 399" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 399V0H106L0 399Z" fill="#fff"/>
+                    </svg>
+                    <img class="rounded-r-lg h-full w-full object-cover"
+                         src="https://images.pexels.com/photos/2113566/pexels-photo-2113566.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                         alt="">
+                </div>
+            </a>
+
+            <div class="mt-20 flex justify-between text-gray-400">
+                <p>{{ __('new articles') }}</p>
+                <a href="#">
+                    {{ __('show all') }}
+                    <svg class="inline w-4 fill-current"
+                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                              d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+                              clip-rule="evenodd"/>
+                    </svg>
+                </a>
             </div>
-            <div class="mt-12 max-w-lg mx-auto grid gap-5 lg:grid-cols-4 lg:max-w-none">
+            <div class="mt-4 max-w-lg mx-auto grid gap-8 lg:grid-cols-4 lg:max-w-none">
                 @foreach($posts as $post)
-                    <x-post-card :post="$post" />
+                    <x-post-card :post="$post"/>
                 @endforeach
             </div>
-        </div>
-    </div>
 
-    <div class="bg-white">
-        <div class="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:py-16 lg:px-8">
-            <div class="px-6 py-6 bg-custom-red rounded-lg md:py-12 md:px-12 lg:py-16 lg:px-16 xl:flex xl:items-center">
-                <div class="xl:w-0 xl:flex-1">
-                    <h2 class="text-2xl font-extrabold tracking-tight text-white sm:text-3xl">
-                        Want to keep up with us?
-                    </h2>
-                    <p class="mt-3 max-w-3xl text-lg leading-6 text-indigo-200">
-                        Let us notify you!
-                    </p>
+            <div class="flex mt-20">
+                <div class="w-1/3 flex flex-col">
+                    <img class="w-32 mx-auto" src="{{ asset('storage/a.png') }}" alt="">
+                    <img class="w-32 mx-auto" src="{{ asset('storage/b.png') }}" alt="">
+                    <img class="w-32 mx-auto" src="{{ asset('storage/c.png') }}" alt="">
                 </div>
-                <div class="mt-8 sm:w-full sm:max-w-md xl:mt-0 xl:ml-8">
-                    <form class="sm:flex">
-                        <label for="emailAddress" class="sr-only">Email address</label>
-                        <input id="emailAddress" name="emailAddress" type="email" autocomplete="email" required
-                               class="w-full border-white px-5 py-3 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-700 focus:ring-white rounded-md"
-                               placeholder="Enter your email">
-                        <button type="submit"
-                                class="mt-3 w-full flex items-center justify-center px-5 py-3 border border-transparent shadow text-base font-medium rounded-md bg-white hover:bg-indigo-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-700 focus:ring-white sm:mt-0 sm:ml-3 sm:w-auto sm:flex-shrink-0">
-                            Notify me
-                        </button>
-                    </form>
-                    <p class="mt-3 text-sm text-indigo-200">
-                        We care about the protection of your data. Read our
-                        <a href="#" class="text-white font-medium underline">
-                            Privacy Policy.
-                        </a>
+                <div class="w-2/3">
+                    <h2 class="font-bold text-xl">The ABC's of salvation</h2>
+                    <p class="mt-4">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam atque eius eum ex qui quidem
+                        rem voluptatum! Adipisci amet commodi consequatur cum deleniti dicta doloremque dolores eligendi
+                        error et, excepturi illo ipsam ipsum laborum magnam minima necessitatibus omnis perferendis
+                        possimus provident quaerat quas ratione recusandae saepe sit unde veniam voluptates!
+
                     </p>
                 </div>
             </div>
+
+
         </div>
     </div>
 </x-guest-layout>
