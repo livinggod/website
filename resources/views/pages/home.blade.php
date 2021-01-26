@@ -36,12 +36,11 @@
                     <x-post-card :post="$post"/>
                 @endforeach
             </div>
-
             <div class="flex mt-20">
                 <div class="w-1/3 flex flex-col">
-                    <img class="w-32 mx-auto" src="{{ asset('storage/a.png') }}" alt="">
-                    <img class="w-32 mx-auto" src="{{ asset('storage/b.png') }}" alt="">
-                    <img class="w-32 mx-auto" src="{{ asset('storage/c.png') }}" alt="">
+                    <img class="w-32 mx-auto" src="{{ asset('images/a.png') }}" alt="">
+                    <img class="w-32 mx-auto" src="{{ asset('images/b.png') }}" alt="">
+                    <img class="w-32 mx-auto" src="{{ asset('images/c.png') }}" alt="">
                 </div>
                 <div class="w-2/3">
                     <h2 class="font-bold text-xl">The ABC's of salvation</h2>
@@ -50,12 +49,9 @@
                         rem voluptatum! Adipisci amet commodi consequatur cum deleniti dicta doloremque dolores eligendi
                         error et, excepturi illo ipsam ipsum laborum magnam minima necessitatibus omnis perferendis
                         possimus provident quaerat quas ratione recusandae saepe sit unde veniam voluptates!
-
                     </p>
                 </div>
             </div>
-
-
         </div>
     </div>
 </x-guest-layout>
