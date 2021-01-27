@@ -43,12 +43,9 @@
                     <img class="w-32 mx-auto" src="{{ asset('images/c.png') }}" alt="">
                 </div>
                 <div class="w-2/3">
-                    <h2 class="font-bold text-xl">The ABC's of salvation</h2>
+                    <h2 class="font-bold text-xl">{!! $block->getCode('abc_homepage_title') !!}</h2>
                     <p class="mt-4">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam atque eius eum ex qui quidem
-                        rem voluptatum! Adipisci amet commodi consequatur cum deleniti dicta doloremque dolores eligendi
-                        error et, excepturi illo ipsam ipsum laborum magnam minima necessitatibus omnis perferendis
-                        possimus provident quaerat quas ratione recusandae saepe sit unde veniam voluptates!
+                        {!! $block->getCode('abc_homepage_content') !!}
                     </p>
                 </div>
             </div>

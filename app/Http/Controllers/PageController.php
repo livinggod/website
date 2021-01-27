@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Block;
 use App\Models\Post;
 
 class PageController extends Controller
@@ -10,6 +11,7 @@ class PageController extends Controller
     {
         return view('pages.home', [
             'posts' => Post::published()->get()->take(8),
+            'block' => new Block()
         ]);
     }
 }
