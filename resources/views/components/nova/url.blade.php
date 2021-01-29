@@ -1,1 +1,1 @@
-<a target="_blank" href="{{ route('post.show', $post) }}">{{ route('post.show', $post) }}</a>
+<a target="_blank" href="{{ route('articles.show', $post) }}">{{ route('articles.show', $post) }}</a>
