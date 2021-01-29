@@ -10,7 +10,9 @@ module.exports = {
             },
             colors: {
                 custom: {
-                    red: '#E52B2B'
+                    green: {
+                        100: '#59B100'
+                    }
                 }
             },
             height: {
