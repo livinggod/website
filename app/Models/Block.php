@@ -11,6 +11,6 @@ class Block extends Model
 
     public function getCode(string $code)
     {
-        return (new $this)->where('code', $code)->first()->content ?? $code;
+        return $this->where('code', $code)->first()->content ?? $code;
     }
 }

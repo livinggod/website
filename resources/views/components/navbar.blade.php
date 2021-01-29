@@ -1,9 +1,9 @@
 <div x-data="{mobilemenu: false}" class="z-10 fixed w-full bg-white border-b">
     <div class="mx-auto px-4 sm:px-6">
         <div @click="mobilemenu = !mobilemenu"
-             class="flex justify-between items-center py-6 md:justify-start md:space-x-10">
+             class="flex justify-between items-center h-20 md:justify-start md:space-x-10">
             <div class="flex justify-start lg:w-0 lg:flex-1">
-                <a href="{{ route('page') }}">
+                <a href="{{ route('page.home') }}">
                     <span class="sr-only">Living God</span>
                     <x-application-logo class="h-8 w-auto sm:h-10"/>
                 </a>
@@ -20,16 +20,16 @@
                     </svg>
                 </button>
             </div>
-            <nav class="hidden md:flex space-x-10">
-                <a href="#" class="text-base font-medium text-gray-500 hover:text-gray-900">
-                    articles
-                </a>
-                <a href="#" class="text-base font-medium text-gray-500 hover:text-gray-900">
-                    about
-                </a>
-                <a href="#" class="text-base font-medium text-gray-500 hover:text-gray-900">
-                    abc
-                </a>
+            <nav class="hidden md:flex space-x-10 h-full">
+                <x-nav-link :href="route('dashboard')" :active="request()->segment(1) === 'articles'">
+                    {{ __('articles') }}
+                </x-nav-link>
+                <x-nav-link :href="route('dashboard')" :active="request()->segment(1) === 'about'">
+                    {{ __('about') }}
+                </x-nav-link>
+                <x-nav-link :href="route('dashboard')" :active="request()->segment(1) === 'abc'">
+                    {{ __('abc') }}
+                </x-nav-link>
             </nav>
             <div
                 class="hidden md:flex items-center text-gray-400 group-hover:text-gray-500 justify-end md:flex-1 lg:w-0">

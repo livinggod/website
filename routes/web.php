@@ -15,7 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [PageController::class, 'home'])->name('page');
+Route::get('/', [PageController::class, 'home'])->name('page.home');
+Route::get('/about', [PageController::class, 'about'])->name('page.about');
 
 Route::get('/articles/{post:slug}', [PostController::class, 'show'])->name('post.show');
 

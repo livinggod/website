@@ -14,4 +14,11 @@ class PageController extends Controller
             'block' => new Block()
         ]);
     }
+
+    public function about()
+    {
+        return view('pages.about', [
+            'block' => new Block()
+        ]);
+    }
 }
