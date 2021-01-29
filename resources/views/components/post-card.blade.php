@@ -1,6 +1,6 @@
 <div {{ $attributes->merge(['class' => 'flex flex-col rounded-lg shadow-lg overflow-hidden']) }}>
     <div class="flex-shrink-0">
-        <a href="{{ route('post.show', $post) }}">
+        <a href="{{ route('articles.show', $post) }}">
             <img class="h-48 w-full object-cover"
                  src="{{ \Illuminate\Support\Str::contains($post->image, '://') ? $post->image : asset('storage/' . $post->image) }}"
                  alt="">
@@ -13,7 +13,7 @@
                     Article
                 </a>
             </p>
-            <a href="{{ route('post.show', $post) }}" class="block mt-2">
+            <a href="{{ route('articles.show', $post) }}" class="block mt-2">
                 <p class="text-xl font-semibold text-gray-900">
                     {{ $post->title }}
                 </p>
@@ -26,12 +26,12 @@
             <div>
                 <p class="text-sm font-medium text-gray-900">
                     <a href="#" class="hover:underline">
-                        Quinten Buis
+                        {{ $post->user->name }}
                     </a>
                 </p>
                 <div class="flex space-x-1 text-sm text-gray-500">
                     <time datetime="2020-03-16">
-                        Mar 16, 2020
+                        {{ $post->created_at }}
                     </time>
                 </div>
             </div>

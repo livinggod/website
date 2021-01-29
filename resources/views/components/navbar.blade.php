@@ -1,11 +1,11 @@
 <div x-data="{mobilemenu: false}" class="z-10 fixed w-full bg-white border-b">
     <div class="mx-auto px-4 sm:px-6">
         <div @click="mobilemenu = !mobilemenu"
-             class="flex justify-between items-center h-20 md:justify-start md:space-x-10">
+             class="flex justify-between items-center h-16 md:justify-start md:space-x-10">
             <div class="flex justify-start lg:w-0 lg:flex-1">
                 <a href="{{ route('page.home') }}">
                     <span class="sr-only">Living God</span>
-                    <x-application-logo class="h-8 w-auto sm:h-10"/>
+                    <x-application-logo class="h-6 w-auto sm:h-8"/>
                 </a>
             </div>
             <div class="-mr-2 -my-2 md:hidden">
@@ -21,14 +21,14 @@
                 </button>
             </div>
             <nav class="hidden md:flex space-x-10 h-full">
-                <x-nav-link :href="route('dashboard')" :active="request()->segment(1) === 'articles'">
-                    {{ __('articles') }}
+                <x-nav-link :href="route('articles.index')" :active="request()->segment(1) === 'articles'">
+                    {{ __('Articles') }}
                 </x-nav-link>
-                <x-nav-link :href="route('dashboard')" :active="request()->segment(1) === 'about'">
-                    {{ __('about') }}
+                <x-nav-link :href="route('page.about')" :active="request()->segment(1) === 'about'">
+                    {{ __('About') }}
                 </x-nav-link>
-                <x-nav-link :href="route('dashboard')" :active="request()->segment(1) === 'abc'">
-                    {{ __('abc') }}
+                <x-nav-link :href="route('page.abc')" :active="request()->segment(1) === 'abc'">
+                    {{ __("The abc's") }}
                 </x-nav-link>
             </nav>
             <div

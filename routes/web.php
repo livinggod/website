@@ -17,8 +17,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PageController::class, 'home'])->name('page.home');
 Route::get('/about', [PageController::class, 'about'])->name('page.about');
+Route::get('/abc', [PageController::class, 'abc'])->name('page.abc');
 
-Route::get('/articles/{post:slug}', [PostController::class, 'show'])->name('post.show');
+Route::get('/articles', [PostController::class, 'index'])->name('articles.index');
+Route::get('/articles/{post:slug}', [PostController::class, 'show'])->name('articles.show');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

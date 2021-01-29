@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <div class="pt-16 pb-20 px-4 sm:px-6 lg:pt-16 lg:pb-28 lg:px-8">
+    <div class="pt-16 pb-20 lg:pt-16 lg:pb-28">
         <div class="max-w-7xl mx-auto">
             <a href="#" class="flex rounded-lg shadow-lg h-25">
                 <div class="w-1/2 px-20 pt-4 rounded-l-lg">
@@ -18,11 +18,15 @@
                          alt="">
                 </div>
             </a>
+        </div>
 
-            <div class="mt-20 flex justify-between text-gray-400">
-                <p>{{ __('new articles') }}</p>
-                <a href="#">
-                    {{ __('show all') }}
+        <div class="max-w-7xl mx-auto mt-20 text-gray-400">
+            <div class="flex justify-between">
+                <p>{{ __('New') }}</p>
+                <a href="{{ route('articles.index') }}">
+                    {{ __('Show all') }}
+
+                    {{-- Hericon: arrow-narrow-right --}}
                     <svg class="inline w-4 fill-current"
                          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd"
@@ -36,18 +40,40 @@
                     <x-post-card :post="$post"/>
                 @endforeach
             </div>
-            <div class="flex mt-20">
-                <div class="w-1/3 flex flex-col">
-                    <img class="w-32 mx-auto" src="{{ asset('images/a.png') }}" alt="">
-                    <img class="w-32 mx-auto" src="{{ asset('images/b.png') }}" alt="">
-                    <img class="w-32 mx-auto" src="{{ asset('images/c.png') }}" alt="">
-                </div>
-                <div class="w-2/3">
-                    <h2 class="font-bold text-xl">{!! $block->getCode('abc_homepage_title') !!}</h2>
-                    <p class="mt-4">
-                        {!! $block->getCode('abc_homepage_content') !!}
-                    </p>
-                </div>
+        </div>
+
+        <div class="mt-20 shadow-inner bg-gray-100 py-10">
+            <div class="max-w-5xl mx-auto">
+                <h3 class="text-4xl text-custom-green-100">Be The First To Receive Our Content</h3>
+                <p class="text-gray-400">Get our content directly in your inbox</p>
+                <form class="mt-4 sm:flex sm:max-w-md">
+                    <label for="emailAddress" class="sr-only">Email address</label>
+                    <input type="email" name="emailAddress" id="emailAddress" autocomplete="email" required
+                           class="appearance-none min-w-0 w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-4 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:placeholder-gray-400"
+                           placeholder="Enter your email">
+                    <div class="mt-3 rounded-md sm:mt-0 sm:ml-3 sm:flex-shrink-0">
+                        <button type="submit"
+                                class="w-full bg-custom-green-100 flex items-center justify-center border border-transparent rounded-md py-2 px-4 text-base font-medium text-white focus:outline-none hover:bg-custom-green-200 focus:bgwewe-custom-green-300">
+                            Subscribe
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto flex mt-20">
+            <div class="w-1/3 flex flex-col">
+                <img class="w-32 mx-auto" src="{{ asset('images/a.png') }}" alt="">
+                <img class="w-32 mx-auto" src="{{ asset('images/b.png') }}" alt="">
+                <img class="w-32 mx-auto" src="{{ asset('images/c.png') }}" alt="">
+            </div>
+            <div class="w-2/3">
+                <h2 class="font-bold text-xl">
+                    {!! $block->getCode('abc_homepage_title') !!}
+                </h2>
+                <p class="mt-4">
+                    {!! $block->getCode('abc_homepage_content') !!}
+                </p>
             </div>
         </div>
     </div>

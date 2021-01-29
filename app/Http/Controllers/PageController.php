@@ -21,4 +21,11 @@ class PageController extends Controller
             'block' => new Block()
         ]);
     }
+
+    public function abc()
+    {
+        return view('pages.abc', [
+            'block' => new Block()
+        ]);
+    }
 }
