@@ -31,7 +31,7 @@
                 </p>
                 <div class="flex space-x-1 text-sm text-gray-500">
                     <time datetime="2020-03-16">
-                        {{ $post->created_at }}
+                        {{ \Illuminate\Support\Carbon::parse($post->publish_at)->format('F jS Y') ?? '' }}
                     </time>
                 </div>
             </div>
