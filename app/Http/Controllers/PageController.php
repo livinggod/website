@@ -10,7 +10,7 @@ class PageController extends Controller
     public function home()
     {
         return view('pages.home', [
-            'posts' => Post::published()->get()->take(8),
+            'posts' => Post::published()->latest()->get()->take(8),
             'block' => new Block()
         ]);
     }
