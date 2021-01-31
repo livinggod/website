@@ -27,7 +27,7 @@ class PostFactory extends Factory
 
         return [
             'user_id' => User::factory()->create()->id,
-            'image' => $this->faker->imageUrl(),
+            'image' => explode(base_path('public/storage/'), $this->faker->image(public_path('storage/posts'), 700, 400))[1],
             'slug' => Str::slug($title),
             'title' => ucwords($title),
             'content' => $this->faker->realText(),

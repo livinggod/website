@@ -2,7 +2,7 @@
     <div class="flex-shrink-0">
         <a href="{{ route('articles.show', $post) }}">
             <img class="h-48 w-full object-cover"
-                 src="{{ \Illuminate\Support\Str::contains($post->image, '://') ? $post->image : asset('storage/' . $post->image) }}"
+                 src="{{ asset('storage/' . $post->image) }}"
                  alt="">
         </a>
     </div>
