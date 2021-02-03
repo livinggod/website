@@ -22,5 +22,6 @@
             {{ $slot }}
         </div>
         <x-footer/>
+        @include('cookieConsent::index')
     </body>
 </html>

@@ -17,13 +17,14 @@ module.exports = {
             },
             height: {
                 50: '50vh'
-            }
+            },
         },
     },
 
     variants: {
         extend: {
             opacity: ['disabled'],
+            animation: ['responsive', 'motion-safe', 'motion-reduce']
         },
     },
 
