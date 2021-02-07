@@ -1,27 +1,47 @@
 <x-guest-layout>
-    <div class="pt-16 pb-20 lg:pt-16 lg:pb-28">
-        <div class="max-w-7xl mx-auto">
-            <a href="#" class="flex rounded-lg shadow-lg h-25">
-                <div class="w-1/2 px-20 pt-4 rounded-l-lg">
-                    <h2 class="text-sm md:text-lg text-gray-400">Article</h2>
-                    <div class="mt-16">
-                        <h1 class="text-lg md:text-5xl font-bold">Lorem ipsum dolor sit amet, consectetur adipisicing
-                            elit.</h1>
-                    </div>
-                </div>
-                <div class="w-1/2 relative">
-                    <svg class="absolute h-full" viewBox="0 0 106 399" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0 399V0H106L0 399Z" fill="#fff"/>
-                    </svg>
-                    <img class="rounded-r-lg h-full w-full object-cover"
+    <div class="pt-8 md:pt-16 pb-20 lg:pt-16 lg:pb-28">
+        <div class="md:mx-10">
+            <div class="max-w-7xl mx-auto">
+                <a href="#" class="flex flex-col md:flex-row rounded-lg shadow-lg h-25">
+                    <img class="md:hidden rounded-t-lg md:rounded-r-lg h-full w-full object-cover"
                          src="https://images.pexels.com/photos/2113566/pexels-photo-2113566.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
                          alt="">
-                </div>
-            </a>
+                    <div class="md:w-1/2 md:px-20 p-4 -mt-2 bg-white rounded-lg md:rounded-l-lg relative">
+                        <h2 class="text-sm md:text-lg text-gray-400">Article</h2>
+                        <div class="md:mt-16">
+                            <h1 class="text-2xl md:text-5xl font-bold">Lorem ipsum dolor sit amet.</h1>
+                        </div>
+                        <div class="flex mt-8 md:absolute md:bottom-0 md:mb-10">
+                            <img class="w-8 h-8 md:w-10 md:h-10 object-cover rounded-full"
+                                 src="https://images.unsplash.com/photo-1604176736699-622601f98c9c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1234&q=80"
+                                 alt="">
+                            <div class="ml-4">
+                                <p class="text-xs md:text-sm font-medium text-gray-900">
+                                    Paul Baars
+                                </p>
+                                <div class="flex space-x-1 text-xs md:text-sm text-gray-500">
+                                    <time datetime="2020-03-16">
+                                        {{ \Illuminate\Support\Carbon::parse(now())->format('F jS Y') ?? '' }}
+                                    </time>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hidden md:block w-1/2 relative">
+                        <svg class="absolute h-full" viewBox="0 0 106 399" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0 399V0H106L0 399Z" fill="#fff"/>
+                        </svg>
+                        <img class="rounded-r-lg h-full w-full object-cover"
+                             src="https://images.pexels.com/photos/2113566/pexels-photo-2113566.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                             alt="">
+                    </div>
+                </a>
+            </div>
         </div>
 
         <div class="max-w-7xl mx-auto mt-20 text-gray-400">
-            <div class="flex justify-between">
+            <div class="flex justify-between mx-4">
                 <p>{{ __('New') }}</p>
                 <a href="{{ route('articles.index') }}">
                     {{ __('Show all') }}
@@ -35,12 +55,19 @@
                     </svg>
                 </a>
             </div>
-            <div class="mt-4 max-w-lg mx-auto grid gap-8 lg:grid-cols-4 lg:max-w-none">
+            <div class="mt-4 max-w-lg mx-auto grid gap-2 md:gap-8 lg:grid-cols-4 lg:max-w-none">
                 @foreach($posts as $post)
+                    @if($loop->first)
+                        <div class="md:hidden border-b-2 border-gray-100"></div>
+                    @endif
                     <x-post-card :post="$post"/>
+                    @if(!$loop->last)
+                        <div class="md:hidden border-b-2 border-gray-100"></div>
+                    @endif
                 @endforeach
             </div>
         </div>
+
 
         <div class="mt-20 shadow-inner bg-gray-100 py-10">
             <div class="max-w-5xl mx-auto">
@@ -61,19 +88,21 @@
             </div>
         </div>
 
-        <div class="max-w-7xl mx-auto flex mt-20">
-            <div class="w-1/3 flex flex-col">
-                <img class="w-32 mx-auto" src="{{ asset('images/a.png') }}" alt="">
-                <img class="w-32 mx-auto" src="{{ asset('images/b.png') }}" alt="">
-                <img class="w-32 mx-auto" src="{{ asset('images/c.png') }}" alt="">
-            </div>
-            <div class="w-2/3">
-                <h2 class="font-bold text-xl">
-                    {!! $block->getCode('abc_homepage_title') !!}
-                </h2>
-                <p class="mt-4">
-                    {!! $block->getCode('abc_homepage_content') !!}
-                </p>
+        <div class="mx-4 md:mx-10">
+            <div class="max-w-7xl mx-auto md:flex mt-20">
+                <div class="md:w-1/3 flex md:flex-col justify-center">
+                    <img class="w-16 md:w-32 md:mx-auto" src="{{ asset('images/a.png') }}" alt="">
+                    <img class="w-16 md:w-32 md:mx-auto" src="{{ asset('images/b.png') }}" alt="">
+                    <img class="w-16 md:w-32 md:mx-auto" src="{{ asset('images/c.png') }}" alt="">
+                </div>
+                <div class="w-full md:w-2/3 mt-6 md:mt-0">
+                    <h2 class="font-bold text-xl">
+                        {!! $block->getCode('abc_homepage_title') !!}
+                    </h2>
+                    <p class="mt-4">
+                        {!! $block->getCode('abc_homepage_content') !!}
+                    </p>
+                </div>
             </div>
         </div>
     </div>

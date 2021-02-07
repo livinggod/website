@@ -22,7 +22,7 @@
     <script>
         var refTagger = {
             settings: {
-                bibleVersion: "ESV",
+                bibleVersion: "KJV",
                 roundCorners: true,
                 socialSharing: [],
                 customStyle: {
