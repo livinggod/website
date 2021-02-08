@@ -2,8 +2,8 @@
     <div class="pt-8 md:pt-16 pb-20 lg:pt-16 lg:pb-28">
         <div class="md:mx-10">
             <div class="max-w-7xl mx-auto">
-                <a href="#" class="flex flex-col md:flex-row rounded-lg shadow-lg h-40">
-                    <img class="md:hidden rounded-t-lg md:rounded-r-lg h-full w-full object-cover"
+                <a href="#" class="flex flex-col md:flex-row rounded-lg shadow-lg md:h-120">
+                    <img class="md:hidden rounded-t-lg md:rounded-r-lg h-15 w-full object-cover"
                          src="{{ asset('storage/' . $highlight->image) }}"
                          alt="{{ $highlight->title }}">
                     <div class="md:w-1/2 md:px-20 p-4 -mt-2 bg-white rounded-lg md:rounded-l-lg relative">
