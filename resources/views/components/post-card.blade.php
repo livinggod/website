@@ -6,7 +6,7 @@
                  alt="">
         </a>
     </div>
-    <div class="flex-1 bg-white p-4 md:p-6 relative md:pb-24">
+    <div class="flex-1 bg-white p-4 md:p-6 flex flex-col justify-between">
         <div class="flex-1">
             <div class="flex justify-between">
                 <div>
@@ -29,13 +29,13 @@
                      alt="">
             </div>
         </div>
-        <div class="mt-4 md:mt-6 flex md:absolute md:bottom-0 md:mb-6">
+        <div class="mt-4 md:mt-6 flex w-full">
             <img class="hidden md:block w-8 h-8 md:w-10 md:h-10 object-cover rounded-full"
                  src="https://images.unsplash.com/photo-1604176736699-622601f98c9c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1234&q=80"
                  alt="">
             <div class="flex md:block gap-2 md:ml-4">
                 <p class="text-xs md:text-sm font-medium text-gray-900">
-                    <a href="#" class="hover:underline">
+                    <a href="#" class="hover:underline w-6 text-wrap">
                         {{ $post->user->name }}
                     </a>
                 </p>

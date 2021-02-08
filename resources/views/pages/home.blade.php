@@ -1,15 +1,16 @@
 <x-guest-layout>
     <div class="pt-8 md:pt-16 pb-20 lg:pt-16 lg:pb-28">
-        <div class="md:mx-10">
-            <div class="max-w-7xl mx-auto">
-                <a href="#" class="flex flex-col md:flex-row rounded-lg shadow-lg md:h-120">
+        <div class="md:mx-8">
+            <div class="lg:max-w-7xl mx-auto">
+                <a href="#" class="flex flex-col md:flex-row rounded-lg shadow-lg md:min-h-120">
                     <img class="md:hidden rounded-t-lg md:rounded-r-lg h-15 w-full object-cover"
                          src="{{ asset('storage/' . $highlight->image) }}"
                          alt="{{ $highlight->title }}">
                     <div class="md:w-1/2 md:px-20 p-4 -mt-2 bg-white rounded-lg md:rounded-l-lg relative">
                         <h2 class="text-sm md:text-lg text-gray-400">Article</h2>
-                        <div class="md:mt-16">
-                            <h1 class="text-2xl md:text-5xl font-bold">{{ $highlight->title }}</h1>
+                        <div class="md:mt-4 lg:mt-6">
+                            <h1 class="text-2xl lg:text-5xl font-bold md:mb-24">Wolves, hired servants and the true
+                                Shepherd</h1>
                         </div>
                         <div class="flex mt-8 mb-4 md:absolute md:bottom-0 md:mb-10">
                             <img class="w-8 h-8 md:w-10 md:h-10 object-cover rounded-full"
@@ -20,7 +21,8 @@
                                     {{ $highlight->user->name }}
                                 </p>
                                 <div class="flex space-x-1 text-xs md:text-sm text-gray-500">
-                                    <time datetime="{{ \Illuminate\Support\Carbon::parse($highlight->publish_at)->format('Y-m-d') ?? '' }}">
+                                    <time
+                                        datetime="{{ \Illuminate\Support\Carbon::parse($highlight->publish_at)->format('Y-m-d') ?? '' }}">
                                         {{ \Illuminate\Support\Carbon::parse($highlight->publish_at)->format('F jS Y') ?? '' }}
                                     </time>
                                 </div>
@@ -40,37 +42,43 @@
             </div>
         </div>
 
-        <div class="max-w-7xl mx-auto mt-20 text-gray-400">
-            <div class="flex justify-between mx-4 h-10">
-                <a href="{{ route('articles.index') }}" class="border-b-2 md:border-0 border-custom-green-100 text-custom-green-100 md:text-gray-400">{{ __('New') }}</a>
-                <a href="{{ route('articles.index') }}">
-                    {{ __('Show all') }}
+        <div class="mx-4 md:mx-8">
+            <div class="max-w-7xl mx-auto mt-20 text-gray-400">
+                <div class="flex justify-between h-10">
+                    <a href="{{ route('articles.index') }}"
+                       class="border-b-2 md:border-0 border-custom-green-100 text-custom-green-100 md:text-gray-400">
+                        {{ __('New') }}
+                    </a>
+                    <a href="{{ route('articles.index') }}">
+                        {{ __('Show all') }}
 
-                    {{-- Hericon: arrow-narrow-right --}}
-                    <svg class="inline w-4 fill-current"
-                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd"
-                              d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                              clip-rule="evenodd"/>
-                    </svg>
-                </a>
-            </div>
-            <div class="max-w-lg mx-auto grid gap-2 md:gap-8 md:grid-cols-2 lg:grid-cols-4 lg:max-w-none">
-                @foreach($posts as $post)
-                    @if($loop->first)
-                        <div class="md:hidden border-b-2 border-gray-100"></div>
-                    @endif
-                    <x-post-card :post="$post"/>
-                    @if(!$loop->last)
-                        <div class="md:hidden border-b-2 border-gray-100"></div>
-                    @endif
-                @endforeach
+                        {{-- Hericon: arrow-narrow-right --}}
+                        <svg class="inline w-4 fill-current"
+                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                  d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+                                  clip-rule="evenodd"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="mx-auto grid gap-2 md:gap-8 md:grid-cols-3 xl:grid-cols-4">
+                    @foreach($posts as $post)
+                        @if($loop->first)
+                            <div class="md:hidden border-b-2 border-gray-100"></div>
+                        @endif
+                        <x-post-card :post="$post"/>
+                        @if(!$loop->last)
+                            <div class="md:hidden border-b-2 border-gray-100"></div>
+                        @endif
+                    @endforeach
+                </div>
             </div>
         </div>
 
 
+
         <div class="mt-20 shadow-inner bg-gray-100 py-10">
-            <div class="mx-4">
+            <div class="mx-4 md:mx-8">
                 <div class="max-w-5xl mx-auto">
                     <h3 class="text-lg md:text-4xl text-custom-green-100">Be The First To Receive Our Content</h3>
                     <p class="text-md text-gray-400">Get our content directly in your inbox</p>
