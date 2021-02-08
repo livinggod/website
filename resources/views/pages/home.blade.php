@@ -2,7 +2,7 @@
     <div class="pt-8 md:pt-16 pb-20 lg:pt-16 lg:pb-28">
         <div class="md:mx-10">
             <div class="max-w-7xl mx-auto">
-                <a href="#" class="flex flex-col md:flex-row rounded-lg shadow-lg h-25">
+                <a href="#" class="flex flex-col md:flex-row rounded-lg shadow-lg h-40">
                     <img class="md:hidden rounded-t-lg md:rounded-r-lg h-full w-full object-cover"
                          src="{{ asset('storage/' . $highlight->image) }}"
                          alt="{{ $highlight->title }}">
