@@ -5,7 +5,7 @@
                 <a href="#" class="flex flex-col md:flex-row rounded-lg shadow-lg h-25">
                     <img class="md:hidden rounded-t-lg md:rounded-r-lg h-full w-full object-cover"
                          src="{{ asset('storage/' . $highlight->image) }}"
-                         alt="">
+                         alt="{{ $highlight->title }}">
                     <div class="md:w-1/2 md:px-20 p-4 -mt-2 bg-white rounded-lg md:rounded-l-lg relative">
                         <h2 class="text-sm md:text-lg text-gray-400">Article</h2>
                         <div class="md:mt-16">
@@ -14,7 +14,7 @@
                         <div class="flex mt-8 mb-4 md:absolute md:bottom-0 md:mb-10">
                             <img class="w-8 h-8 md:w-10 md:h-10 object-cover rounded-full"
                                  src="https://images.unsplash.com/photo-1604176736699-622601f98c9c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1234&q=80"
-                                 alt="">
+                                 alt="{{ $highlight->user->name }}">
                             <div class="ml-4">
                                 <p class="text-xs md:text-sm font-medium text-gray-900">
                                     {{ $highlight->user->name }}
@@ -33,8 +33,8 @@
                             <path d="M0 399V0H106L0 399Z" fill="#fff"/>
                         </svg>
                         <img class="rounded-r-lg h-full w-full object-cover"
-                             src="https://images.pexels.com/photos/2113566/pexels-photo-2113566.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-                             alt="">
+                             src="{{ asset('storage/' . $highlight->image) }}"
+                             alt="{{ $highlight->title }}">
                     </div>
                 </a>
             </div>
