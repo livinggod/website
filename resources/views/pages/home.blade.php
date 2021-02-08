@@ -9,7 +9,7 @@
                     <div class="md:w-1/2 md:px-20 p-4 -mt-2 bg-white rounded-lg md:rounded-l-lg relative">
                         <h2 class="text-sm md:text-lg text-gray-400">Article</h2>
                         <div class="md:mt-16">
-                            <h1 class="text-2xl md:text-5xl font-bold">Lorem ipsum dolor sit amet.</h1>
+                            <h1 class="text-2xl md:text-5xl font-bold">{{ $highlight->title }}</h1>
                         </div>
                         <div class="flex mt-8 mb-4 md:absolute md:bottom-0 md:mb-10">
                             <img class="w-8 h-8 md:w-10 md:h-10 object-cover rounded-full"
@@ -17,11 +17,11 @@
                                  alt="">
                             <div class="ml-4">
                                 <p class="text-xs md:text-sm font-medium text-gray-900">
-                                    Paul Baars
+                                    {{ $highlight->user->name }}
                                 </p>
                                 <div class="flex space-x-1 text-xs md:text-sm text-gray-500">
-                                    <time datetime="2020-03-16">
-                                        {{ \Illuminate\Support\Carbon::parse(now())->format('F jS Y') ?? '' }}
+                                    <time datetime="{{ \Illuminate\Support\Carbon::parse($post->publish_at)->format('Y-m-d') ?? '' }}">
+                                        {{ \Illuminate\Support\Carbon::parse($highlight->publish_at)->format('F jS Y') ?? '' }}
                                     </time>
                                 </div>
                             </div>

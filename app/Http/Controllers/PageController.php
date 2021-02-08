@@ -12,6 +12,8 @@ class PageController extends Controller
         return view('pages.home', [
             'posts' => Post::published()->latest()->get()->take(8)
                 ->makeHidden(['content', 'published']),
+            'highlight' => Post::published()->latest()->first()
+                ->makeHidden(['content', 'published']),
             'block' => new Block()
         ]);
     }
