@@ -15,6 +15,12 @@ class Post extends Model
         'publish_at' => 'datetime'
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        ''
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

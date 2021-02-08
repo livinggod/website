@@ -11,7 +11,7 @@
                         <div class="md:mt-16">
                             <h1 class="text-2xl md:text-5xl font-bold">Lorem ipsum dolor sit amet.</h1>
                         </div>
-                        <div class="flex mt-8 md:absolute md:bottom-0 md:mb-10">
+                        <div class="flex mt-8 mb-4 md:absolute md:bottom-0 md:mb-10">
                             <img class="w-8 h-8 md:w-10 md:h-10 object-cover rounded-full"
                                  src="https://images.unsplash.com/photo-1604176736699-622601f98c9c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1234&q=80"
                                  alt="">
@@ -41,8 +41,8 @@
         </div>
 
         <div class="max-w-7xl mx-auto mt-20 text-gray-400">
-            <div class="flex justify-between mx-4">
-                <p>{{ __('New') }}</p>
+            <div class="flex justify-between mx-4 h-10">
+                <a href="{{ route('articles.index') }}" class="border-b-2 md:border-0 border-custom-green-100 text-custom-green-100 md:text-gray-400">{{ __('New') }}</a>
                 <a href="{{ route('articles.index') }}">
                     {{ __('Show all') }}
 
@@ -55,7 +55,7 @@
                     </svg>
                 </a>
             </div>
-            <div class="mt-4 max-w-lg mx-auto grid gap-2 md:gap-8 md:grid-cols-2 lg:grid-cols-4 lg:max-w-none">
+            <div class="max-w-lg mx-auto grid gap-2 md:gap-8 md:grid-cols-2 lg:grid-cols-4 lg:max-w-none">
                 @foreach($posts as $post)
                     @if($loop->first)
                         <div class="md:hidden border-b-2 border-gray-100"></div>
@@ -70,30 +70,32 @@
 
 
         <div class="mt-20 shadow-inner bg-gray-100 py-10">
-            <div class="max-w-5xl mx-auto">
-                <h3 class="text-4xl text-custom-green-100">Be The First To Receive Our Content</h3>
-                <p class="text-gray-400">Get our content directly in your inbox</p>
-                <form class="mt-4 sm:flex sm:max-w-md">
-                    <label for="emailAddress" class="sr-only">Email address</label>
-                    <input type="email" name="emailAddress" id="emailAddress" autocomplete="email" required
-                           class="appearance-none min-w-0 w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-4 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:placeholder-gray-400"
-                           placeholder="Enter your email">
-                    <div class="mt-3 rounded-md sm:mt-0 sm:ml-3 sm:flex-shrink-0">
-                        <button type="submit"
-                                class="w-full bg-custom-green-100 flex items-center justify-center border border-transparent rounded-md py-2 px-4 text-base font-medium text-white focus:outline-none hover:bg-custom-green-200 focus:bgwewe-custom-green-300">
-                            Subscribe
-                        </button>
-                    </div>
-                </form>
+            <div class="mx-4">
+                <div class="max-w-5xl mx-auto">
+                    <h3 class="text-lg md:text-4xl text-custom-green-100">Be The First To Receive Our Content</h3>
+                    <p class="text-md text-gray-400">Get our content directly in your inbox</p>
+                    <form class="mt-4 sm:flex sm:max-w-md">
+                        <label for="emailAddress" class="sr-only">Email address</label>
+                        <input type="email" name="emailAddress" id="emailAddress" autocomplete="email" required
+                               class="appearance-none min-w-0 w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-4 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:placeholder-gray-400"
+                               placeholder="Enter your email">
+                        <div class="mt-3 rounded-md sm:mt-0 sm:ml-3 sm:flex-shrink-0">
+                            <button type="submit"
+                                    class="w-full bg-custom-green-100 flex items-center justify-center border border-transparent rounded-md py-2 px-4 text-base font-medium text-white focus:outline-none hover:bg-custom-green-200 focus:bgwewe-custom-green-300">
+                                Subscribe
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
 
         <div class="mx-4 md:mx-10">
             <div class="max-w-7xl mx-auto md:flex mt-20">
                 <div class="md:w-1/3 flex md:flex-col justify-center">
-                    <img class="w-16 md:w-32 md:mx-auto" src="{{ asset('images/a.png') }}" alt="">
-                    <img class="w-16 md:w-32 md:mx-auto" src="{{ asset('images/b.png') }}" alt="">
-                    <img class="w-16 md:w-32 md:mx-auto" src="{{ asset('images/c.png') }}" alt="">
+                    <img class="w-20 h-16 md:w-32 md:h-auto md:mx-auto" src="{{ asset('images/a.png') }}" alt="">
+                    <img class="w-20 h-16 md:w-32 md:h-auto md:mx-auto" src="{{ asset('images/b.png') }}" alt="">
+                    <img class="w-20 h-16 md:w-32 md:h-auto md:mx-auto" src="{{ asset('images/c.png') }}" alt="">
                 </div>
                 <div class="w-full md:w-2/3 mt-6 md:mt-0">
                     <h2 class="font-bold text-xl">

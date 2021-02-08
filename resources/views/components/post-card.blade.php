@@ -6,7 +6,7 @@
                  alt="">
         </a>
     </div>
-    <div class="flex-1 bg-white p-6 relative md:pb-24">
+    <div class="flex-1 bg-white p-4 md:p-6 relative md:pb-24">
         <div class="flex-1">
             <div class="flex justify-between">
                 <div>
