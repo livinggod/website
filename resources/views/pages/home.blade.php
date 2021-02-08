@@ -9,8 +9,7 @@
                     <div class="md:w-1/2 md:px-20 p-4 -mt-2 bg-white rounded-lg md:rounded-l-lg relative">
                         <h2 class="text-sm md:text-lg text-gray-400">Article</h2>
                         <div class="md:mt-4 lg:mt-6">
-                            <h1 class="text-2xl lg:text-5xl font-bold md:mb-24">Wolves, hired servants and the true
-                                Shepherd</h1>
+                            <h1 class="text-2xl lg:text-5xl font-bold md:mb-24">{{ $highlight->user->name }}</h1>
                         </div>
                         <div class="flex mt-8 mb-4 md:absolute md:bottom-0 md:mb-10">
                             <img class="w-8 h-8 md:w-10 md:h-10 object-cover rounded-full"
