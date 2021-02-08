@@ -55,7 +55,7 @@
                     </svg>
                 </a>
             </div>
-            <div class="mt-4 max-w-lg mx-auto grid gap-2 md:gap-8 lg:grid-cols-4 lg:max-w-none">
+            <div class="mt-4 max-w-lg mx-auto grid gap-2 md:gap-8 md:grid-cols-2 lg:grid-cols-4 lg:max-w-none">
                 @foreach($posts as $post)
                     @if($loop->first)
                         <div class="md:hidden border-b-2 border-gray-100"></div>
