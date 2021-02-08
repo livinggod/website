@@ -1,4 +1,4 @@
-<div {{ $attributes->merge(['class' => 'md:flex md:flex-col md:rounded-lg md:shadow-lg md:overflow-hidden']) }}>
+<div {{ $attributes->merge(['class' => 'md:flex md:flex-col md:rounded-lg md:shadow-md md:overflow-hidden transition duration-300 md:hover:shadow-xl']) }}>
     <div class="hidden md:block flex-shrink-0">
         <a href="{{ route('articles.show', $post) }}">
             <img class="h-48 w-full object-cover"

@@ -2,16 +2,16 @@
     <div class="pt-8 md:pt-16 pb-20 lg:pt-16 lg:pb-28">
         <div class="md:mx-8">
             <div class="lg:max-w-7xl mx-auto">
-                <a href="#" class="flex flex-col md:flex-row rounded-lg shadow-lg md:min-h-120">
+                <a href="#" class="flex flex-col md:flex-row rounded-lg shadow-md transition duration-300 md:hover:shadow-xl md:min-h-80 lg:min-h-120">
                     <img class="md:hidden rounded-t-lg md:rounded-r-lg h-15 w-full object-cover"
                          src="{{ asset('storage/' . $highlight->image) }}"
                          alt="{{ $highlight->title }}">
-                    <div class="md:w-1/2 md:px-20 p-4 -mt-2 bg-white rounded-lg md:rounded-l-lg relative">
+                    <div class="md:w-1/2 md:px-20 p-4 -mt-2 bg-white rounded-lg md:rounded-l-lg flex flex-col justify-between">
                         <h2 class="text-sm md:text-lg text-gray-400">Article</h2>
                         <div class="md:mt-4 lg:mt-6">
-                            <h1 class="text-2xl lg:text-5xl font-bold md:mb-24">{{ $highlight->user->name }}</h1>
+                            <h1 class="text-2xl lg:text-4xl font-bold py-4">{{ $highlight->title }}</h1>
                         </div>
-                        <div class="flex mt-8 mb-4 md:absolute md:bottom-0 md:mb-10">
+                        <div class="flex mt-8 mb-4">
                             <img class="w-8 h-8 md:w-10 md:h-10 object-cover rounded-full"
                                  src="https://images.unsplash.com/photo-1604176736699-622601f98c9c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1234&q=80"
                                  alt="{{ $highlight->user->name }}">
@@ -65,7 +65,7 @@
                         @if($loop->first)
                             <div class="md:hidden border-b-2 border-gray-100"></div>
                         @endif
-                        <x-post-card :post="$post"/>
+                        <x-post-card :post="$post" />
                         @if(!$loop->last)
                             <div class="md:hidden border-b-2 border-gray-100"></div>
                         @endif
@@ -73,7 +73,6 @@
                 </div>
             </div>
         </div>
-
 
 
         <div class="mt-20 shadow-inner bg-gray-100 py-10">
@@ -115,4 +114,10 @@
             </div>
         </div>
     </div>
+
+    <script>
+        const redirect = (url) => {
+            window.location = url;
+        };
+    </script>
 </x-guest-layout>
