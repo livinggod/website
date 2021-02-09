@@ -29,11 +29,13 @@
                         </div>
                     </div>
                     <div class="hidden md:block w-1/2 relative">
-                        <svg class="absolute h-full" viewBox="0 0 106 399" fill="none"
+                        <svg class="absolute h-full z-10" viewBox="0 0 106 399" fill="none"
                              xmlns="http://www.w3.org/2000/svg">
                             <path d="M0 399V0H106L0 399Z" fill="#fff"/>
                         </svg>
-                        <div class="w-full h-full rounded-r-lg" style="background-image: url({{ asset('storage/' . $highlight->image) }});background-position: center"></div>
+                        <img class="rounded-r-lg h-full w-full object-cover absolute"
+                             src="https://test.livinggod.net/storage/posts/QMbQtIDN0UDArxwDlq6lz4kWwXmKo6pC0byR4zPk.jpg"
+                             alt="{{ $highlight->title }}">
                     </div>
                 </a>
             </div>
