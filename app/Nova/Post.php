@@ -85,7 +85,7 @@ class Post extends Resource
 
             Text::make('Description')
                 ->sortable()
-                ->rules('required', 'max:20')
+                ->rules('required', 'max:255')
                 ->hideFromIndex(),
 
             DateTime::make('Publish At')
