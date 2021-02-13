@@ -53,7 +53,7 @@
         </div>
     </div>
 
-    <div x-show="mobilemenu"
+    <div x-show="mobilemenu" @click.away="mobilemenu = false"
          x-transition:enter="transition ease-in duration-300"
          x-transition:enter-start="transform translate-x-full"
          x-transition:enter-end="transform translate-x-0"
