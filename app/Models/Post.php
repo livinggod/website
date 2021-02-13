@@ -38,6 +38,6 @@ class Post extends Model
 
     public function isPublished()
     {
-        return $this->published == 1;
+        return $this->publish_at <= now();
     }
 }
