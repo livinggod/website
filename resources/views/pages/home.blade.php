@@ -1,8 +1,9 @@
 <x-guest-layout>
     <div class="pt-8 md:pt-16 pb-20 lg:pt-16 lg:pb-28">
         <div class="md:mx-8">
-            <div class="lg:max-w-7xl mx-auto">
-                <a href="#" class="flex flex-col md:flex-row rounded-lg shadow-md transition duration-300 md:hover:shadow-xl md:min-h-80 lg:min-h-120">
+            <div class="lg:max-w-7xl mx-auto relative">
+                <a class="absolute w-full h-full z-20" href="{{ route("articles.show", $highlight) }}"></a>
+                <div class="flex flex-col md:flex-row rounded-lg shadow-md transition duration-300 md:hover:shadow-xl md:min-h-80 lg:min-h-120">
                     <img class="md:hidden rounded-t-lg md:rounded-r-lg h-15 w-full object-cover"
                          src="{{ asset('storage/' . $highlight->image) }}"
                          alt="{{ $highlight->title }}">
@@ -17,9 +18,9 @@
                                  src="https://images.unsplash.com/photo-1604176736699-622601f98c9c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1234&q=80"
                                  alt="{{ $highlight->user->name }}">
                             <div class="ml-4">
-                                <p class="text-xs md:text-sm font-medium text-gray-900">
+                                <a href="#" class="relative z-30 text-xs md:text-sm font-medium text-gray-900">
                                     {{ $highlight->user->name }}
-                                </p>
+                                </a>
                                 <div class="flex space-x-1 text-xs md:text-sm text-gray-500">
                                     <time
                                         datetime="{{ \Illuminate\Support\Carbon::parse($highlight->publish_at)->format('Y-m-d') ?? '' }}">
@@ -38,7 +39,7 @@
                              src="{{ asset('storage/' . $highlight->image) }}"
                              alt="{{ $highlight->title }}">
                     </div>
-                </a>
+                </div>
             </div>
         </div>
 
