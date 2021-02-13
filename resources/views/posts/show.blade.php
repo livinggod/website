@@ -12,7 +12,7 @@
                         <span
                             class="mt-2 block text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">{{ $post->title }}</span>
                     </h1>
-                    <img class="mx-auto" src="{{ asset('storage/' . $post->image) }}" alt="">
+                    <img class="mx-auto rounded-lg" src="{{ asset('storage/' . $post->image) }}" alt="">
                 </div>
                 {!! \Advoor\NovaEditorJs\NovaEditorJs::generateHtmlOutput($post->content) !!}
             </div>
