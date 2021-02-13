@@ -18,7 +18,7 @@
                                  src="https://images.unsplash.com/photo-1604176736699-622601f98c9c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1234&q=80"
                                  alt="{{ $highlight->user->name }}">
                             <div class="ml-4">
-                                <a href="#" class="relative z-30 text-xs md:text-sm font-medium text-gray-900">
+                                <a href="#" class="relative z-30 text-xs md:text-sm font-medium hover:underline w-6 text-wrap text-gray-900">
                                     {{ $highlight->user->name }}
                                 </a>
                                 <div class="flex space-x-1 text-xs md:text-sm text-gray-500">
