@@ -95,7 +95,7 @@ class Post extends Resource
                 ->nullable(),
 
             Boolean::make('Published')
-                ->resolveUsing(fn () => $this->resource->publish_at === null || $this->resource->publish_at <= now())
+                ->resolveUsing(fn () => !is_null($this->resource->publish_at) && $this->resource->publish_at <= now())
                 ->onlyOnIndex(),
 
             NovaEditorJs::make('Content')->hideFromIndex(),
