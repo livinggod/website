@@ -55,6 +55,11 @@ class Post extends Resource
                 ->readonly(!auth()->user()->isSuperAdmin())
                 ->default(auth()->user()->id),
 
+            BelongsTo::make('Category')
+                ->sortable()
+                ->showCreateRelationButton()
+                ->rules('required'),
+
             Image::make('Image')
                 ->disk('public')
                 ->path('posts')

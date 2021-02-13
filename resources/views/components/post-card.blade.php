@@ -13,7 +13,7 @@
                 <div>
                     <p class="text-xs md:text-sm font-medium text-indigo-600">
                         <a href="#" class="relative z-10 hover:underline -ml-2 p-2 md:m-0 md:p-0">
-                            Article
+                            {{ $post->category->name }}
                         </a>
                     </p>
                     <a href="{{ route('articles.show', $post) }}" class="block mt-2 mr-4">
