@@ -1,4 +1,4 @@
-<div class="fixed transition duration-200 opacity-0 bottom-0 inset-x-0 pb-2 sm:pb-5 js-cookie-consent cookie-consent tran">
+<div class="fixed z-60 transition duration-200 opacity-0 bottom-0 inset-x-0 pb-2 sm:pb-5 js-cookie-consent cookie-consent tran">
     <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         <div class="p-2 rounded-lg bg-custom-green-100 shadow-lg sm:p-3">
             <div class="md:flex items-center justify-between flex-wrap">
