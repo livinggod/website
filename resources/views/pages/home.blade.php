@@ -1,48 +1,52 @@
 <x-guest-layout>
     <div class="pt-8 md:pt-16 pb-20 lg:pt-16 lg:pb-28">
-        <div class="md:mx-8">
-            <div class="lg:max-w-7xl mx-auto relative rounded-lg shadow-md transition duration-300 md:hover:shadow-xl">
-                <a class="absolute w-full h-full z-20" href="{{ route("articles.show", $highlight) }}"></a>
-                <div class="flex flex-col md:flex-row md:min-h-80 lg:min-h-120">
-                    <img class="md:hidden rounded-t-lg md:rounded-r-lg h-15 w-full object-cover"
-                         src="{{ asset('storage/' . $highlight->image) }}"
-                         alt="{{ $highlight->title }}">
-                    <div class="md:w-1/2 md:px-20 p-4 -mt-2 bg-white rounded-lg md:rounded-l-lg flex flex-col justify-between">
-                        <h2 class="text-sm md:text-lg text-gray-400">Article</h2>
-                        <div class="md:mt-4 lg:mt-6">
-                            <h1 class="text-2xl lg:text-4xl font-bold mt-4">{{ $highlight->title }}</h1>
-                            <h2 class="text-md lg:text-lg text-gray-500 mt-2 mb-4">{{ $highlight->description }}</h2>
-                        </div>
-                        <div class="flex mt-8 mb-4">
-                            <img class="w-8 h-8 md:w-10 md:h-10 object-cover rounded-full"
-                                 src="https://images.unsplash.com/photo-1604176736699-622601f98c9c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1234&q=80"
-                                 alt="{{ $highlight->user->name }}">
-                            <div class="ml-4">
-                                <a href="#" class="relative z-30 text-xs md:text-sm font-medium hover:underline w-6 text-wrap text-gray-900">
-                                    {{ $highlight->user->name }}
-                                </a>
-                                <div class="flex space-x-1 text-xs md:text-sm text-gray-500">
-                                    <time
-                                        datetime="{{ \Illuminate\Support\Carbon::parse($highlight->publish_at)->format('Y-m-d') ?? '' }}">
-                                        {{ \Illuminate\Support\Carbon::parse($highlight->publish_at)->format('F jS Y') ?? '' }}
-                                    </time>
+        @if(!is_null($highlight))
+            <div class="md:mx-8">
+                <div
+                    class="lg:max-w-7xl mx-auto relative rounded-lg shadow-md transition duration-300 md:hover:shadow-xl">
+                    <a class="absolute w-full h-full z-20" href="{{ route("articles.show", $highlight) }}"></a>
+                    <div class="flex flex-col md:flex-row md:min-h-80 lg:min-h-120">
+                        <img class="md:hidden rounded-t-lg md:rounded-r-lg h-15 w-full object-cover"
+                             src="{{ asset('storage/' . $highlight->image) }}"
+                             alt="{{ $highlight->title }}">
+                        <div
+                            class="md:w-1/2 md:px-20 p-4 -mt-2 bg-white rounded-lg md:rounded-l-lg flex flex-col justify-between">
+                            <h2 class="text-sm md:text-lg text-gray-400">Article</h2>
+                            <div class="md:mt-4 lg:mt-6">
+                                <h1 class="text-2xl lg:text-4xl font-bold mt-4">{{ $highlight->title }}</h1>
+                                <h2 class="text-md lg:text-lg text-gray-500 mt-2 mb-4">{{ $highlight->description }}</h2>
+                            </div>
+                            <div class="flex mt-8 mb-4">
+                                <img class="w-8 h-8 md:w-10 md:h-10 object-cover rounded-full"
+                                     src="https://images.unsplash.com/photo-1604176736699-622601f98c9c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1234&q=80"
+                                     alt="{{ $highlight->user->name }}">
+                                <div class="ml-4">
+                                    <a href="#"
+                                       class="relative z-30 text-xs md:text-sm font-medium hover:underline w-6 text-wrap text-gray-900">
+                                        {{ $highlight->user->name }}
+                                    </a>
+                                    <div class="flex space-x-1 text-xs md:text-sm text-gray-500">
+                                        <time
+                                            datetime="{{ \Illuminate\Support\Carbon::parse($highlight->publish_at)->format('Y-m-d') ?? '' }}">
+                                            {{ \Illuminate\Support\Carbon::parse($highlight->publish_at)->format('F jS Y') ?? '' }}
+                                        </time>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="hidden md:block w-1/2 relative">
-                        <svg class="absolute h-full z-10" viewBox="0 0 106 399" fill="none"
-                             xmlns="http://www.w3.org/2000/svg">
-                            <path d="M0 399V0H106L0 399Z" fill="#fff"/>
-                        </svg>
-                        <img class="rounded-r-lg h-full w-full object-cover absolute"
-                             src="{{ asset('storage/' . $highlight->image) }}"
-                             alt="{{ $highlight->title }}">
+                        <div class="hidden md:block w-1/2 relative">
+                            <svg class="absolute h-full z-10" viewBox="0 0 106 399" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0 399V0H106L0 399Z" fill="#fff"/>
+                            </svg>
+                            <img class="rounded-r-lg h-full w-full object-cover absolute"
+                                 src="{{ asset('storage/' . $highlight->image) }}"
+                                 alt="{{ $highlight->title }}">
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-
+        @endif
         <div class="mx-4 md:mx-8">
             <div class="max-w-7xl mx-auto mt-20 text-gray-400">
                 <div class="flex justify-between h-10">
@@ -67,7 +71,7 @@
                         @if($loop->first)
                             <div class="md:hidden border-b-2 border-gray-100"></div>
                         @endif
-                        <x-post-card :post="$post" />
+                        <x-post-card :post="$post"/>
                         @if(!$loop->last)
                             <div class="md:hidden border-b-2 border-gray-100"></div>
                         @endif

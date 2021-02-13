@@ -4,16 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Block;
 use App\Models\Post;
+use Illuminate\Support\Collection;
 
 class PageController extends Controller
 {
     public function home()
     {
         return view('pages.home', [
-            'posts' => Post::published()->latest()->get()->take(8)
-                ->makeHidden(['content', 'published']),
-            'highlight' => Post::published()->latest()->first()
-                ->makeHidden(['content', 'published']),
+            'posts' => Post::published()->orderBy('publish_at', 'desc')->get()->take(8)
+                ->makeHidden(['content', 'published']) ?? new Collection(),
+            'highlight' => Post::published()->orderBy('publish_at', 'desc')->first()
+                ->makeHidden(['content', 'published']) ?? null,
             'block' => new Block()
         ]);
     }

@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use Advoor\NovaEditorJs\NovaEditorJs;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
@@ -89,13 +90,15 @@ class Post extends Resource
                 ->hideFromIndex(),
 
             DateTime::make('Publish At')
+                ->format('DD MMM YYYY H:mm:ss')
                 ->sortable()
                 ->nullable(),
 
             Boolean::make('Published')
-                ->sortable(),
+                ->resolveUsing(fn () => $this->resource->publish_at === null || $this->resource->publish_at <= now())
+                ->onlyOnIndex(),
 
-            NovaEditorJs::make('Content'),
+            NovaEditorJs::make('Content')->hideFromIndex(),
         ];
     }
 
@@ -140,6 +143,9 @@ class Post extends Resource
      */
     public function actions(Request $request)
     {
-        return [];
+        return [
+            (new Actions\Publish)
+                ->showOnTableRow(),
+        ];
     }
 }

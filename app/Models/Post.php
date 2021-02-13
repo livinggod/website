@@ -28,7 +28,7 @@ class Post extends Model
 
     public function scopePublished($query)
     {
-        return $query->where('published', 1);
+        return $query->where('publish_at', '<=', now());
     }
 
     public function canShow()
