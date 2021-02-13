@@ -6,37 +6,13 @@
                 <div class="md:grid md:grid-cols-2 md:gap-8">
                     <x-footer.column title="test">
                         <x-footer.link class="" href="#">Testing</x-footer.link>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta dignissimos earum voluptatibus? Illum, iure, quisquam. Cum doloremque labore officia suscipit.
                     </x-footer.column>
-                    <x-footer.column title="test">
+                </div>
+                <div class="mt-12 md:mt-0">
+                    <x-footer.column title="legal">
                         <x-footer.link class="" href="#">Testing</x-footer.link>
                     </x-footer.column>
-                    <x-footer.column title="test">
-                        <x-footer.link class="" href="#">Testing</x-footer.link>
-                    </x-footer.column>
-                    <div class="mt-12 md:mt-0">
-                        <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">
-                            Legal
-                        </h3>
-                        <ul class="mt-4 space-y-4">
-                            <li>
-                                <a href="#" class="text-base text-gray-500 hover:text-gray-900">
-                                    Claim
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="#" class="text-base text-gray-500 hover:text-gray-900">
-                                    Privacy
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="#" class="text-base text-gray-500 hover:text-gray-900">
-                                    Terms
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
                 </div>
             </div>
             <div class="mt-8 xl:mt-0">
