@@ -6,7 +6,6 @@
                 <div class="md:grid md:grid-cols-2 md:gap-8">
                     <x-footer.column title="test">
                         <x-footer.link class="" href="#">Testing</x-footer.link>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta dignissimos earum voluptatibus? Illum, iure, quisquam. Cum doloremque labore officia suscipit.
                     </x-footer.column>
                 </div>
                 <div class="mt-12 md:mt-0">
