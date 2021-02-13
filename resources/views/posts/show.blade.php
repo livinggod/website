@@ -7,7 +7,7 @@
         <div class="relative px-4 sm:px-6 lg:px-8">
 
             <div class="mt-6 prose prose-lg text-gray-500 mx-auto">
-                <div class="text-lg max-w-prose prose-green mx-auto">
+                <div class="text-lg max-w-prose mx-auto">
                     <div class="text-center">
                         <time class="text-sm w-full"
                               datetime="{{ \Illuminate\Support\Carbon::parse($post->publish_at)->format('Y-m-d') ?? '' }}">

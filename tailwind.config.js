@@ -25,6 +25,18 @@ module.exports = {
             },
             zIndex: {
                 60: '60',
+            },
+            typography: {
+                DEFAULT: {
+                    css: {
+                        a: {
+                            color: '#6B7280',
+                            '&:hover': {
+                                color: '#374151',
+                            },
+                        },
+                    },
+                },
             }
         },
     },
