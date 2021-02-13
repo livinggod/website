@@ -83,6 +83,11 @@ class Post extends Resource
                 })->asHtml(),
             ]),
 
+            Text::make('Description')
+                ->sortable()
+                ->rules('required', 'max:20')
+                ->hideFromIndex(),
+
             DateTime::make('Publish At')
                 ->sortable()
                 ->nullable(),

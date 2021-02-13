@@ -19,8 +19,11 @@
                         <p class="text-md md:text-xl font-semibold text-gray-900">
                             {{ $post->title }}
                         </p>
-                        <p class="hidden md:block mt-3 text-base text-gray-500">
-                            {{ \Illuminate\Support\Str::limit($post->content, 20) }}
+                        <p class="hidden md:block text-md mt-2 text-gray-500">
+                            {{ $post->description ?? '' }}
+                        </p>
+                        <p class="md:hidden text-sm text-gray-500">
+                            {{ \Illuminate\Support\Str::limit($post->description, 20) ?? '' }}
                         </p>
                     </a>
                 </div>

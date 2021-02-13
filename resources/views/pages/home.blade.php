@@ -9,7 +9,8 @@
                     <div class="md:w-1/2 md:px-20 p-4 -mt-2 bg-white rounded-lg md:rounded-l-lg flex flex-col justify-between">
                         <h2 class="text-sm md:text-lg text-gray-400">Article</h2>
                         <div class="md:mt-4 lg:mt-6">
-                            <h1 class="text-2xl lg:text-4xl font-bold py-4">{{ $highlight->title }}</h1>
+                            <h1 class="text-2xl lg:text-4xl font-bold mt-4">{{ $highlight->title }}</h1>
+                            <h2 class="text-md lg:text-lg text-gray-500 mt-2 mb-4">{{ $highlight->description }}</h2>
                         </div>
                         <div class="flex mt-8 mb-4">
                             <img class="w-8 h-8 md:w-10 md:h-10 object-cover rounded-full"
@@ -34,7 +35,7 @@
                             <path d="M0 399V0H106L0 399Z" fill="#fff"/>
                         </svg>
                         <img class="rounded-r-lg h-full w-full object-cover absolute"
-                             src="https://test.livinggod.net/storage/posts/QMbQtIDN0UDArxwDlq6lz4kWwXmKo6pC0byR4zPk.jpg"
+                             src="{{ asset('storage/' . $highlight->image) }}"
                              alt="{{ $highlight->title }}">
                     </div>
                 </a>
