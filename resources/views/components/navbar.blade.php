@@ -1,4 +1,4 @@
-<div x-data="{mobilemenu: false}" class="z-10 fixed w-full bg-white border-b">
+<div x-data="{mobilemenu: false}" class="z-20 fixed w-full bg-white border-b">
     <div class="mx-auto px-4 sm:px-6">
         <div @click="mobilemenu = !mobilemenu"
              class="flex justify-between items-center h-16 md:justify-start md:space-x-10">
