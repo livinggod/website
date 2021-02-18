@@ -9,18 +9,18 @@ class UserPolicy
 {
     use HandlesAuthorization;
 
-    public function update(User $user)
+    public function update(User $current, User $user)
     {
-        return $user->can('edit-users');
+        return $user->isSuperAdmin() || $user->can('edit-users') || $current->id === $user->id;
+    }
+
+    public function view(User $current, User $user)
+    {
+        return $user->isSuperAdmin() || $user->can('view-users') || $current->id === $user->id;
     }
 
     public function create(User $user)
     {
         return $user->can('create-users');
-    }
-
-    public function viewAny(User $user)
-    {
-        return $user->can('view-users');
     }
 }

@@ -2,11 +2,13 @@
 
 namespace App\Nova;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Avatar;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Http\Requests\NovaRequest;
 use Vyuldashev\NovaPermission\RoleBooleanGroup;
 
 class User extends Resource
@@ -67,5 +69,12 @@ class User extends Resource
 
             RoleBooleanGroup::make('Roles'),
         ];
+    }
+
+    public static function indexQuery(NovaRequest $request, $query): Builder
+    {
+        return $request->user()->can('view-users')
+            ? $query
+            : $query->where('id', $request->user()->id);
     }
 }
