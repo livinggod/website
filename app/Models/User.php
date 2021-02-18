@@ -51,4 +51,11 @@ class User extends Authenticatable
     {
         return $this->hasRole('super_admin');
     }
+
+    public function getAvatar()
+    {
+        return !is_null($this->attributes['avatar'])
+            ? asset('storage/' . $this->attributes['avatar'])
+            : 'https://secure.gravatar.com/avatar/' . md5(\Illuminate\Support\Str::lower($this->attributes['email'])) . '?size=512';
+    }
 }

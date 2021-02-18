@@ -9,7 +9,7 @@
             <div class="mt-6 prose prose-lg text-gray-500 mx-auto">
                 <div class="text-lg max-w-prose mx-auto">
                     <div class="text-center">
-                        <time class="text-sm w-full"
+                        <time class="text-xs md:text-sm w-full"
                               datetime="{{ \Illuminate\Support\Carbon::parse($post->publish_at)->format('Y-m-d') ?? '' }}">
                             {{ \Illuminate\Support\Carbon::parse($post->publish_at)->format('F jS Y') ?? '' }}
                         </time>
@@ -25,7 +25,7 @@
 
                         <div class="flex m-0">
                             <img class="w-12 h-12 md:w-14 md:h-14 object-cover rounded-full"
-                                 src="https://images.unsplash.com/photo-1604176736699-622601f98c9c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1234&q=80"
+                                 src="{{ $post->user->getAvatar() }}"
                                  alt="{{ $post->user->name }}">
                             <div class="text-sm md:text-base ml-4 self-center">
                                 Written by: <a href="#" class="">{{ $post->user->name }}</a><br>

@@ -36,7 +36,7 @@
         <div class="mt-4 md:mt-6 flex w-full">
             <a class="hidden md:block relative z-10" href="#">
                 <img class="w-8 h-8 md:w-10 md:h-10 object-cover rounded-full"
-                     src="https://images.unsplash.com/photo-1604176736699-622601f98c9c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1234&q=80"
+                     src="{{ $post->user->getAvatar() }}"
                      alt="">
             </a>
 
