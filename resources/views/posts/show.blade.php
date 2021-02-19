@@ -7,7 +7,7 @@
         <div class="relative px-4 sm:px-6 lg:px-8">
 
             <div class="mt-6 prose prose-lg text-gray-500 mx-auto">
-                <div class="text-lg max-w-prose mx-auto">
+                <article class="text-lg max-w-prose leading-9 mx-auto">
                     <div class="text-center">
                         <time class="text-xs md:text-sm w-full"
                               datetime="{{ \Illuminate\Support\Carbon::parse($post->publish_at)->format('Y-m-d') ?? '' }}">
@@ -32,7 +32,8 @@
                             </div>
                         </div>
 
-                {!! \Advoor\NovaEditorJs\NovaEditorJs::generateHtmlOutput($post->content) !!}
+                    {!! str_replace('<br>', '', $post->content); !!}
+                </article>
             </div>
         </div>
     </div>
