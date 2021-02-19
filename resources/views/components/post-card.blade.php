@@ -33,7 +33,10 @@
                      alt="">
             </div>
         </div>
-        <div class="mt-4 md:mt-6 flex w-full">
+        <div class="md:hidden mt-4 text-xs md:text-xs text-gray-500">
+            {{ $post->minutes }} {{ __('min read') }}
+        </div>
+        <div class="mt-2 md:mt-6 flex w-full">
             <a class="hidden md:block relative z-10" href="#">
                 <img class="w-8 h-8 md:w-10 md:h-10 object-cover rounded-full"
                      src="{{ $post->user->getAvatar() }}"
@@ -51,7 +54,7 @@
                         {{ \Illuminate\Support\Carbon::parse($post->publish_at)->format('F jS Y') ?? '' }}
                     </time>
                 </div>
-                <div class="flex space-x-1 text-xs md:text-xs text-gray-500">
+                <div class="hidden md:block mt-2 text-xs md:text-xs text-gray-500">
                     {{ $post->minutes }} {{ __('min read') }}
                 </div>
             </div>

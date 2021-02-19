@@ -31,6 +31,9 @@
                                             {{ \Illuminate\Support\Carbon::parse($highlight->publish_at)->format('F jS Y') ?? '' }}
                                         </time>
                                     </div>
+                                    <div class="mt-2 text-xs md:text-sm text-gray-500">
+                                        {{ $highlight->minutes }} {{ __('min read') }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
