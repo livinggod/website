@@ -33,7 +33,7 @@
                         </div>
                     </div>
 
-                    {!! str_replace('<br>', '', $post->content); !!}
+                    {!! str_replace('<p></p>', '', str_replace('<br>', '', $post->content)) !!}
                 </article>
             </div>
         </div>
