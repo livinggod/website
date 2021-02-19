@@ -23,14 +23,15 @@
 
                     <img class="mx-auto rounded-lg" src="{{ asset('storage/' . $post->image) }}" alt="">
 
-                        <div class="flex m-0">
-                            <img class="w-12 h-12 md:w-14 md:h-14 object-cover rounded-full"
-                                 src="{{ $post->user->getAvatar() }}"
-                                 alt="{{ $post->user->name }}">
-                            <div class="text-sm md:text-base ml-4 self-center">
-                                Written by: <a href="#" class="">{{ $post->user->name }}</a><br>
-                            </div>
+                    <div class="flex m-0">
+                        <img class="w-12 h-12 md:w-14 md:h-14 object-cover rounded-full"
+                             src="{{ $post->user->getAvatar() }}"
+                             alt="{{ $post->user->name }}">
+                        <div class="text-sm md:text-base ml-4 self-center">
+                            {{ __('Written by:') }} <a href="#" class="">{{ $post->user->name }}</a><br>
+                            {{ $post->minutes }} {{ __('min read') }}
                         </div>
+                    </div>
 
                     {!! str_replace('<br>', '', $post->content); !!}
                 </article>

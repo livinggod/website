@@ -46,10 +46,13 @@
                         {{ $post->user->name }}
                     </a>
                 </p>
-                <div class="flex space-x-1 text-xs md:text-sm text-gray-500">
+                <div class="flex space-x-1 text-xs md:text-xs text-gray-500">
                     <time datetime="{{ \Illuminate\Support\Carbon::parse($post->publish_at)->format('Y-m-d') ?? '' }}">
                         {{ \Illuminate\Support\Carbon::parse($post->publish_at)->format('F jS Y') ?? '' }}
                     </time>
+                </div>
+                <div class="flex space-x-1 text-xs md:text-xs text-gray-500">
+                    {{ $post->minutes }} {{ __('min read') }}
                 </div>
             </div>
         </div>
