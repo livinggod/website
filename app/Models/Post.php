@@ -9,6 +9,8 @@ class Post extends Model
 {
     use HasFactory;
 
+    const WORDS_PER_MINUTE = 200;
+
     protected $guarded = [];
 
     protected $casts = [
@@ -44,5 +46,19 @@ class Post extends Model
     public function isPublished()
     {
         return $this->publish_at <= now();
+    }
+
+    public function calculateRead(): int
+    {
+        $words = 0;
+        foreach (json_decode($this->content, true)['blocks'] as $block) {
+            try {
+                $words += count(explode(' ', strip_tags($block['data']['text'])));
+            } catch (\Exception $e) {}
+        }
+
+        $this->minutes = round($words / self::WORDS_PER_MINUTE, 0, PHP_ROUND_HALF_EVEN);
+
+        return $this->minutes;
     }
 }
