@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 
 class PostObserver
 {
-    const WORDS_PER_MINUTE = 250;
+    const WORDS_PER_MINUTE = 200;
 
     public function creating(Post $post)
     {
@@ -29,6 +29,13 @@ class PostObserver
 
     protected function calculateRead(Post $post): int
     {
-        return round(count(explode(' ', strip_tags($post->content))) / self::WORDS_PER_MINUTE, 0, PHP_ROUND_HALF_EVEN);
+        $words = 0;
+        foreach (json_decode($post->content, true)['blocks'] as $block) {
+            try {
+                $words += count(explode(' ', strip_tags($block['data']['text'])));
+            } catch (\Exception $e) {}
+        }
+
+        return round($words / self::WORDS_PER_MINUTE, 0, PHP_ROUND_HALF_EVEN);
     }
 }
