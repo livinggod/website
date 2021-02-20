@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d13a084dc8bd7845434575c6f07fee02",
+    "content-hash": "af4094fd6d07347036b5f80c43a94c4b",
     "packages": [
         {
             "name": "advoor/nova-editor-js",
@@ -979,57 +979,6 @@
                 }
             ],
             "time": "2020-12-29T14:50:06+00:00"
-        },
-        {
-            "name": "emotality/summernote-nova",
-            "version": "v1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/emotality/summernote-nova.git",
-                "reference": "da176ecb93a169568a599652ec333b412a3731e5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/emotality/summernote-nova/zipball/da176ecb93a169568a599652ec333b412a3731e5",
-                "reference": "da176ecb93a169568a599652ec333b412a3731e5",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.1.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Emotality\\Nova\\SummernoteServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Emotality\\Nova\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jean-Pierre Fourie",
-                    "email": "jp@emotality.com",
-                    "homepage": "https://emotality.com"
-                }
-            ],
-            "description": "Summernote WYSIWYG editor for Laravel Nova",
-            "homepage": "https://github.com/emotality/summernote-nova",
-            "keywords": [
-                "laravel",
-                "nova",
-                "summernote",
-                "wysiwyg"
-            ],
-            "time": "2020-10-19T04:20:21+00:00"
         },
         {
             "name": "ezyang/htmlpurifier",
