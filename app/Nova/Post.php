@@ -2,7 +2,7 @@
 
 namespace App\Nova;
 
-use Emotality\Nova\Summernote;
+use Advoor\NovaEditorJs\NovaEditorJs;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
@@ -102,7 +102,7 @@ class Post extends Resource
                 ->resolveUsing(fn () => !is_null($this->resource->publish_at) && $this->resource->publish_at <= now())
                 ->onlyOnIndex(),
 
-            Summernote::make('Content')->hideFromIndex(),
+            NovaEditorJs::make('Content')->hideFromIndex(),
         ];
     }
 

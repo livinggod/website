@@ -33,7 +33,7 @@
                         </div>
                     </div>
 
-                    {!! str_replace('<p></p>', '', str_replace('<br>', '', $post->content)) !!}
+                    {!! \Advoor\NovaEditorJs\NovaEditorJs::generateHtmlOutput($post->content) !!}
                 </article>
             </div>
         </div>
