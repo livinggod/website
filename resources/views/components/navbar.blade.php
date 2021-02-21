@@ -13,7 +13,7 @@
             <div
                 class="flex justify-between items-center h-16 md:justify-start md:space-x-10">
                 <div class="flex justify-start lg:w-0 lg:flex-1">
-                    <a href="{{ route('page.home') }}">
+                    <a href="{{ route('pages', 'home') }}">
                         <span class="sr-only">Living God</span>
                         <x-application-logo class="h-6 w-auto sm:h-8"/>
                     </a>
@@ -34,10 +34,10 @@
                     <x-nav-link :href="route('articles.index')" :active="request()->segment(1) === 'articles'">
                         {{ __('Articles') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('page.about')" :active="request()->segment(1) === 'about'">
+                    <x-nav-link :href="route('pages', 'about')" :active="request()->segment(1) === 'about'">
                         {{ __('About') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('page.abc')" :active="request()->segment(1) === 'abc'">
+                    <x-nav-link :href="route('pages', 'abc')" :active="request()->segment(1) === 'abc'">
                         {{ __("The abc's") }}
                     </x-nav-link>
                 </nav>
@@ -74,10 +74,10 @@
             <x-nav-link :href="route('articles.index')" :active="request()->segment(1) === 'articles'">
                 {{ __('Articles') }}
             </x-nav-link>
-            <x-nav-link :href="route('page.about')" :active="request()->segment(1) === 'about'">
+            <x-nav-link :href="route('pages', 'about')" :active="request()->segment(1) === 'about'">
                 {{ __('About') }}
             </x-nav-link>
-            <x-nav-link :href="route('page.abc')" :active="request()->segment(1) === 'abc'">
+            <x-nav-link :href="route('pages', 'abc')" :active="request()->segment(1) === 'abc'">
                 {{ __("The abc's") }}
             </x-nav-link>
         </nav>

@@ -12,6 +12,7 @@ use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Slug;
 use Laravel\Nova\Fields\Stack;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Panel;
 
 
 class Post extends Resource
@@ -36,8 +37,16 @@ class Post extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'title', 'user', 'title'
+        'id', 'title', 'slug'
     ];
+
+    /**
+     * Indicates whether Nova should prevent the user from leaving an unsaved form, losing their data.
+     *
+     * @var bool
+     */
+    public static $preventFormAbandonment = true;
+
 
     /**
      * Get the fields displayed by the resource.
@@ -103,6 +112,24 @@ class Post extends Resource
                 ->onlyOnIndex(),
 
             NovaEditorJs::make('Content')->hideFromIndex(),
+
+            new Panel('Meta', $this->meta()),
+        ];
+    }
+
+    public function meta()
+    {
+        return [
+            Text::make('Title')
+                ->sortable()
+                ->rules('required', 'max:255')
+                ->hideFromIndex()
+                ->hideFromDetail(),
+
+            Text::make('Description')
+                ->sortable()
+                ->rules('max:255')
+                ->hideFromIndex(),
         ];
     }
 

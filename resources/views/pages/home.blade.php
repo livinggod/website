@@ -114,10 +114,10 @@
                 </div>
                 <div class="w-full md:w-2/3 mt-6 md:mt-0">
                     <h2 class="font-bold text-xl">
-                        {!! $block->getCode('abc_homepage_title') !!}
+                        {!! getBlock('abc_homepage_title') !!}
                     </h2>
                     <p class="mt-4">
-                        {!! $block->getCode('abc_homepage_content') !!}
+                        {!! getBlock('abc_homepage_content') !!}
                     </p>
                 </div>
             </div>
