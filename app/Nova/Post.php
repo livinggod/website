@@ -112,24 +112,6 @@ class Post extends Resource
                 ->onlyOnIndex(),
 
             NovaEditorJs::make('Content')->hideFromIndex(),
-
-            new Panel('Meta', $this->meta()),
-        ];
-    }
-
-    public function meta()
-    {
-        return [
-            Text::make('Title')
-                ->sortable()
-                ->rules('required', 'max:255')
-                ->hideFromIndex()
-                ->hideFromDetail(),
-
-            Text::make('Description')
-                ->sortable()
-                ->rules('max:255')
-                ->hideFromIndex(),
         ];
     }
 
