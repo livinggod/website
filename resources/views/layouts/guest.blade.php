@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ isset($title) ? $title . " | " . config('app.name', 'Laravel') : config('app.name', 'Laravel') }}</title>
 
         <!-- Favicon -->
         <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/favicon/apple-touch-icon.png') }}">
@@ -24,6 +24,19 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+
+        <!-- SEO -->
+        <meta name="keywords" content="{{ $keywords ?? '' }}">
+        <meta name="title" content="{{ $title ?? '' }}">
+        <meta name="description" content="{{ $description ?? '' }}">
+        <meta name="author" content="{{ $author ?? '' }}">
+        <meta name="image" content="{{ $image ?? '' }}">
+
+        <meta name="og:title" content="{{ $title ?? '' }}">
+        <meta name="og:url" content="{{ url()->current() }}">
+        <meta name="og:type" content="{{ $type ?? '' }}">
+        <meta name="og:image" content="{{ $image ?? '' }}">
+        <meta name="og:description" content="{{ $description ?? '' }}">
     </head>
     <body x-data="{mobilemenu: false}" class="h-full" :class="{ 'overflow-y-hidden': mobilemenu === true}">
         <x-navbar/>

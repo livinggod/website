@@ -3,6 +3,26 @@
         <x-draft/>
     @endif
 
+    <x-slot name="title">
+        {{ $post->title }}
+    </x-slot>
+
+    <x-slot name="description">
+        {{ $post->description }}
+    </x-slot>
+
+        <x-slot name="author">
+            {{ $post->user->name }}
+        </x-slot>
+
+        <x-slot name="image">
+            {{ asset('storage/' . $post->image) }}
+        </x-slot>
+
+        <x-slot name="type">
+            article
+        </x-slot>
+
     <div class="relative pb-16 bg-white overflow-hidden">
         <div class="relative px-4 sm:px-6 lg:px-8">
 
@@ -39,5 +59,5 @@
         </div>
     </div>
 
-    <x-reftagger />
+    <x-reftagger/>
 </x-guest-layout>
