@@ -16,4 +16,5 @@
         </div>
     </div>
 
+    <x-reftagger />
 </x-guest-layout>

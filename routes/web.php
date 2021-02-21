@@ -15,16 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::get('/', [PageController::class, 'home'])->name('page.home');
-//Route::get('/about', [PageController::class, 'about'])->name('page.about');
-//Route::get('/abc', [PageController::class, 'abc'])->name('page.abc');
+Route::get('/', [PageController::class, 'home'])->name('home');
+Route::get('/about', [PageController::class, 'about'])->name('pages.about');
+Route::get('/abc', [PageController::class, 'abc'])->name('pages.abc');
 
 Route::get('/articles', [PostController::class, 'index'])->name('articles.index');
 Route::get('/articles/{post:slug}', [PostController::class, 'show'])->name('articles.show');
 
 //require __DIR__.'/auth.php';
-
-Route::get('/{page?}', PageController::class)->name('pages');
 
 
 //Route::get('/dashboard', function () {

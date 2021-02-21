@@ -9,23 +9,6 @@ use Illuminate\Support\Collection;
 
 class PageController extends Controller
 {
-    public function __invoke($page = 'home')
-    {
-        if ($page === 'home') {
-            return $this->home();
-        }
-
-        $content =  Page::firstWhere('url', '/' . $page);
-
-        if (is_null($content)) {
-            abort(404);
-        }
-
-        return view('page', [
-            'page' => $content,
-        ]);
-    }
-
     public function home()
     {
         return view('pages.home', [
@@ -38,11 +21,15 @@ class PageController extends Controller
 
     public function about()
     {
-        return view('pages.about');
+        return view('page', [
+            'page' => Page::firstWhere('url', '/about'),
+        ]);
     }
 
     public function abc()
     {
-        return view('pages.abc');
+        return view('page', [
+            'page' => Page::firstWhere('url', '/abc'),
+        ]);
     }
 }
