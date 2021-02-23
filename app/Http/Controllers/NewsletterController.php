@@ -15,7 +15,7 @@ class NewsletterController extends Controller
 
         Newsletter::create($valid);
 
-        session()->flash('message', __('Thanks for singing up! You\'ll now receive updates on our latest articles!'));
+        session()->flash('message', __('Thanks for signing up! You\'ll now receive updates on our latest articles!'));
 
         return back();
     }
