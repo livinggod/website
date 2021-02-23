@@ -37,7 +37,7 @@
             {{ $post->minutes }} {{ __('min read') }}
         </div>
         <div class="mt-2 md:mt-6 flex w-full">
-            <a class="hidden md:block relative z-10" href="#">
+            <a class="hidden md:block relative z-10" href="{{ route('authors.show', $post->user) }}">
                 <img class="w-8 h-8 md:w-10 md:h-10 object-cover rounded-full"
                      src="{{ $post->user->getAvatar() }}"
                      alt="">
@@ -45,7 +45,7 @@
 
             <div class="flex md:block gap-2 md:ml-4">
                 <p class="text-xs md:text-sm font-medium text-gray-900">
-                    <a href="#" class="relative z-10 hover:underline w-6 text-wrap p-2 -mx-2">
+                    <a href="{{ route('authors.show', $post->user) }}" class="relative z-10 hover:underline w-6 text-wrap p-2 -mx-2">
                         {{ $post->user->name }}
                     </a>
                 </p>

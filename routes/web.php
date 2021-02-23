@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,9 @@ Route::prefix('/articles')->name('articles.')->group(function () {
     Route::get('/{post:slug}', [PostController::class, 'show'])->name('show');
 });
 
+Route::prefix('/authors')->name('authors.')->group(function () {
+    Route::get('/{author:slug}', [AuthorController::class, 'show'])->name('show');
+});
 
 //require __DIR__.'/auth.php';
 

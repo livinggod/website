@@ -17,11 +17,13 @@
                                 <h2 class="text-md lg:text-lg text-gray-500 mt-2 mb-4">{{ $highlight->description }}</h2>
                             </div>
                             <div class="flex mt-8 mb-4">
-                                <img class="w-8 h-8 md:w-10 md:h-10 object-cover rounded-full"
-                                     src="{{ $highlight->user->getAvatar() }}"
-                                     alt="{{ $highlight->user->name }}">
+                                <a href="{{ route('authors.show', $highlight->user) }}">
+                                    <img class="relative w-8 h-8 z-30 md:w-10 md:h-10 object-cover rounded-full"
+                                         src="{{ $highlight->user->getAvatar() }}"
+                                         alt="{{ $highlight->user->name }}">
+                                </a>
                                 <div class="ml-4">
-                                    <a href="#"
+                                    <a href="{{ route('authors.show', $highlight->user) }}"
                                        class="relative z-30 text-xs md:text-sm font-medium hover:underline w-6 text-wrap text-gray-900">
                                         {{ $highlight->user->name }}
                                     </a>

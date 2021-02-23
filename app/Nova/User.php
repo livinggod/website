@@ -8,6 +8,7 @@ use Laravel\Nova\Fields\Avatar;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Vyuldashev\NovaPermission\RoleBooleanGroup;
 
@@ -67,7 +68,10 @@ class User extends Resource
                 ->creationRules('required', 'string', 'min:8')
                 ->updateRules('nullable', 'string', 'min:8'),
 
-            RoleBooleanGroup::make('Roles'),
+            Textarea::make('Bio'),
+
+            RoleBooleanGroup::make('Roles')
+            ->readonly(!auth()->user()->isSuperAdmin()),
         ];
     }
 
