@@ -10,7 +10,7 @@ class AuthorController extends Controller
     {
         return view('authors.show', [
             'author' => $author,
-            'articles' => $author->posts()->published()->paginate(8),
+            'articles' => $author->posts()->published()->orderBy('publish_at', 'desc')->paginate(8),
         ]);
     }
 }
