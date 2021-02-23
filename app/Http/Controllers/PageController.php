@@ -10,7 +10,6 @@ class PageController extends Controller
 {
     public function home()
     {
-        session()->flash('message', __('Thanks for singing up! You\'ll now receive updates on our latest articles'));
         return view('pages.home', [
             'posts' => Post::published()->orderBy('publish_at', 'desc')->get()->take(8)
                     ->makeHidden(['content', 'published']) ?? new Collection(),

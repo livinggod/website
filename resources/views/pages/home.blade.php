@@ -91,9 +91,10 @@
                 <div class="max-w-5xl mx-auto">
                     <h3 class="text-lg md:text-4xl text-custom-green-100">Be The First To Receive Our Content</h3>
                     <p class="text-md text-gray-400">Get our content directly in your inbox</p>
-                    <form class="mt-4 sm:flex sm:max-w-md">
-                        <label for="emailAddress" class="sr-only">Email address</label>
-                        <input type="email" name="emailAddress" id="emailAddress" autocomplete="email" required
+                    <form action="{{ route('newsletter.store') }}" method="post" class="mt-4 sm:flex sm:max-w-md">
+                        @csrf
+                        <label for="email" class="sr-only">Email address</label>
+                        <input type="email" name="email" id="email" autocomplete="email" required
                                class="appearance-none min-w-0 w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-4 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:placeholder-gray-400"
                                placeholder="Enter your email">
                         <div class="mt-3 rounded-md sm:mt-0 sm:ml-3 sm:flex-shrink-0">
