@@ -25,6 +25,7 @@ module.exports = {
             },
             zIndex: {
                 60: '60',
+                1000: '1000'
             },
             typography: {
                 DEFAULT: {

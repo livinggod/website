@@ -41,6 +41,9 @@
 <body x-data="{mobilemenu: false}" class="h-full" :class="{ 'overflow-y-hidden': mobilemenu === true}">
 <x-navbar/>
 <div class="font-sans text-gray-900 antialiased">
+    @if(session()->has('message'))
+        <x-flash-message />
+    @endif
     {{ $slot }}
 </div>
 <x-footer/>
