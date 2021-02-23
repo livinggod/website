@@ -19,8 +19,11 @@ Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/about', [PageController::class, 'about'])->name('pages.about');
 Route::get('/abc', [PageController::class, 'abc'])->name('pages.abc');
 
-Route::get('/articles', [PostController::class, 'index'])->name('articles.index');
-Route::get('/articles/{post:slug}', [PostController::class, 'show'])->name('articles.show');
+Route::prefix('/articles')->name('articles.')->group(function () {
+    Route::get('/', [PostController::class, 'index'])->name('index');
+    Route::get('/{post:slug}', [PostController::class, 'show'])->name('show');
+});
+
 
 //require __DIR__.'/auth.php';
 
