@@ -21,15 +21,9 @@
                         </h3>
                         <form action="{{ route('newsletter.store') }}" method="post" class="mt-4 sm:flex sm:max-w-md">
                             @csrf
-                            <label for="email" class="sr-only">Email address</label>
-                            <input type="email" name="email" id="email" autocomplete="email" required
-                                   class="appearance-none min-w-0 w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-4 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:placeholder-gray-400"
-                                   placeholder="Subscribe for updates">
+                            @include('components.inputs.input')
                             <div class="mt-3 rounded-md sm:mt-0 sm:ml-3 sm:flex-shrink-0">
-                                <button type="submit"
-                                        class="w-full bg-custom-green-100 flex items-center justify-center border border-transparent rounded-md py-2 px-4 text-base font-medium text-white focus:outline-none hover:bg-custom-green-200 focus:bg-custom-green-300">
-                                    Subscribe
-                                </button>
+                                @include('components.inputs.button', ['text' => 'Subscribe'])
                             </div>
                         </form>
                     </div>

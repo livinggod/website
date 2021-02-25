@@ -1,6 +1,6 @@
 <x-guest-layout>
     <div class="mx-4 md:mx-8">
-        <article class="max-w-7xl mx-auto mt-20 mb-20">
+        <article class="max-w-7xl mx-auto mt-10 md:mt-20 mb-20">
             <div class="max-w-2xl md:flex mx-auto">
                     <div class="md:w-1/3">
                         <img class="w-32 h-32 rounded-full mx-auto" src="{{ $author->getAvatar() }}" alt="{{ $author->name }}">

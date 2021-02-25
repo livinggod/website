@@ -12,7 +12,7 @@
             <div class="flex justify-between">
                 <div>
                     <p class="text-xs md:text-sm font-medium text-indigo-600">
-                        <a href="#" class="relative z-10 hover:underline -ml-2 p-2 md:m-0 md:p-0">
+                        <a href="{{ route('topics.show', $post->category) }}" class="relative z-10 hover:underline -ml-2 p-2 md:m-0 md:p-0">
                             {{ $post->category->name }}
                         </a>
                     </p>
@@ -49,7 +49,7 @@
                         {{ $post->user->name }}
                     </a>
                 </p>
-                <div class="flex space-x-1 text-xs md:text-xs text-gray-500">
+                <div class="flex text-xs ml-2 md:ml-0 md:text-xs text-gray-500">
                     <time datetime="{{ \Illuminate\Support\Carbon::parse($post->publish_at)->format('Y-m-d') ?? '' }}">
                         {{ \Illuminate\Support\Carbon::parse($post->publish_at)->format('F jS Y') ?? '' }}
                     </time>

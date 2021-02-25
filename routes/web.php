@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\TopicController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PostController;
@@ -26,6 +27,10 @@ Route::post('/newsletter', [NewsletterController::class, 'store'])->name('newsle
 Route::prefix('/articles')->name('articles.')->group(function () {
     Route::get('/', [PostController::class, 'index'])->name('index');
     Route::get('/{post:slug}', [PostController::class, 'show'])->name('show');
+});
+
+Route::prefix('/topics')->name('topics.')->group(function () {
+    Route::get('/{category:slug}', [TopicController::class, 'show'])->name('show');
 });
 
 Route::prefix('/authors')->name('authors.')->group(function () {

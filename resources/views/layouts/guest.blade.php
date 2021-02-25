@@ -8,11 +8,11 @@
     <title>{{ isset($title) ? $title . " | " . config('app.name', 'Laravel') : config('app.name', 'Laravel') }}</title>
 
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/favicon/apple-touch-icon.png') }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/favicon/favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon/favicon-16x16.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}">
     <link rel="manifest" href="{{ asset('site.webmanifest') }}">
-    <link rel="mask-icon" href="{{ asset('images/favicon/safari-pinned-tab.svg') }}" color="#57b300">
+    <link rel="mask-icon" href="{{ asset('safari-pinned-tab.svg') }}" color="#57b300">
     <meta name="msapplication-TileColor" content="#57b300">
     <meta name="theme-color" content="#ffffff">
 
@@ -37,6 +37,8 @@
     <meta name="og:type" content="{{ $type ?? '' }}">
     <meta name="og:image" content="{{ $image ?? '' }}">
     <meta name="og:description" content="{{ $description ?? '' }}">
+
+    <livewire:styles />
 </head>
 <body x-data="{mobilemenu: false}" class="h-full" :class="{ 'overflow-y-hidden': mobilemenu === true}">
 <x-navbar/>
@@ -48,5 +50,6 @@
 </div>
 <x-footer/>
 @include('cookieConsent::index')
+<livewire:scripts />
 </body>
 </html>

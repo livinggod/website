@@ -16,7 +16,7 @@
                                 <h1 class="text-2xl lg:text-4xl font-bold mt-4">{{ $highlight->title }}</h1>
                                 <h2 class="text-md lg:text-lg text-gray-500 mt-2 mb-4">{{ $highlight->description }}</h2>
                             </div>
-                            <div class="flex mt-8 mb-4">
+                            <div class="flex mt-2 mb-4">
                                 <a href="{{ route('authors.show', $highlight->user) }}">
                                     <img class="relative w-8 h-8 z-30 md:w-10 md:h-10 object-cover rounded-full"
                                          src="{{ $highlight->user->getAvatar() }}"
@@ -40,9 +40,8 @@
                             </div>
                         </div>
                         <div class="hidden md:block w-1/2 relative">
-                            <svg class="absolute h-full z-10" viewBox="0 0 106 399" fill="none"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0 399V0H106L0 399Z" fill="#fff"/>
+                            <svg class="absolute h-full -ml-4 z-10" viewBox="0 0 137 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M136.5 0H30H0V400H30L136.5 0Z" fill="white"/>
                             </svg>
                             <img class="rounded-r-lg h-full w-full object-cover absolute"
                                  src="{{ asset('storage/' . $highlight->image) }}"
@@ -56,10 +55,10 @@
             <div class="max-w-7xl mx-auto mt-20 text-gray-400">
                 <div class="flex justify-between h-10">
                     <a href="{{ route('articles.index') }}"
-                       class="border-b-2 md:border-0 border-custom-green-100 text-custom-green-100 md:text-gray-400">
+                       class="border-b-2 md:border-0 border-livinggod-green-100 text-livinggod-green-100 md:text-gray-400">
                         {{ __('New') }}
                     </a>
-                    <a href="{{ route('articles.index') }}">
+                    <a class="text-gray-400 hover:text-gray-600 transition duration-100" href="{{ route('articles.index') }}">
                         {{ __('Show all') }}
 
                         {{-- Hericon: arrow-narrow-right --}}
@@ -78,7 +77,7 @@
                         @endif
                         <x-post-card :post="$post"/>
                         @if(!$loop->last)
-                            <div class="md:hidden border-b-2 border-gray-100"></div>
+                            <div class="md:hidden mt-2 border-b-2 border-gray-100"></div>
                         @endif
                     @endforeach
                 </div>
@@ -89,19 +88,13 @@
         <div class="mt-20 shadow-inner bg-gray-100 py-10">
             <div class="mx-4 md:mx-8">
                 <div class="max-w-5xl mx-auto">
-                    <h3 class="text-lg md:text-4xl text-custom-green-100">Be The First To Receive Our Content</h3>
+                    <h3 class="text-lg md:text-4xl text-livinggod-green-100">Be The First To Receive Our Content</h3>
                     <p class="text-md text-gray-400">Get our content directly in your inbox</p>
                     <form action="{{ route('newsletter.store') }}" method="post" class="mt-4 sm:flex sm:max-w-md">
                         @csrf
-                        <label for="email" class="sr-only">Email address</label>
-                        <input type="email" name="email" id="email" autocomplete="email" required
-                               class="appearance-none min-w-0 w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-4 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:placeholder-gray-400"
-                               placeholder="Enter your email">
+                        @include('components.inputs.input')
                         <div class="mt-3 rounded-md sm:mt-0 sm:ml-3 sm:flex-shrink-0">
-                            <button type="submit"
-                                    class="w-full bg-custom-green-100 flex items-center justify-center border border-transparent rounded-md py-2 px-4 text-base font-medium text-white focus:outline-none hover:bg-custom-green-200 focus:bgwewe-custom-green-300">
-                                Subscribe
-                            </button>
+                            @include('components.inputs.button', ['text' => 'Subscribe'])
                         </div>
                     </form>
                 </div>
@@ -126,10 +119,4 @@
             </div>
         </div>
     </div>
-
-    <script>
-        const redirect = (url) => {
-            window.location = url;
-        };
-    </script>
 </x-guest-layout>

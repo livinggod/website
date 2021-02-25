@@ -9,9 +9,11 @@ module.exports = {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
             },
             colors: {
-                custom: {
+                livinggod: {
                     green: {
-                        100: '#59B100'
+                        100: '#59B100',
+                        200: '#4b8d0b',
+                        300: '#3d7309'
                     }
                 }
             },
