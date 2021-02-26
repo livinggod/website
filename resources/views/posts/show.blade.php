@@ -48,7 +48,7 @@
                              src="{{ $post->user->getAvatar() }}"
                              alt="{{ $post->user->name }}">
                         <div class="text-sm md:text-base ml-4 self-center">
-                            {{ __('Written by:') }} <a href="#" class="">{{ $post->user->name }}</a><br>
+                            {{ __('Written by:') }} <a href="{{ route('authors.show', $post->user) }}" class="">{{ $post->user->name }}</a><br>
                             {{ $post->minutes }} {{ __('min read') }}
                         </div>
                     </div>

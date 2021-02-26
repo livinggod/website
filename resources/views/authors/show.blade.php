@@ -6,7 +6,9 @@
                         <img class="w-32 h-32 rounded-full mx-auto" src="{{ $author->getAvatar() }}" alt="{{ $author->name }}">
                         <h1 class="font-bold text-xl text-center mt-4">{{ $author->name }}</h1>
                         <ul class="mt-2 text-sm text-gray-400 text-center">
-                            <li class="my-2"><a href="mailto:{{ $author->email }}">{{ $author->email }}</a></li>
+                            @if($author->show_email)
+                                <li class="my-2"><a href="mailto:{{ $author->email }}">{{ $author->email }}</a></li>
+                            @endif
                         </ul>
                         <p class="md:hidden mt-4 text-sm leading-6 text-gray-500">{{ $author->bio }}</p>
                     </div>
