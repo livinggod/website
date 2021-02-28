@@ -12,7 +12,9 @@
                 </x-footer.column>
                 <div class="mt-12 md:mt-0">
                     <x-footer.column title="quick links">
+                        <x-footer.link href="{{ route('articles.index') }}">All articles</x-footer.link>
                         <x-footer.link href="{{ route('pages.about') }}">About us</x-footer.link>
+                        <x-footer.link href="{{ route('pages.believe') }}">What we believe</x-footer.link>
                         <x-footer.link href="{{ route('pages.abc') }}">The abc's of salvation</x-footer.link>
                     </x-footer.column>
                     <div class="mt-8">

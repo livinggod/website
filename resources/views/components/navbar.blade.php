@@ -38,6 +38,9 @@
                     <x-nav-link :href="route('pages.about')" :active="request()->segment(1) === 'about'">
                         {{ __('About') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('pages.believe')" :active="request()->segment(1) === 'what-we-believe'">
+                        {{ __('What we believe') }}
+                    </x-nav-link>
                     <x-nav-link :href="route('pages.abc')" :active="request()->segment(1) === 'abc'">
                         {{ __("The abc's") }}
                     </x-nav-link>
@@ -70,6 +73,9 @@
             </x-nav-link>
             <x-nav-link :href="route('pages.about')" :active="request()->segment(1) === 'about'">
                 {{ __('About') }}
+            </x-nav-link>
+            <x-nav-link :href="route('pages.believe')" :active="request()->segment(1) === 'what-we-believe'">
+                {{ __('What we believe') }}
             </x-nav-link>
             <x-nav-link :href="route('pages.abc')" :active="request()->segment(1) === 'abc'">
                 {{ __("The abc's") }}
