@@ -31,4 +31,11 @@ class PageController extends Controller
             'page' => Page::firstWhere('url', '/abc'),
         ]);
     }
+
+    public function believe()
+    {
+        return view('page', [
+            'page' => Page::firstWhere('url', '/what-we-believe'),
+        ]);
+    }
 }
