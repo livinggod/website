@@ -11,6 +11,6 @@ class RolePolicy
 
     public function viewAny(User $user)
     {
-        return $user->can('view-role');
+        return $user->can('view-roles');
     }
 }
