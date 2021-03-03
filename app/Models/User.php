@@ -21,6 +21,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'bio',
+        'avatar',
+        'show_email',
     ];
 
     /**
@@ -40,6 +43,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'super_admin' => 'boolean',
     ];
 
     public function posts()
@@ -49,7 +53,7 @@ class User extends Authenticatable
 
     public function isSuperAdmin()
     {
-        return $this->hasRole('super_admin');
+        return $this->super_admin;
     }
 
     public function getAvatar()

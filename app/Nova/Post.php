@@ -12,8 +12,8 @@ use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Slug;
 use Laravel\Nova\Fields\Stack;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Panel;
-
+use Laravel\Nova\Http\Requests\NovaRequest;
+use Illuminate\Database\Eloquent\Builder;
 
 class Post extends Resource
 {
@@ -105,6 +105,7 @@ class Post extends Resource
             DateTime::make('Publish At')
                 ->format('DD MMM YYYY H:mm:ss')
                 ->sortable()
+                ->readonly(!auth()->user()->can('publish-post'))
                 ->nullable(),
 
             Boolean::make('Published')
@@ -156,9 +157,20 @@ class Post extends Resource
      */
     public function actions(Request $request)
     {
+        if (!$request->user()->can('publish-post')) {
+            return [];
+        }
+
         return [
             (new Actions\Publish)
                 ->showOnTableRow(),
         ];
+    }
+
+    public static function indexQuery(NovaRequest $request, $query): Builder
+    {
+        return $request->user()->can('view-posts')
+            ? $query
+            : $query->where('user_id', $request->user()->id);
     }
 }
