@@ -15,13 +15,13 @@ class PostPolicy
         return auth()->user()->can('view-post');
     }
 
-    public function view(Post $post): bool
+    public function view(User $user, Post $post): bool
     {
-        if (auth()->user()->can('view-posts')) {
-            return auth()->user()->can('view-post');
+        if ($user->can('view-posts')) {
+            return $user->can('view-post');
         }
 
-        return auth()->user()->can('view-post') && auth()->user()->id == $post->user->id;
+        return $user->can('view-post') && $user->id == $post->user->id;
     }
 
     public function create(): bool
@@ -29,13 +29,13 @@ class PostPolicy
         return auth()->user()->can('create-post');
     }
 
-    public function update(Post $post): bool
+    public function update(User $user, Post $post): bool
     {
-        if (auth()->user()->can('view-posts')) {
-            return auth()->user()->can('update-post');
+        if ($user->can('view-posts')) {
+            return $user->can('update-post');
         }
 
-        return auth()->user()->can('update-post') && auth()->user()->id == $post->user->id;
+        return $user->can('update-post') && $user->id == $post->user->id;
     }
 
     public function delete(): bool
