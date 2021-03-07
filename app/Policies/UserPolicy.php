@@ -11,16 +11,24 @@ class UserPolicy
 
     public function update(User $current, User $user)
     {
-        return $user->isSuperAdmin() || $user->can('edit-users') || $current->id === $user->id;
+        if ($current->can('view-users')) {
+            return $current->can('edit-user');
+        }
+
+        return $user->can('edit-user') && $current->id === $user->id;
     }
 
     public function view(User $current, User $user)
     {
-        return $user->isSuperAdmin() || $user->can('view-users') || $current->id === $user->id;
+        if ($current->can('view-users')) {
+            return $current->can('view-user');
+        }
+
+        return $user->can('view-user') && $current->id === $user->id;
     }
 
     public function create(User $user)
     {
-        return $user->can('create-users');
+        return $user->can('create-user');
     }
 }

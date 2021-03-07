@@ -73,7 +73,9 @@ class User extends Resource
             Textarea::make('Bio'),
 
             RoleBooleanGroup::make('Roles')
-            ->readonly(!auth()->user()->isSuperAdmin()),
+                ->hideFromIndex(!auth()->user()->can('manage-user-roles'))
+                ->hideFromDetail(!auth()->user()->can('manage-user-roles'))
+                ->hideWhenUpdating(!auth()->user()->can('manage-user-roles')),
 
             new Panel('Settings', $this->settings()),
         ];
