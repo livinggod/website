@@ -21,7 +21,7 @@ class PostPolicy
             return $user->can('view-post');
         }
 
-        return $user->can('view-post') && $user->id == $post->user->id;
+        return $user->can('view-post') && $user->id == $post->user->id && !$post->isPublished();
     }
 
     public function create(): bool
@@ -35,7 +35,7 @@ class PostPolicy
             return $user->can('update-post');
         }
 
-        return $user->can('update-post') && $user->id == $post->user->id;
+        return $user->can('update-post') && $user->id == $post->user->id && !$post->isPublished();
     }
 
     public function delete(): bool
