@@ -174,9 +174,6 @@ class Post extends Resource
             : $query->where([
                 ['user_id', $request->user()->id],
                 ['publish_at', '<=', now()],
-            ])->orWhere([
-                ['user_id', $request->user()->id],
-                ['publish_at', null],
             ]);
     }
 }
