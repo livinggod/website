@@ -60,7 +60,7 @@ class Post extends Resource
             ID::make(__('ID'), 'id')->sortable(),
 
             BelongsTo::make('Author', 'user', User::class)
-                ->readonly(!auth()->user()->isSuperAdmin())
+                ->readonly(!auth()->user()->can('change-author'))
                 ->default(auth()->user()->id),
 
             BelongsTo::make('Category')
