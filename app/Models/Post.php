@@ -45,7 +45,7 @@ class Post extends Model
 
     public function isPublished()
     {
-        return $this->publish_at <= now();
+        return !is_null($this->publish_at) && $this->publish_at <= now();
     }
 
     public function calculateRead(): int

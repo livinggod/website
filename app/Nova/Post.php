@@ -171,6 +171,12 @@ class Post extends Resource
     {
         return $request->user()->can('view-posts')
             ? $query
-            : $query->where('user_id', $request->user()->id);
+            : $query->where([
+                ['user_id', $request->user()->id],
+                ['publish_at', '<=', now()],
+            ])->orWhere([
+                ['user_id', $request->user()->id],
+                ['publish_at', null],
+            ]);
     }
 }
