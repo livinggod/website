@@ -4563,16 +4563,16 @@
         },
         {
             "name": "spatie/nova-backup-tool",
-            "version": "4.1.1",
+            "version": "4.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/nova-backup-tool.git",
-                "reference": "deac7224793ee9b2210a065676535a4d41dc5f9a"
+                "reference": "94bb939d2a0289aa52bda40b04abcec3c75ea9b5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/nova-backup-tool/zipball/deac7224793ee9b2210a065676535a4d41dc5f9a",
-                "reference": "deac7224793ee9b2210a065676535a4d41dc5f9a",
+                "url": "https://api.github.com/repos/spatie/nova-backup-tool/zipball/94bb939d2a0289aa52bda40b04abcec3c75ea9b5",
+                "reference": "94bb939d2a0289aa52bda40b04abcec3c75ea9b5",
                 "shasum": ""
             },
             "require": {
@@ -4624,7 +4624,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2021-02-26T07:56:36+00:00"
+            "time": "2021-03-21T14:58:21+00:00"
         },
         {
             "name": "spatie/once",
