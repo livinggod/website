@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Policies\PermissionPolicy;
 use App\Policies\RolePolicy;
+use Bakerkretzmar\NovaSettingsTool\SettingsTool;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Cards\Help;
 use Laravel\Nova\Nova;
@@ -88,7 +89,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                 ->rolePolicy(RolePolicy::class)
                 ->permissionPolicy(PermissionPolicy::class),
             BackupTool::make()
-            ->canSeeWhen('manage-backups'),
+                ->canSeeWhen('manage-backups'),
+            SettingsTool::make()
+                ->canSeeWhen('manage-settings'),
         ];
     }
 

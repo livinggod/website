@@ -170,6 +170,8 @@ class Post extends Resource
                 ->showOnTableRow(),
             (new Actions\Highlight)
                 ->showOnTableRow(),
+            (new Actions\CalculateRead)
+                ->showOnTableRow(),
         ];
     }
 

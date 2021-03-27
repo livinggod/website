@@ -22,3 +22,10 @@ if (!function_exists('limit')) {
         return Str::limit($string, $amount);
     }
 }
+
+if (!function_exists('store')) {
+    function store(string $code)
+    {
+        return \Spatie\Valuestore\Valuestore::make(storage_path('app/settings.json'))->get($code);
+    }
+}
