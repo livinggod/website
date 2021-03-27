@@ -48,7 +48,8 @@ class Category extends Resource
                 ->sortable()
                 ->rules('required', 'max:50'),
 
-            Textarea::make('Description'),
+            Textarea::make('Description')
+            ->rules('max:255'),
         ];
     }
 
