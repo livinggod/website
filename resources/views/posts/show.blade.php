@@ -38,7 +38,7 @@
                         <span
                             class="mt-2 block text-2xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">{{ $post->title }}</span>
                         <span
-                            class="mt-2 block text-lg text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-2xl">{{ $post->description }}</span>
+                            class="mt-2 block text-center leading-8 tracking-tight text-gray-400 text-base sm:text-lg">{{ $post->description }}</span>
                     </h1>
 
                     <img class="mx-auto rounded-lg" src="{{ asset('storage/' . $post->image) }}" alt="">
