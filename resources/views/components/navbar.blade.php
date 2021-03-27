@@ -14,7 +14,7 @@
             <div
                 class="flex justify-between items-center h-16 md:justify-start md:space-x-10">
                 <div class="flex justify-start lg:w-0 lg:flex-1">
-                    <a href="{{ route('home') }}">
+                    <a href="{{ route('page') }}">
                         <span class="sr-only">Living God</span>
                         <x-application-logo class="h-6 w-auto sm:h-8"/>
                     </a>
@@ -32,16 +32,16 @@
                     </button>
                 </div>
                 <nav class="hidden md:flex space-x-10 h-full">
-                    <x-nav-link :href="route('articles.index')" :active="request()->segment(1) === 'articles'">
+                    <x-nav-link :href="route('page', 'articles')" :active="request()->segment(1) === 'articles'">
                         {{ __('Articles') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('pages.about')" :active="request()->segment(1) === 'about'">
+                    <x-nav-link :href="route('page', 'about')" :active="request()->segment(1) === 'about'">
                         {{ __('About') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('pages.believe')" :active="request()->segment(1) === 'what-we-believe'">
+                    <x-nav-link :href="route('page', 'what-we-believe')" :active="request()->segment(1) === 'what-we-believe'">
                         {{ __('What we believe') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('pages.abc')" :active="request()->segment(1) === 'abc'">
+                    <x-nav-link :href="route('page', 'abc')" :active="request()->segment(1) === 'abc'">
                         {{ __("The abc's") }}
                     </x-nav-link>
                 </nav>
@@ -68,16 +68,16 @@
             </svg>
         </div>
         <nav class="mt-16 flex flex-col">
-            <x-nav-link :href="route('articles.index')" :active="request()->segment(1) === 'articles'">
+            <x-nav-link :href="route('page', 'articles')" :active="request()->segment(1) === 'articles'">
                 {{ __('Articles') }}
             </x-nav-link>
-            <x-nav-link :href="route('pages.about')" :active="request()->segment(1) === 'about'">
+            <x-nav-link :href="route('page', 'about')" :active="request()->segment(1) === 'about'">
                 {{ __('About') }}
             </x-nav-link>
-            <x-nav-link :href="route('pages.believe')" :active="request()->segment(1) === 'what-we-believe'">
+            <x-nav-link :href="route('page', 'what-we-believe')" :active="request()->segment(1) === 'what-we-believe'">
                 {{ __('What we believe') }}
             </x-nav-link>
-            <x-nav-link :href="route('pages.abc')" :active="request()->segment(1) === 'abc'">
+            <x-nav-link :href="route('page', 'abc')" :active="request()->segment(1) === 'abc'">
                 {{ __("The abc's") }}
             </x-nav-link>
         </nav>

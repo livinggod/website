@@ -1,7 +1,7 @@
 <div {{ $attributes->merge(['class' => 'relative md:flex md:flex-col md:rounded-lg md:shadow-md md:overflow-hidden transition duration-300 md:hover:shadow-xl']) }}>
-    <a class="absolute w-full h-full" href="{{ route('articles.show', $post) }}"></a>
+    <a class="absolute w-full h-full" href="{{ route('page', $post->slug) }}"></a>
     <div class="hidden md:block flex-shrink-0">
-        <a href="{{ route('articles.show', $post) }}">
+        <a href="{{ route('page', $post->slug) }}">
             <img class="h-48 w-full object-cover"
                  src="{{ asset('storage/' . $post->image) }}"
                  alt="">
@@ -12,11 +12,11 @@
             <div class="flex justify-between">
                 <div>
                     <p class="text-xs md:text-sm font-medium text-indigo-600">
-                        <a href="{{ route('topics.show', $post->category) }}" class="relative z-10 hover:underline -ml-2 p-2 md:m-0 md:p-0">
+                        <a href="{{ route('page', $post->category->slug) }}" class="relative z-10 hover:underline -ml-2 p-2 md:m-0 md:p-0">
                             {{ $post->category->name }}
                         </a>
                     </p>
-                    <a href="{{ route('articles.show', $post) }}" class="block mt-2 mr-4">
+                    <a href="{{ route('page', $post->slug) }}" class="block mt-2 mr-4">
                         <p class="text-md md:text-xl font-semibold text-gray-900">
                             {{ $post->title }}
                         </p>
@@ -24,7 +24,7 @@
                             {{ $post->description ?? '' }}
                         </p>
                         <p class="md:hidden text-sm text-gray-500">
-                            {{ \Illuminate\Support\Str::limit($post->description, 20) ?? '' }}
+                            {{ limit($post->description, 20) ?? '' }}
                         </p>
                     </a>
                 </div>
@@ -37,7 +37,7 @@
             {{ $post->minutes }} {{ __('min read') }}
         </div>
         <div class="mt-2 md:mt-6 flex w-full">
-            <a class="hidden md:block relative z-10" href="{{ route('authors.show', $post->user) }}">
+            <a class="hidden md:block relative z-10" href="{{ route('page', $post->user->slug) }}">
                 <img class="w-8 h-8 md:w-10 md:h-10 object-cover rounded-full"
                      src="{{ $post->user->getAvatar() }}"
                      alt="">
@@ -45,7 +45,7 @@
 
             <div class="flex md:block gap-2 md:ml-4">
                 <p class="text-xs md:text-sm font-medium text-gray-900">
-                    <a href="{{ route('authors.show', $post->user) }}" class="relative z-10 hover:underline w-6 text-wrap p-2 -mx-2">
+                    <a href="{{ route('page', $post->user->slug) }}" class="relative z-10 hover:underline w-6 text-wrap p-2 -mx-2">
                         {{ $post->user->name }}
                     </a>
                 </p>

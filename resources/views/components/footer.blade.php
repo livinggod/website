@@ -5,17 +5,17 @@
             <div class="md:grid grid-cols-2 gap-8 xl:col-span-2">
                 <x-footer.column title="latest articles">
                     @foreach(getLatestPosts(5) as $post)
-                        <x-footer.link class="" href="{{ route('articles.show', $post) }}">
+                        <x-footer.link class="" href="{{ route('page', $post->slug) }}">
                             {{ \Illuminate\Support\Str::limit($post->title, 30) ?? '' }}
                         </x-footer.link>
                     @endforeach
                 </x-footer.column>
                 <div class="mt-12 md:mt-0">
                     <x-footer.column title="quick links">
-                        <x-footer.link href="{{ route('articles.index') }}">All articles</x-footer.link>
-                        <x-footer.link href="{{ route('pages.about') }}">About us</x-footer.link>
-                        <x-footer.link href="{{ route('pages.believe') }}">What we believe</x-footer.link>
-                        <x-footer.link href="{{ route('pages.abc') }}">The abc's of salvation</x-footer.link>
+                        <x-footer.link href="{{ route('page', 'articles') }}">All articles</x-footer.link>
+                        <x-footer.link href="{{ route('page', 'about') }}">About us</x-footer.link>
+                        <x-footer.link href="{{ route('page', 'what-we-believe') }}">What we believe</x-footer.link>
+                        <x-footer.link href="{{ route('page', 'abc') }}">The abc's of salvation</x-footer.link>
                     </x-footer.column>
                     <div class="mt-8">
                         <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">

@@ -17,7 +17,7 @@ if (!function_exists('getLatestPosts')) {
 }
 
 if (!function_exists('limit')) {
-    function limit(string $string, int $amount)
+    function limit(?string $string = null, int $amount)
     {
         return Str::limit($string, $amount);
     }

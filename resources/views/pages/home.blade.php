@@ -4,7 +4,7 @@
             <div class="md:mx-8">
                 <div
                     class="lg:max-w-7xl mx-auto relative rounded-lg shadow-md transition duration-300 md:hover:shadow-xl">
-                    <a class="absolute w-full h-full z-20" href="{{ route("articles.show", $highlight) }}"></a>
+                    <a class="absolute w-full h-full z-20" href="{{ route('page', $highlight->slug) }}"></a>
                     <div class="flex flex-col md:flex-row md:min-h-80 lg:min-h-120">
                         <img class="md:hidden rounded-t-lg md:rounded-r-lg h-15 w-full object-cover"
                              src="{{ asset('storage/' . $highlight->image) }}"
@@ -17,13 +17,13 @@
                                 <h2 class="text-md lg:text-lg text-gray-500 mt-2 mb-4">{{ $highlight->description }}</h2>
                             </div>
                             <div class="flex mt-2 mb-4">
-                                <a href="{{ route('authors.show', $highlight->user) }}">
+                                <a href="{{ route('page', $highlight->user->slug) }}">
                                     <img class="relative w-8 h-8 z-30 md:w-10 md:h-10 object-cover rounded-full"
                                          src="{{ $highlight->user->getAvatar() }}"
                                          alt="{{ $highlight->user->name }}">
                                 </a>
                                 <div class="ml-4">
-                                    <a href="{{ route('authors.show', $highlight->user) }}"
+                                    <a href="{{ route('page', $highlight->user->slug) }}"
                                        class="relative z-30 text-xs md:text-sm font-medium hover:underline w-6 text-wrap text-gray-900">
                                         {{ $highlight->user->name }}
                                     </a>
@@ -54,11 +54,11 @@
         <div class="mx-4 md:mx-8">
             <div class="max-w-7xl mx-auto mt-20 text-gray-400">
                 <div class="flex justify-between h-10">
-                    <a href="{{ route('articles.index') }}"
+                    <a href="{{ route('page', 'articles') }}"
                        class="border-b-2 md:border-0 border-livinggod-green-100 text-livinggod-green-100 md:text-gray-400">
                         {{ __('New') }}
                     </a>
-                    <a class="text-gray-400 hover:text-gray-600 transition duration-100" href="{{ route('articles.index') }}">
+                    <a class="text-gray-400 hover:text-gray-600 transition duration-100" href="{{ route('page', 'articles') }}">
                         {{ __('Show all') }}
 
                         {{-- Hericon: arrow-narrow-right --}}
