@@ -57,8 +57,6 @@ class Post extends Resource
     public function fields(Request $request)
     {
         return [
-            ID::make(__('ID'), 'id')->sortable(),
-
             BelongsTo::make('Author', 'user', User::class)
                 ->readonly(!auth()->user()->can('change-author'))
                 ->default(auth()->user()->id),
@@ -112,6 +110,10 @@ class Post extends Resource
                 ->resolveUsing(fn () => !is_null($this->resource->publish_at) && $this->resource->publish_at <= now())
                 ->onlyOnIndex(),
 
+            Boolean::make('Highlight')
+                ->sortable()
+                ->onlyOnIndex(),
+
             NovaEditorJs::make('Content')->hideFromIndex(),
         ];
     }
@@ -163,6 +165,8 @@ class Post extends Resource
 
         return [
             (new Actions\Publish)
+                ->showOnTableRow(),
+            (new Actions\Highlight)
                 ->showOnTableRow(),
         ];
     }

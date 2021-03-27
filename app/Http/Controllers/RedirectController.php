@@ -55,11 +55,16 @@ class RedirectController extends Controller
 
     public function home()
     {
+        $highlight = Post::where('highlight', true)->first();
+
+        if ($highlight === null) {
+            $highlight = Post::published()->orderBy('publish_at', 'desc')->first()->makeHidden(['content', 'published']);
+        }
+
         return view('pages.home', [
             'posts' => Post::published()->orderBy('publish_at', 'desc')->get()->take(8)
                     ->makeHidden(['content', 'published']) ?? new Collection(),
-            'highlight' => Post::published()->orderBy('publish_at', 'desc')->first()
-                    ->makeHidden(['content', 'published']) ?? null,
+            'highlight' => $highlight ?? null,
         ]);
     }
 
