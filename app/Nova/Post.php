@@ -3,11 +3,11 @@
 namespace App\Nova;
 
 use Advoor\NovaEditorJs\NovaEditorJs;
+use App\Nova\Metrics\ArticlesPerTopic;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
-use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Slug;
 use Laravel\Nova\Fields\Stack;
@@ -126,7 +126,9 @@ class Post extends Resource
      */
     public function cards(Request $request)
     {
-        return [];
+        return [
+            new ArticlesPerTopic(),
+        ];
     }
 
     /**
