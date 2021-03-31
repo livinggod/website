@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cb4d9182a3c116c95d827d2c7ce5a372",
+    "content-hash": "0a145a8eec35aa115f17740e2075960c",
     "packages": [
         {
             "name": "advoor/nova-editor-js",
@@ -202,6 +202,62 @@
                 "sdk"
             ],
             "time": "2021-03-05T19:20:35+00:00"
+        },
+        {
+            "name": "bakerkretzmar/nova-settings-tool",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bakerkretzmar/nova-settings-tool.git",
+                "reference": "19443a542db7797dfe4c97536f06cea33e863ed7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bakerkretzmar/nova-settings-tool/zipball/19443a542db7797dfe4c97536f06cea33e863ed7",
+                "reference": "19443a542db7797dfe4c97536f06cea33e863ed7",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/nova": "*",
+                "php": ">=7.1.0",
+                "spatie/valuestore": "^1.2"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^6.4",
+                "phpunit/phpunit": "^9.4"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Bakerkretzmar\\NovaSettingsTool\\SettingsToolServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Bakerkretzmar\\NovaSettingsTool\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jacob Baker-Kretzmar",
+                    "email": "jacobtbk@gmail.com"
+                }
+            ],
+            "description": "A Laravel Nova tool to manage application settings.",
+            "homepage": "https://github.com/bakerkretzmar/nova-settings-tool",
+            "keywords": [
+                "Settings",
+                "laravel",
+                "nova",
+                "tool"
+            ],
+            "time": "2020-11-18T00:06:35+00:00"
         },
         {
             "name": "brick/math",
@@ -4563,16 +4619,16 @@
         },
         {
             "name": "spatie/nova-backup-tool",
-            "version": "4.1.1",
+            "version": "4.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/nova-backup-tool.git",
-                "reference": "deac7224793ee9b2210a065676535a4d41dc5f9a"
+                "reference": "94bb939d2a0289aa52bda40b04abcec3c75ea9b5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/nova-backup-tool/zipball/deac7224793ee9b2210a065676535a4d41dc5f9a",
-                "reference": "deac7224793ee9b2210a065676535a4d41dc5f9a",
+                "url": "https://api.github.com/repos/spatie/nova-backup-tool/zipball/94bb939d2a0289aa52bda40b04abcec3c75ea9b5",
+                "reference": "94bb939d2a0289aa52bda40b04abcec3c75ea9b5",
                 "shasum": ""
             },
             "require": {
@@ -4624,7 +4680,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2021-02-26T07:56:36+00:00"
+            "time": "2021-03-21T14:58:21+00:00"
         },
         {
             "name": "spatie/once",
@@ -4812,6 +4868,69 @@
                 "source": "https://github.com/spatie/temporary-directory/tree/1.3.0"
             },
             "time": "2020-11-09T15:54:21+00:00"
+        },
+        {
+            "name": "spatie/valuestore",
+            "version": "1.2.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/valuestore.git",
+                "reference": "eafde51f0068bcbb605fdf589a952677ada74a33"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/valuestore/zipball/eafde51f0068bcbb605fdf589a952677ada74a33",
+                "reference": "eafde51f0068bcbb605fdf589a952677ada74a33",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.3|^8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\Valuestore\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Jolita Grazyte",
+                    "email": "jolita@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Easily store some values",
+            "homepage": "https://github.com/spatie/valuestore",
+            "keywords": [
+                "json",
+                "spatie",
+                "valuestore"
+            ],
+            "funding": [
+                {
+                    "url": "https://spatie.be/open-source/support-us",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-11-30T16:21:03+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

@@ -3,11 +3,11 @@
 namespace App\Nova;
 
 use Advoor\NovaEditorJs\NovaEditorJs;
+use App\Nova\Metrics\ArticlesPerTopic;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
-use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Slug;
 use Laravel\Nova\Fields\Stack;
@@ -57,8 +57,6 @@ class Post extends Resource
     public function fields(Request $request)
     {
         return [
-            ID::make(__('ID'), 'id')->sortable(),
-
             BelongsTo::make('Author', 'user', User::class)
                 ->readonly(!auth()->user()->can('change-author'))
                 ->default(auth()->user()->id),
@@ -112,6 +110,10 @@ class Post extends Resource
                 ->resolveUsing(fn () => !is_null($this->resource->publish_at) && $this->resource->publish_at <= now())
                 ->onlyOnIndex(),
 
+            Boolean::make('Highlight')
+                ->sortable()
+                ->onlyOnIndex(),
+
             NovaEditorJs::make('Content')->hideFromIndex(),
         ];
     }
@@ -124,7 +126,9 @@ class Post extends Resource
      */
     public function cards(Request $request)
     {
-        return [];
+        return [
+            new ArticlesPerTopic(),
+        ];
     }
 
     /**
@@ -135,7 +139,9 @@ class Post extends Resource
      */
     public function filters(Request $request)
     {
-        return [];
+        return [
+            new Filters\Highlighted(),
+        ];
     }
 
     /**
@@ -163,6 +169,10 @@ class Post extends Resource
 
         return [
             (new Actions\Publish)
+                ->showOnTableRow(),
+            (new Actions\Highlight)
+                ->showOnTableRow(),
+            (new Actions\CalculateRead)
                 ->showOnTableRow(),
         ];
     }

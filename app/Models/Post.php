@@ -9,8 +9,6 @@ class Post extends Model
 {
     use HasFactory;
 
-    const WORDS_PER_MINUTE = 200;
-
     protected $guarded = [];
 
     protected $casts = [
@@ -38,12 +36,17 @@ class Post extends Model
         return $query->where('publish_at', '<=', now());
     }
 
-    public function canShow()
+    public function getTitleAttribute(string $title): string
+    {
+        return ucwords($title);
+    }
+
+    public function canShow(): bool
     {
         return $this->isPublished() || optional(auth()->user())->can('see-drafts');
     }
 
-    public function isPublished()
+    public function isPublished(): bool
     {
         return !is_null($this->publish_at) && $this->publish_at <= now();
     }
@@ -57,7 +60,7 @@ class Post extends Model
             } catch (\Exception $e) {}
         }
 
-        $this->minutes = round($words / self::WORDS_PER_MINUTE, 0, PHP_ROUND_HALF_EVEN);
+        $this->minutes = round($words / store('wordsperminute'), 0, PHP_ROUND_HALF_EVEN);
 
         return $this->minutes;
     }

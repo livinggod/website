@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\RedirectController;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PageController;
@@ -18,25 +19,29 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [PageController::class, 'home'])->name('home');
-Route::get('/about', [PageController::class, 'about'])->name('pages.about');
-Route::get('/abc', [PageController::class, 'abc'])->name('pages.abc');
-Route::get('/what-we-believe', [PageController::class, 'believe'])->name('pages.believe');
-
+//Route::get('/', [PageController::class, 'home'])->name('home');
+//Route::get('/about', [PageController::class, 'about'])->name('pages.about');
+//Route::get('/abc', [PageController::class, 'abc'])->name('pages.abc');
+//Route::get('/what-we-believe', [PageController::class, 'believe'])->name('pages.believe');
+//
 Route::post('/newsletter', [NewsletterController::class, 'store'])->name('newsletter.store');
+//
+//Route::prefix('/articles')->name('articles.')->group(function () {
+//    Route::get('/', [PostController::class, 'index'])->name('index');
+//    Route::get('/{post:slug}', [PostController::class, 'show'])->name('show');
+//});
+//
+//Route::prefix('/topics')->name('topics.')->group(function () {
+//    Route::get('/{category:slug}', [TopicController::class, 'show'])->name('show');
+//});
+//
+//Route::prefix('/authors')->name('authors.')->group(function () {
+//    Route::get('/{author:slug}', [AuthorController::class, 'show'])->name('show');
+//});
 
-Route::prefix('/articles')->name('articles.')->group(function () {
-    Route::get('/', [PostController::class, 'index'])->name('index');
-    Route::get('/{post:slug}', [PostController::class, 'show'])->name('show');
-});
-
-Route::prefix('/topics')->name('topics.')->group(function () {
-    Route::get('/{category:slug}', [TopicController::class, 'show'])->name('show');
-});
-
-Route::prefix('/authors')->name('authors.')->group(function () {
-    Route::get('/{author:slug}', [AuthorController::class, 'show'])->name('show');
-});
+Route::get('/{page?}', RedirectController::class)
+    ->where('page', '^(?!nova).*$')
+    ->name('page');
 
 //require __DIR__.'/auth.php';
 
