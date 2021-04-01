@@ -32,7 +32,7 @@
                     </button>
                 </div>
                 <nav class="hidden md:flex space-x-10 h-full">
-                    <x-nav-link :href="route('page', 'articles')" :active="request()->segment(1) === 'articles'">
+                    <x-nav-link :href="route('page', 'articles')" :active="request()->segment(1) === 'articles' || session('active') === 'article'">
                         {{ __('Articles') }}
                     </x-nav-link>
                     <x-nav-link :href="route('page', 'about')" :active="request()->segment(1) === 'about'">
@@ -68,7 +68,7 @@
             </svg>
         </div>
         <nav class="mt-16 flex flex-col">
-            <x-nav-link :href="route('page', 'articles')" :active="request()->segment(1) === 'articles'">
+            <x-nav-link :href="route('page', 'articles')" :active="request()->segment(1) === 'articles' || session('active') === 'article'">
                 {{ __('Articles') }}
             </x-nav-link>
             <x-nav-link :href="route('page', 'about')" :active="request()->segment(1) === 'about'">
