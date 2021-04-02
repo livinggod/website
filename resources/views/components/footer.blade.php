@@ -1,12 +1,12 @@
 <footer class="bg-gray-100" aria-labelledby="footerHeading">
     <h2 id="footerHeading" class="sr-only">Footer</h2>
-    <div class="mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
+    <div class="mx-auto py-12 px-4 sm:px-6 lg:pt-16 lg:pb-8 lg:px-8">
         <div class="max-w-7xl mx-auto">
             <div class="md:grid grid-cols-2 gap-8 xl:col-span-2">
                 <x-footer.column title="latest articles">
                     @foreach(getLatestPosts(5) as $post)
                         <x-footer.link class="" href="{{ route('page', $post->slug) }}">
-                            {{ \Illuminate\Support\Str::limit($post->title, 30) ?? '' }}
+                            {{ limit($post->title, 30) ?? '' }}
                         </x-footer.link>
                     @endforeach
                 </x-footer.column>
@@ -30,6 +30,10 @@
                         </form>
                     </div>
                 </div>
+            </div>
+            <div class="items-center mx-auto flex justify-center mt-10 gap-6">
+                <a href="https://www.facebook.com/Living-God-102595761894322/" target="_blank" rel="nofollow"  class="text-gray-400 hover:text-gray-500">@include('components.icons.facebook')</a>
+                <a href="https://www.instagram.com/livinggodofficial/" target="_blank" rel="nofollow" class="text-gray-400 hover:text-gray-500">@include('components.icons.instagram')</a>
             </div>
         </div>
     </div>
