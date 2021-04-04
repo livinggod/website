@@ -13,6 +13,7 @@ class RedirectController extends Controller
 {
     public function __invoke(Request $request)
     {
+        session()->remove('active');
         $slug = $request->page;
         if ($slug === null) {
             return $this->home();
@@ -30,6 +31,8 @@ class RedirectController extends Controller
             if (!$post->canShow()) {
                 abort(404);
             }
+
+            session()->flash('active', 'article');
 
             return view('posts.show', compact('post'));
         }

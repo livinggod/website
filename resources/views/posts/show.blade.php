@@ -53,7 +53,7 @@
                         </div>
                     </div>
 
-                    {!! \Advoor\NovaEditorJs\NovaEditorJs::generateHtmlOutput($post->content) !!}
+                    <div id="article-content">{!! \Advoor\NovaEditorJs\NovaEditorJs::generateHtmlOutput($post->content) !!}</div>
                 </article>
             </div>
         </div>
