@@ -9,18 +9,18 @@
                         @if ($loop->index === 5)
                             @break
                         @endif
-                        <a href="{{ route('articles.show', $post) }}" class="absolute inset-0"></a>
+                        <a href="{{ route('page', $post->slug) }}" class="absolute inset-0"></a>
                         <div class="flex px-10 py-2">
                             <img class="h-12 w-12 object-cover rounded-lg"
                                  src="{{ asset('storage/' . $post->image) }}"
                                  alt="">
                             <div class="ml-6">
-                                <a href="{{ route('topics.show', $post->category) }}" class="relative z-10 hover:underline text-gray-400 p-1 -ml-1 text-xs">
+                                <a href="{{ route('page', $post->category->slug) }}" class="relative z-10 hover:underline text-gray-400 p-1 -ml-1 text-xs">
                                     {{ $post->category->name }}
                                 </a>
                                 <p class="mt-1 text-sm font-bold">{{ \Illuminate\Support\Str::limit($post->title, 50) }}</p>
                                 <p class="text-gray-400 mt-1 text-xs">
-                                    <a href="{{ route('authors.show', $post->user) }}" class="hover:underline relative z-10 p-1 -ml-1">{{ $post->user->name }}</a>
+                                    <a href="{{ route('page', $post->user->slug) }}" class="hover:underline relative z-10 p-1 -ml-1">{{ $post->user->name }}</a>
                                     {{ \Illuminate\Support\Carbon::parse($post->publish_at)->format('F jS Y') ?? '' }}
                                 </p>
                             </div>
