@@ -3,7 +3,7 @@
     <div class="hidden md:block flex-shrink-0">
         <a href="{{ route('page', $post->slug) }}">
             <img class="h-48 w-full object-cover"
-                 src="{{ asset('storage/' . $post->image) }}"
+                 src="{{ asset('storage/resizes/300/' . $post->image) }}"
                  alt="">
         </a>
     </div>
@@ -29,7 +29,7 @@
                     </a>
                 </div>
                 <img class="md:hidden h-20 w-20 object-cover rounded-lg"
-                     src="{{ asset('storage/' . $post->image) }}"
+                     src="{{ asset('storage/resizes/200x200/' . $post->image) }}"
                      alt="">
             </div>
         </div>

@@ -1,12 +1,9 @@
 <?php
 
-use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\RedirectController;
-use App\Http\Controllers\TopicController;
 use App\Http\Controllers\NewsletterController;
-use App\Http\Controllers\PageController;
-use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
+use Spatie\Image\Image;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/test', function () {
+    Image::load(storage_path('app/public/posts/testing.jpg'))->optimize()->save(storage_path('logs/testing.jpg'));
+});
 
 //Route::get('/', [PageController::class, 'home'])->name('home');
 //Route::get('/about', [PageController::class, 'about'])->name('pages.about');
@@ -38,6 +39,7 @@ Route::post('/newsletter', [NewsletterController::class, 'store'])->name('newsle
 //Route::prefix('/authors')->name('authors.')->group(function () {
 //    Route::get('/{author:slug}', [AuthorController::class, 'show'])->name('show');
 //});
+Route::get('/storage/resizes/{size}/{file}', \App\Http\Controllers\ImageController::class)->where('file', '.*');
 
 Route::get('/{page?}', RedirectController::class)
     ->where('page', '^(?!nova).*$')
