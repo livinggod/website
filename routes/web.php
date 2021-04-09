@@ -1,53 +1,15 @@
 <?php
 
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\RedirectController;
 use App\Http\Controllers\NewsletterController;
 use Illuminate\Support\Facades\Route;
-use Spatie\Image\Image;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Route::get('/storage/resizes/{size}/{file}', ImageController::class)->where('file', '.*');
 
-Route::get('/test', function () {
-    Image::load(storage_path('app/public/posts/testing.jpg'))->optimize()->save(storage_path('logs/testing.jpg'));
-});
-
-//Route::get('/', [PageController::class, 'home'])->name('home');
-//Route::get('/about', [PageController::class, 'about'])->name('pages.about');
-//Route::get('/abc', [PageController::class, 'abc'])->name('pages.abc');
-//Route::get('/what-we-believe', [PageController::class, 'believe'])->name('pages.believe');
-//
 Route::post('/newsletter', [NewsletterController::class, 'store'])->name('newsletter.store');
-//
-//Route::prefix('/articles')->name('articles.')->group(function () {
-//    Route::get('/', [PostController::class, 'index'])->name('index');
-//    Route::get('/{post:slug}', [PostController::class, 'show'])->name('show');
-//});
-//
-//Route::prefix('/topics')->name('topics.')->group(function () {
-//    Route::get('/{category:slug}', [TopicController::class, 'show'])->name('show');
-//});
-//
-//Route::prefix('/authors')->name('authors.')->group(function () {
-//    Route::get('/{author:slug}', [AuthorController::class, 'show'])->name('show');
-//});
-Route::get('/storage/resizes/{size}/{file}', \App\Http\Controllers\ImageController::class)->where('file', '.*');
+
 
 Route::get('/{page?}', RedirectController::class)
     ->where('page', '^(?!nova).*$')
     ->name('page');
-
-//require __DIR__.'/auth.php';
-
-
-//Route::get('/dashboard', function () {
-//    return view('dashboard');
-//})->middleware(['auth'])->name('dashboard');
