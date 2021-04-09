@@ -8,6 +8,7 @@ use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
 
 class RedirectController extends Controller
 {
@@ -58,15 +59,24 @@ class RedirectController extends Controller
 
     public function home()
     {
-        $highlight = Post::where('highlight', true)->first();
+        $highlight = Cache::remember('highlight', now()->addDay(), function () {
+            $highlight = Post::with(['user', 'category'])->where('highlight', true)->first();
 
-        if ($highlight === null) {
-            $highlight = Post::published()->orderBy('publish_at', 'desc')->first()->makeHidden(['content', 'published']);
-        }
+            if ($highlight === null) { // get latest highlight
+                $highlight = Post::with(['user', 'category'])->published()->orderBy('publish_at', 'desc')->first()->makeHidden(['content', 'published']);
+            }
+
+            return $highlight;
+        });
+
+        $posts = Cache::remember('homepage_posts', now()->addDay(), function () {
+            return Post::with(['user', 'category'])->published()->orderBy('publish_at', 'desc')->take(8)->get()
+                    ->makeHidden(['content', 'published']) ?? new Collection();
+        });
+
 
         return view('pages.home', [
-            'posts' => Post::published()->orderBy('publish_at', 'desc')->get()->take(8)
-                    ->makeHidden(['content', 'published']) ?? new Collection(),
+            'posts' => $posts,
             'highlight' => $highlight ?? null,
         ]);
     }
