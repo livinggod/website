@@ -3,6 +3,7 @@
 return [
     'sizes' => [
         '300', // Card Image
+        '600', // Card image
         '800', // Highlight Small
         '80x80', // Card Author
         '140x140', // ABC letters
