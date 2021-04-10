@@ -1,5 +1,7 @@
 <div>
-    <div id="dark-overlay"
+    <div
+        x-cloak
+        id="dark-overlay"
          x-show="mobilemenu"
          x-transition:enter="transition duration-300"
          x-transition:enter-start="opacity-0"
@@ -7,7 +9,7 @@
          x-transition:leave="transition duration-300"
          x-transition:leave-start="opacity-50"
          x-transition:leave-end="opacity-0"
-         class="hidden fixed inset-0 bg-black z-50 opacity-50"
+         class="fixed inset-0 bg-black z-50 opacity-50"
     ></div>
     <div class="z-40 fixed w-full bg-white border-b">
         <div class="mx-auto px-4 sm:px-6">
@@ -50,14 +52,14 @@
         </div>
     </div>
 
-    <div id="mobilemenu" x-show="mobilemenu" @click.away="mobilemenu = false"
+    <div x-cloak id="mobilemenu" x-show="mobilemenu" @click.away="mobilemenu = false"
          x-transition:enter="transition ease-in duration-300"
          x-transition:enter-start="transform translate-x-full"
          x-transition:enter-end="transform translate-x-0"
          x-transition:leave="transition ease-out duration-300"
          x-transition:leave-start="transform translate-x-0"
          x-transition:leave-end="transform translate-x-full"
-         class="hidden fixed right-0 z-60 w-4/5 h-full bg-white overflow-y-scroll">
+         class="fixed right-0 z-60 w-4/5 h-full bg-white overflow-y-scroll">
         <div @click="mobilemenu = false" class="p-4 fixed right-0">
             <!-- Heroicon name: x -->
             <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"
