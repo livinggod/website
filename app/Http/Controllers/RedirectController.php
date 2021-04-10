@@ -24,10 +24,6 @@ class RedirectController extends Controller
             return $this->articles();
         }
 
-        if ($page = Page::where('url', '/'.$slug)->first()) {
-            return view('page', compact('page'));
-        }
-
         if ($post = Post::where('slug', $slug)->first()) {
             if (!$post->canShow()) {
                 abort(404);
@@ -36,6 +32,10 @@ class RedirectController extends Controller
             session()->flash('active', 'article');
 
             return view('posts.show', compact('post'));
+        }
+
+        if ($page = Page::where('url', '/'.$slug)->first()) {
+            return view('page', compact('page'));
         }
 
         if ($topic = Category::where('slug', $slug)->first()) {
