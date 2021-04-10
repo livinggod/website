@@ -59,6 +59,7 @@ class Post extends Resource
         return [
             BelongsTo::make('Author', 'user', User::class)
                 ->readonly(!auth()->user()->can('change-author'))
+                ->hideFromIndex()
                 ->default(auth()->user()->id),
 
             BelongsTo::make('Category')
@@ -114,6 +115,10 @@ class Post extends Resource
                 ->sortable()
                 ->onlyOnIndex(),
 
+            Boolean::make('Ready')
+                ->readonly(!auth()->user()->can('publish-post'))
+                ->sortable(),
+
             NovaEditorJs::make('Content')->hideFromIndex(),
         ];
     }
@@ -144,23 +149,6 @@ class Post extends Resource
         ];
     }
 
-    /**
-     * Get the lenses available for the resource.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return array
-     */
-    public function lenses(Request $request)
-    {
-        return [];
-    }
-
-    /**
-     * Get the actions available for the resource.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return array
-     */
     public function actions(Request $request)
     {
         if (!$request->user()->can('publish-post')) {
@@ -173,6 +161,8 @@ class Post extends Resource
             (new Actions\Highlight)
                 ->showOnTableRow(),
             (new Actions\CalculateRead)
+                ->showOnTableRow(),
+            (new Actions\MarkAsReady)
                 ->showOnTableRow(),
         ];
     }
