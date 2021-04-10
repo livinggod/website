@@ -10,6 +10,7 @@
     "require": {
         "php": "^7.4|^8.0",
         "advoor/nova-editor-js": "^2.0",
+        "artesaos/seotools": "^0.20.0",
         "bakerkretzmar/nova-settings-tool": "^1.1",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
