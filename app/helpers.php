@@ -5,7 +5,7 @@ use Illuminate\Support\Str;
 if (!function_exists('getBlock')) {
     function getBlock(string $code)
     {
-        return \Illuminate\Support\Facades\Cache::remember($code, now()->addCentury(), fn () => \App\Models\Block::firstWhere('code', $code)->content ?? $code);
+        return \Illuminate\Support\Facades\Cache::rememberForever($code, fn () => \App\Models\Block::firstWhere('code', $code)->content ?? $code);
     }
 }
 
@@ -19,7 +19,7 @@ if (!function_exists('getLatestPosts')) {
 }
 
 if (!function_exists('limit')) {
-    function limit(?string $string = null, int $amount)
+    function limit(string $string, int $amount)
     {
         return Str::limit($string, $amount);
     }
