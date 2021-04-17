@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "72a674014d8d80d4a1a12dc08a0cb439",
+    "content-hash": "b45e522727c4a1a0d7bbc62808ee0897",
     "packages": [
         {
             "name": "advoor/nova-editor-js",
@@ -1771,16 +1771,16 @@
         },
         {
             "name": "larabug/larabug",
-            "version": "2.3.1",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/LaraBug/LaraBug.git",
-                "reference": "c064d6fbf8823655e24b58cc5d468ad26fc70398"
+                "reference": "d4c4424cc52e0790bd1e292484e503dd627b3dd0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LaraBug/LaraBug/zipball/c064d6fbf8823655e24b58cc5d468ad26fc70398",
-                "reference": "c064d6fbf8823655e24b58cc5d468ad26fc70398",
+                "url": "https://api.github.com/repos/LaraBug/LaraBug/zipball/d4c4424cc52e0790bd1e292484e503dd627b3dd0",
+                "reference": "d4c4424cc52e0790bd1e292484e503dd627b3dd0",
                 "shasum": ""
             },
             "require": {
@@ -1792,6 +1792,7 @@
                 "friendsofphp/php-cs-fixer": "^2.16",
                 "orchestra/testbench": "^3.8|^4.0|^5.0"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "laravel": {
@@ -1825,7 +1826,7 @@
             ],
             "support": {
                 "issues": "https://github.com/LaraBug/LaraBug/issues",
-                "source": "https://github.com/LaraBug/LaraBug/tree/2.3.1"
+                "source": "https://github.com/LaraBug/LaraBug/tree/master"
             },
             "funding": [
                 {
@@ -1833,7 +1834,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-11-25T06:29:27+00:00"
+            "time": "2021-04-11T07:03:08+00:00"
         },
         {
             "name": "laravel/framework",
@@ -13178,7 +13179,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "larabug/larabug": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
