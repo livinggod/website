@@ -10,6 +10,7 @@ use Laravel\Nova\Cards\Help;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
 use Spatie\BackupTool\BackupTool;
+use Vink\NovaCacheCard\CacheCard;
 use Vyuldashev\NovaPermission\NovaPermissionTool;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
@@ -63,7 +64,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function cards()
     {
         return [
-            new Help,
+            (new CacheCard())->canSeeWhen('clear-cache'),
         ];
     }
 

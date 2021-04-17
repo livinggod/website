@@ -21,7 +21,7 @@
                             {{ $post->title }}
                         </p>
                         <p class="hidden md:block text-md mt-2 text-gray-500">
-                            {{ $post->description ?? '' }}
+                            {{ limit($post->description, 80) ?? '' }}
                         </p>
                         <p class="md:hidden text-sm text-gray-500">
                             {{ limit($post->description, 20) ?? '' }}
