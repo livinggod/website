@@ -9,6 +9,8 @@ class Post extends Model
 {
     use HasFactory;
 
+    const WORDS_PER_MINUTE_FALLBACK = 150;
+
     protected $guarded = [];
 
     protected $casts = [
@@ -54,13 +56,17 @@ class Post extends Model
     public function calculateRead(): int
     {
         $words = 0;
-        foreach (json_decode($this->content, true)['blocks'] as $block) {
+        foreach (optional(json_decode($this->content, true))['blocks'] ?? [] as $block) {
             try {
                 $words += count(explode(' ', strip_tags($block['data']['text'])));
             } catch (\Exception $e) {}
         }
 
-        $this->minutes = round($words / store('wordsperminute'), 0, PHP_ROUND_HALF_EVEN);
+        if ($words === 0) {
+            return 0;
+        }
+
+        $this->minutes = round($words / store('wordsperminute') ?? self::WORDS_PER_MINUTE_FALLBACK, 0, PHP_ROUND_HALF_EVEN);
 
         return $this->minutes;
     }
