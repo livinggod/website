@@ -10,10 +10,12 @@
     "require": {
         "php": "^7.4|^8.0",
         "advoor/nova-editor-js": "^2.0",
+        "artesaos/seotools": "^0.20.0",
         "bakerkretzmar/nova-settings-tool": "^1.1",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "larabug/larabug": "dev-master",
         "laravel/framework": "^8.12",
         "laravel/horizon": "^5.6",
         "laravel/nova": "~3.0",
@@ -21,6 +23,7 @@
         "laravel/tinker": "^2.5",
         "league/flysystem-aws-s3-v3": "~1.0",
         "livewire/livewire": "^2.4",
+        "spatie/image": "^1.10",
         "spatie/laravel-backup": "^6.15",
         "spatie/laravel-cookie-consent": "^2.12",
         "spatie/laravel-permission": "^3.18",
@@ -36,6 +39,9 @@
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",
+        "nunomaduro/phpinsights": "^1.14",
+        "pestphp/pest": "^1.0",
+        "pestphp/pest-plugin-laravel": "^1.0",
         "phpunit/phpunit": "^9.3.3"
     },
     "repositories": {

@@ -3,7 +3,7 @@
         <article class="max-w-7xl mx-auto mt-10 md:mt-20 mb-20">
             <div class="max-w-2xl md:flex mx-auto">
                     <div class="md:w-1/3">
-                        <img class="w-32 h-32 rounded-full mx-auto" src="{{ $author->getAvatar() }}" alt="{{ $author->name }}">
+                        <img class="w-32 h-32 rounded-full mx-auto" src="{{ asset('storage/resizes/256x256/'.$author->avatar) }}" alt="{{ $author->name }}">
                         <h1 class="font-bold text-xl text-center mt-4">{{ $author->name }}</h1>
                         <ul class="mt-2 text-sm text-gray-400 text-center">
                             @if($author->show_email)

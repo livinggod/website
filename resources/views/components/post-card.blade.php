@@ -3,7 +3,7 @@
     <div class="hidden md:block flex-shrink-0">
         <a href="{{ route('page', $post->slug) }}">
             <img class="h-48 w-full object-cover"
-                 src="{{ asset('storage/' . $post->image) }}"
+                 src="{{ asset('storage/resizes/600/' . $post->image) }}"
                  alt="">
         </a>
     </div>
@@ -29,7 +29,7 @@
                     </a>
                 </div>
                 <img class="md:hidden h-20 w-20 object-cover rounded-lg"
-                     src="{{ asset('storage/' . $post->image) }}"
+                     src="{{ asset('storage/resizes/200x200/' . $post->image) }}"
                      alt="">
             </div>
         </div>
@@ -39,7 +39,7 @@
         <div class="mt-2 md:mt-6 flex w-full">
             <a class="hidden md:block relative z-10" href="{{ route('page', $post->user->slug) }}">
                 <img class="w-8 h-8 md:w-10 md:h-10 object-cover rounded-full"
-                     src="{{ $post->user->getAvatar() }}"
+                     src="{{ asset('storage/resizes/80x80/'.$post->user->avatar) }}"
                      alt="">
             </a>
 

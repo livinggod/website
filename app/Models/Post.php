@@ -33,7 +33,7 @@ class Post extends Model
 
     public function scopePublished($query)
     {
-        return $query->where('publish_at', '<=', now());
+        return $query->where([['publish_at', '<=', now()], ['ready', true]]);
     }
 
     public function getTitleAttribute(string $title): string
@@ -48,7 +48,7 @@ class Post extends Model
 
     public function isPublished(): bool
     {
-        return !is_null($this->publish_at) && $this->publish_at <= now();
+        return !is_null($this->publish_at) && $this->publish_at <= now() && $this->ready;
     }
 
     public function calculateRead(): int

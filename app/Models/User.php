@@ -58,8 +58,6 @@ class User extends Authenticatable
 
     public function getAvatar()
     {
-        return !is_null($this->attributes['avatar'])
-            ? asset('storage/' . $this->attributes['avatar'])
-            : 'https://eu.ui-avatars.com/api/?background=59B100&color=fff&name=' . $this->attributes['name'];
+        return $this->attributes['avatar'];
     }
 }

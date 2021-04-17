@@ -20,47 +20,33 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-    <!-- SEO -->
-    <meta name="keywords" content="{{ $keywords ?? '' }}">
-    <meta name="title" content="{{ $title ?? '' }}">
-    <meta name="description" content="{{ $description ?? '' }}">
-    <meta name="author" content="{{ $author ?? '' }}">
-    <meta name="image" content="{{ $image ?? '' }}">
-
-    <meta name="og:title" content="{{ $title ?? '' }}">
-    <meta name="og:url" content="{{ url()->current() }}">
-    <meta name="og:type" content="{{ $type ?? '' }}">
-    <meta name="og:image" content="{{ $image ?? '' }}">
-    <meta name="og:description" content="{{ $description ?? '' }}">
+    <script src="{{ mix('js/app.js') }}" defer></script>
 
     <livewire:styles />
 
-    <!-- Hotjar Tracking Code for www.livinggod.net -->
-    <script>
-        (function(h,o,t,j,a,r){
-            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-            h._hjSettings={hjid:2270818,hjsv:6};
-            a=o.getElementsByTagName('head')[0];
-            r=o.createElement('script');r.async=1;
-            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-            a.appendChild(r);
-        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-    </script>
+    @production
+        <script>
+            (function(h,o,t,j,a,r){
+                h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+                h._hjSettings={hjid:2270818,hjsv:6};
+                a=o.getElementsByTagName('head')[0];
+                r=o.createElement('script');r.async=1;
+                r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+                a.appendChild(r);
+            })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+        </script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-VHJ7SXG8S9"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VHJ7SXG8S9"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'G-VHJ7SXG8S9');
-    </script>
+            gtag('config', 'G-VHJ7SXG8S9');
+        </script>
+    @endproduction
 
 </head>
 <body x-data="{mobilemenu: false}" class="h-full" :class="{ 'overflow-y-hidden': mobilemenu === true}">
