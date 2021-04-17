@@ -36,8 +36,7 @@ return [
     */
 
     'environments' => [
-        'production',
-	'local'
+        'production'
     ],
 
     /*
