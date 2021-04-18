@@ -66,7 +66,7 @@ class Post extends Model
             return 0;
         }
 
-        $this->minutes = round($words / store('wordsperminute') ?? self::WORDS_PER_MINUTE_FALLBACK, 0, PHP_ROUND_HALF_EVEN);
+        $this->minutes = round($words / (store('wordsperminute') ?? self::WORDS_PER_MINUTE_FALLBACK), 0, PHP_ROUND_HALF_EVEN);
 
         return $this->minutes;
     }

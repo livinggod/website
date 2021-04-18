@@ -28,10 +28,10 @@ class PostFactory extends Factory
         return [
             'category_id' => Category::factory()->create()->id,
             'user_id' => User::factory()->create()->id,
-            'image' => $this->fakeEditorJS(),
+            'image' => 'posts/'.Str::uuid().'.jpg',
             'slug' => Str::slug($title),
             'title' => ucwords($title),
-            'content' => $this->faker->realText(),
+            'content' => $this->fakeEditorJS(),
             'publish_at' => now()->subDay(),
             'minutes' => $this->faker->randomDigit(),
             'highlight' => false,
@@ -41,6 +41,6 @@ class PostFactory extends Factory
 
     protected function fakeEditorJS()
     {
-        return '{"time":1615732528852,"blocks":[{"type":"paragraph","data":{"text":"testing"}}],"version":"2.19.0"}';
+        return '{"time":1615732528852,"blocks":[{"type":"paragraph","data":{"text":"testing asdsk as s"}}],"version":"2.19.0"}';
     }
 }

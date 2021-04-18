@@ -55,6 +55,8 @@ class RedirectController extends Controller
                 'articles' => $author->posts()->published()->orderBy('publish_at', 'desc')->paginate(8),
             ]);
         }
+
+        abort(404);
     }
 
     public function home()
