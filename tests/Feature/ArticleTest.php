@@ -1,5 +1,7 @@
 <?php
 
+use function Pest\Faker\faker;
+
 uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
 
 it('has a articles page', function () {
@@ -28,5 +30,20 @@ it('meets publishing requirements', function () {
 });
 
 it('calculates read minutes', function () {
-    // TODO: MAKE TEST
+    $article = \App\Models\Post::factory()->create([
+        'content' => fakeEditorJS(faker()->text(10000)),
+    ]);
+
+    expect($oldMinutes = $article->minutes)->toBeInt()->toBeGreaterThan(1);
+
+    $article->update([
+        'content' => fakeEditorJS(faker()->text(100000)),
+    ]);
+
+    expect($article->fresh()->minutes)->not->toBe($oldMinutes);
 });
+
+function fakeEditorJS(string $content): string
+{
+    return '{"time":1615732528852,"blocks":[{"type":"paragraph","data":{"text":"'.$content.'"}}],"version":"2.19.0"}';
+}
