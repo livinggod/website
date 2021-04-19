@@ -9,27 +9,27 @@ class BlockPolicy
 {
     use HandlesAuthorization;
 
-    public function viewAny()
+    public function viewAny(): bool
     {
         return auth()->user()->can('view-block');
     }
 
-    public function view()
+    public function view(): bool
     {
         return auth()->user()->can('view-block');
     }
 
-    public function create()
+    public function create(): bool
     {
         return auth()->user()->can('create-block');
     }
 
-    public function update()
+    public function update(): bool
     {
         return auth()->user()->can('update-block');
     }
 
-    public function delete()
+    public function delete(): bool
     {
         return auth()->user()->can('delete-block');
     }

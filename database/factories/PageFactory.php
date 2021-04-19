@@ -20,8 +20,8 @@ class PageFactory extends Factory
         ];
     }
 
-    protected function fakeEditorJS()
+    protected function fakeEditorJS(): string
     {
-        return '{"time":1615732528852,"blocks":[{"type":"paragraph","data":{"text":"testing"}}],"version":"2.19.0"}';
+        return '{"time":1615732528852,"blocks":[{"type":"paragraph","data":{"text":"Lorem ipsum dolor sit amet."}}],"version":"2.19.0"}';
     }
 }

@@ -13,7 +13,7 @@ class MarkAsReady extends Action
 {
     use InteractsWithQueue, Queueable;
 
-    public function handle(ActionFields $fields, Collection $models)
+    public function handle(ActionFields $fields, Collection $models): array
     {
         $models->each(fn ($model) => $model->update(['ready' => true]));
 

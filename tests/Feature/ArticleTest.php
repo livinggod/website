@@ -4,9 +4,9 @@ use function Pest\Faker\faker;
 
 uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
 
-it('has a articles page', function () {
-    $this->get('/articles')->assertStatus(200);
-});
+it('has a articles page')
+    ->get('/articles')
+    ->assertStatus(200);
 
 it('meets publishing requirements', function () {
     $article = \App\Models\Post::factory()->create([

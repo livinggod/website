@@ -1,7 +1,7 @@
 <dropdown-trigger class="h-9 flex items-center">
     @isset($user->email)
         <img
-            src="{{ $user->getAvatar() }}"
+            src="{{ $user->avatar }}"
             class="rounded-full w-8 h-8 mr-3"
         />
     @endisset

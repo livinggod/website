@@ -9,28 +9,28 @@ class CategoryPolicy
 {
     use HandlesAuthorization;
 
-    public function viewAny()
+    public function viewAny(User $user): bool
     {
-        return auth()->user()->can('view-category');
+        return $user->can('view-category');
     }
 
-    public function view()
+    public function view(User $user): bool
     {
-        return auth()->user()->can('view-category');
+        return $user->can('view-category');
     }
 
-    public function create()
+    public function create(User $user): bool
     {
-        return auth()->user()->can('create-category');
+        return $user->can('create-category');
     }
 
-    public function update()
+    public function update(User $user): bool
     {
-        return auth()->user()->can('update-category');
+        return $user->can('update-category');
     }
 
-    public function delete()
+    public function delete(User $user): bool
     {
-        return auth()->user()->can('delete-category');
+        return $user->can('delete-category');
     }
 }

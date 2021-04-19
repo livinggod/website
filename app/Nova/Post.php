@@ -17,44 +17,17 @@ use Illuminate\Database\Eloquent\Builder;
 
 class Post extends Resource
 {
-    /**
-     * The model the resource corresponds to.
-     *
-     * @var string
-     */
-    public static $model = \App\Models\Post::class;
+    public static string $model = \App\Models\Post::class;
 
-    /**
-     * The single value that should be used to represent the resource when being displayed.
-     *
-     * @var string
-     */
     public static $title = 'title';
 
-    /**
-     * The columns that should be searched.
-     *
-     * @var array
-     */
     public static $search = [
         'id', 'title', 'slug'
     ];
 
-    /**
-     * Indicates whether Nova should prevent the user from leaving an unsaved form, losing their data.
-     *
-     * @var bool
-     */
     public static $preventFormAbandonment = true;
 
-
-    /**
-     * Get the fields displayed by the resource.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return array
-     */
-    public function fields(Request $request)
+    public function fields(Request $request): array
     {
         return [
             BelongsTo::make('Author', 'user', User::class)
@@ -123,47 +96,35 @@ class Post extends Resource
         ];
     }
 
-    /**
-     * Get the cards available for the request.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return array
-     */
-    public function cards(Request $request)
+    public function cards(Request $request): array
     {
         return [
             new ArticlesPerTopic(),
         ];
     }
 
-    /**
-     * Get the filters available for the resource.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return array
-     */
-    public function filters(Request $request)
+    public function filters(Request $request): array
     {
         return [
             new Filters\Highlighted(),
         ];
     }
 
-    public function actions(Request $request)
+    public function actions(Request $request): array
     {
-        if (!$request->user()->can('publish-post')) {
-            return [];
-        }
-
         return [
             (new Actions\Publish)
-                ->showOnTableRow(),
+                ->showOnTableRow()
+                ->canSeeWhen('publish-post'),
             (new Actions\Highlight)
-                ->showOnTableRow(),
+                ->showOnTableRow()
+                ->canSeeWhen('highlight-post'),
             (new Actions\CalculateRead)
-                ->showOnTableRow(),
+                ->showOnTableRow()
+                ->canSeeWhen('calculate-read-time'),
             (new Actions\MarkAsReady)
-                ->showOnTableRow(),
+                ->showOnTableRow()
+                ->canSeeWhen('mark-post-as-ready'),
         ];
     }
 

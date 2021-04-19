@@ -6,37 +6,22 @@ use App\Models\Category;
 use App\Models\Post;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Metrics\Partition;
+use Laravel\Nova\Metrics\PartitionResult;
 
 class ArticlesPerTopic extends Partition
 {
-    /**
-     * Calculate the value of the metric.
-     *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
-     * @return mixed
-     */
-    public function calculate(NovaRequest $request)
+    public function calculate(NovaRequest $request): PartitionResult
     {
         return $this->count($request, Post::class, 'category_id')
             ->label(fn ($value) => Category::find($value)->name);
     }
 
-    /**
-     * Determine for how many minutes the metric should be cached.
-     *
-     * @return  \DateTimeInterface|\DateInterval|float|int
-     */
-    public function cacheFor()
+    public function cacheFor(): \DateTimeInterface|\DateInterval|float|int
     {
          return now()->addMinutes(10);
     }
 
-    /**
-     * Get the URI key for the metric.
-     *
-     * @return string
-     */
-    public function uriKey()
+    public function uriKey(): string
     {
         return 'articles-per-topic';
     }

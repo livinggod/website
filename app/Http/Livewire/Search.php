@@ -26,8 +26,9 @@ class Search extends Component
 
     public function updatedSearch()
     {
-        $this->items = Post::where('title', 'LIKE', "%{$this->search}%")->published()->take(10)->orderBy('publish_at', 'desc')->get();
+        $this->items = Post::where('title', 'LIKE', "%{$this->search}%")->published()->orderBy('publish_at', 'desc')->take(10);
     }
+
     public function render()
     {
         return view('livewire.search');

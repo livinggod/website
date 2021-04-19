@@ -10,19 +10,9 @@ use Illuminate\Support\Str;
 
 class PostFactory extends Factory
 {
-    /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
-     */
     protected $model = Post::class;
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
-    public function definition()
+    public function definition(): array
     {
         $title = $this->faker->sentence();
         return [
@@ -39,8 +29,8 @@ class PostFactory extends Factory
         ];
     }
 
-    protected function fakeEditorJS()
+    protected function fakeEditorJS(): string
     {
-        return '{"time":1615732528852,"blocks":[{"type":"paragraph","data":{"text":"testing asdsk as s"}}],"version":"2.19.0"}';
+        return '{"time":1615732528852,"blocks":[{"type":"paragraph","data":{"text":"Lorem ipsum dolor sit amet."}}],"version":"2.19.0"}';
     }
 }

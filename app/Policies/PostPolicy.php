@@ -40,6 +40,8 @@ class PostPolicy
 
     public function delete(): bool
     {
+
+        return false;
         return auth()->user()->can('delete-post');
     }
 }

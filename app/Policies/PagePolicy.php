@@ -9,28 +9,28 @@ class PagePolicy
 {
     use HandlesAuthorization;
 
-    public function viewAny()
+    public function viewAny(User $user): bool
     {
-        return auth()->user()->can('view-page');
+        return $user->can('view-page');
     }
 
-    public function view()
+    public function view(User $user): bool
     {
-        return auth()->user()->can('view-page');
+        return $user->can('view-page');
     }
 
-    public function create()
+    public function create(User $user): bool
     {
-        return auth()->user()->can('create-page');
+        return $user->can('create-page');
     }
 
-    public function update()
+    public function update(User $user): bool
     {
-        return auth()->user()->can('update-page');
+        return $user->can('update-page');
     }
 
-    public function delete()
+    public function delete(User $user): bool
     {
-        return auth()->user()->can('delete-page');
+        return $user->can('delete-page');
     }
 }

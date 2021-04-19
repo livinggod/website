@@ -6,13 +6,14 @@ use App\Models\Category;
 use App\Models\Page;
 use App\Models\Post;
 use App\Models\User;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 
 class RedirectController extends Controller
 {
-    public function __invoke(Request $request)
+    public function __invoke(Request $request): View|null
     {
         session()->remove('active');
         $slug = $request->page;
@@ -57,9 +58,11 @@ class RedirectController extends Controller
         }
 
         abort(404);
+
+        return null;
     }
 
-    public function home()
+    public function home(): View
     {
         $highlight = Cache::remember('highlight', now()->addDay(), function () {
             $highlight = Post::with(['user', 'category'])->where('highlight', true)->first();
@@ -83,7 +86,7 @@ class RedirectController extends Controller
         ]);
     }
 
-    public function articles()
+    public function articles(): View
     {
         return view('posts.index', [
             'articles' => Post::published()->orderBy('publish_at', 'desc')->paginate(12) ?? new Collection()
