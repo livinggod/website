@@ -10,9 +10,9 @@ class PostPolicy
 {
     use HandlesAuthorization;
 
-    public function viewAny(): bool
+    public function viewAny(User $user): bool
     {
-        return auth()->user()->can('view-post');
+        return $user->can('view-post');
     }
 
     public function view(User $user, Post $post): bool
@@ -24,9 +24,9 @@ class PostPolicy
         return $user->can('view-post') && $user->id == $post->user->id && !$post->isPublished();
     }
 
-    public function create(): bool
+    public function create(User $user): bool
     {
-        return auth()->user()->can('create-post');
+        return $user->can('create-post');
     }
 
     public function update(User $user, Post $post): bool
@@ -38,10 +38,8 @@ class PostPolicy
         return $user->can('update-post') && $user->id == $post->user->id && !$post->isPublished();
     }
 
-    public function delete(): bool
+    public function delete(User $user): bool
     {
-
-        return false;
-        return auth()->user()->can('delete-post');
+        return $user->can('delete-post');
     }
 }

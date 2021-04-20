@@ -13,7 +13,7 @@ if (!function_exists('getLatestPosts')) {
     function getLatestPosts(int $amount = 5)
     {
         return \Illuminate\Support\Facades\Cache::remember('latest_articles_'.$amount, now()->addDay(),
-            fn () => \App\Models\Post::published()->orderBy('publish_at', 'desc')->get()->take($amount)
+            fn () => \App\Models\Post::published()->orderBy('publish_at', 'desc')->take($amount)->get()
         );
     }
 }

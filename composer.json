@@ -19,6 +19,7 @@
         "laravel/framework": "^8.12",
         "laravel/horizon": "^5.6",
         "laravel/nova": "~3.0",
+        "laravel/octane": "^0.3.2",
         "laravel/slack-notification-channel": "^2.3",
         "laravel/tinker": "^2.5",
         "league/flysystem-aws-s3-v3": "~1.0",
@@ -29,6 +30,7 @@
         "spatie/laravel-permission": "^3.18",
         "spatie/laravel-ray": "^1.8",
         "spatie/nova-backup-tool": "^4.1",
+        "spiral/roadrunner": "^2.0",
         "vink/nova-cache-card": "^1.0",
         "vyuldashev/nova-permission": "^2.10"
     },
@@ -40,6 +42,7 @@
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",
+        "nunomaduro/larastan": "^0.7.4",
         "pestphp/pest": "^1.0",
         "pestphp/pest-plugin-faker": "^1.0",
         "pestphp/pest-plugin-laravel": "^1.0",

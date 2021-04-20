@@ -20,9 +20,9 @@ class ImageController extends Controller
             @list($width, $height) = explode('x', $size);
 
             if ($height) {
-                $image->fit(MANIPULATIONS::FIT_CONTAIN, $width, $height);
+                $image->fit(MANIPULATIONS::FIT_CONTAIN, (int)$width, (int)$height);
             } else {
-                $image->width($width);
+                $image->width((int)$width);
             }
 
             if (!is_dir(storage_path('app/public/'.pathinfo($resizedPath, PATHINFO_DIRNAME)))) {

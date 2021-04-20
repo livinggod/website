@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Cache;
 
 class RedirectController extends Controller
 {
-    public function __invoke(Request $request): View|null
+    public function __invoke(Request $request): ?View
     {
         session()->remove('active');
         $slug = $request->page;
@@ -40,10 +40,6 @@ class RedirectController extends Controller
         }
 
         if ($topic = Category::where('slug', $slug)->first()) {
-            if (is_null($topic->id)) {
-                abort(404);
-            }
-
             return view('topics.show', [
                 'topic' => $topic,
                 'articles' => $topic->articles()->published()->orderBy('publish_at', 'desc')->paginate(8)
@@ -58,8 +54,6 @@ class RedirectController extends Controller
         }
 
         abort(404);
-
-        return null;
     }
 
     public function home(): View
