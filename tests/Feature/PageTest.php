@@ -1,16 +1,25 @@
 <?php
 
+namespace Tests\Feature;
+
+use App\Models\Page;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
-uses(RefreshDatabase::class);
+class PageTest extends TestCase
+{
+    use RefreshDatabase;
 
-it('can dynamically create pages', function () {
-    $this->get('/page')->assertStatus(404);
+    /** @test */
+    public function it_can_dynamically_create_pages(): void
+    {
+        $this->get('/page')->assertStatus(404);
 
-    \App\Models\Page::factory()->create([
-        'title' => 'Test Page',
-        'url' => '/test-page'
-    ]);
+        Page::factory()->create([
+            'title' => 'Test Page',
+            'url' => '/test-page'
+        ]);
 
-    $this->get('/test-page')->assertStatus(200)->assertSee('Test Page');
-});
+        $this->get('/test-page')->assertStatus(200)->assertSee('Test Page');
+    }
+}
