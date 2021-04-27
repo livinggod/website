@@ -8,25 +8,25 @@ use Livewire\Component;
 
 class Search extends Component
 {
-    public $active = false;
-    public $search = '';
-    public $items = [];
+    public bool $active = false;
+    public string $search = '';
+    public Collection $items;
+
+    public function mount()
+    {
+        $this->items = new Collection();
+    }
 
     public function toggle()
     {
         $this->search = '';
-        $this->items = collect([]);
+        $this->items = new Collection();
         $this->active = !$this->active;
-    }
-
-    public function mount()
-    {
-        $this->items = collect([]);
     }
 
     public function updatedSearch()
     {
-        $this->items = Post::where('title', 'LIKE', "%{$this->search}%")->published()->orderBy('publish_at', 'desc')->take(10);
+        $this->items = Post::where('title', 'LIKE', "%{$this->search}%")->published()->orderBy('publish_at', 'desc')->take(10)->get();
     }
 
     public function render()
