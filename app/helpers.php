@@ -1,19 +1,24 @@
 <?php
 
+use App\Models\Post;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
+use Spatie\Valuestore\Valuestore;
+
+// TODO: Create blade directives
 
 if (!function_exists('getBlock')) {
-    function getBlock(string $code)
+    function getBlock(string $code): string
     {
-        return \Illuminate\Support\Facades\Cache::rememberForever($code, fn () => \App\Models\Block::firstWhere('code', $code)->content ?? $code);
+        return Cache::rememberForever($code, fn () => \App\Models\Block::firstWhere('code', $code)->content ?? $code);
     }
 }
 
 if (!function_exists('getLatestPosts')) {
-    function getLatestPosts(int $amount = 5)
+    function getLatestPosts(int $amount = 5): \Illuminate\Support\Collection
     {
-        return \Illuminate\Support\Facades\Cache::remember('latest_articles_'.$amount, now()->addDay(),
-            fn () => \App\Models\Post::published()->orderBy('publish_at', 'desc')->take($amount)->get()
+        return Cache::remember('latest_articles_'.$amount, now()->addHour(),
+            fn () => Post::published()->orderBy('publish_at', 'desc')->take($amount)->get()
         );
     }
 }
@@ -26,8 +31,8 @@ if (!function_exists('limit')) {
 }
 
 if (!function_exists('store')) {
-    function store(string $code)
+    function store(string $code): mixed
     {
-        return \Spatie\Valuestore\Valuestore::make(storage_path('app/settings.json'))->get($code);
+        return Valuestore::make(storage_path('app/settings.json'))->get($code);
     }
 }

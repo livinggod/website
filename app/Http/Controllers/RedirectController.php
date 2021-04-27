@@ -27,7 +27,7 @@ class RedirectController extends Controller
 
         if ($post = Post::where('slug', $slug)->first()) {
             if (!$post->canShow()) {
-                abort(404);
+                abort(403);
             }
 
             session()->flash('active', 'article');
@@ -58,7 +58,7 @@ class RedirectController extends Controller
 
     public function home(): View
     {
-        $highlight = Cache::remember('highlight', now()->addDay(), function () {
+        $highlight = Cache::remember('highlight', now()->addHour(), function () {
             $highlight = Post::with(['user', 'category'])->where('highlight', true)->first();
 
             if ($highlight === null) { // get latest highlight
@@ -68,7 +68,7 @@ class RedirectController extends Controller
             return $highlight;
         });
 
-        $posts = Cache::remember('homepage_posts', now()->addDay(), function () {
+        $posts = Cache::remember('homepage_posts', now()->addHour(), function () {
             return Post::with(['user', 'category'])->published()->orderBy('publish_at', 'desc')->take(8)->get()
                     ->makeHidden(['content', 'published']) ?? new Collection();
         });
