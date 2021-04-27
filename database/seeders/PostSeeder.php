@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 
 class PostSeeder extends Seeder
 {
-    public function run()
+    public function run(): void
     {
         Post::factory(20)->create();
     }

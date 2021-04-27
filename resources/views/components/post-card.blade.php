@@ -1,3 +1,5 @@
+@props(['post'])
+
 <div {{ $attributes->merge(['class' => 'relative md:flex md:flex-col md:rounded-lg md:shadow-md md:overflow-hidden transition duration-300 md:hover:shadow-xl']) }}>
     <a class="absolute w-full h-full" href="{{ route('page', $post->slug) }}"></a>
     <div class="hidden md:block flex-shrink-0">

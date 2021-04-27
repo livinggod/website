@@ -9,7 +9,7 @@ class UserPolicy
 {
     use HandlesAuthorization;
 
-    public function update(User $current, User $user)
+    public function update(User $current, User $user): bool
     {
         if ($current->can('view-users')) {
             return $current->can('edit-user');
@@ -18,7 +18,7 @@ class UserPolicy
         return $user->can('edit-user') && $current->id === $user->id;
     }
 
-    public function view(User $current, User $user)
+    public function view(User $current, User $user): bool
     {
         if ($current->can('view-users')) {
             return $current->can('view-user');
@@ -27,7 +27,7 @@ class UserPolicy
         return $user->can('view-user') && $current->id === $user->id;
     }
 
-    public function create(User $user)
+    public function create(User $user): bool
     {
         return $user->can('create-user');
     }

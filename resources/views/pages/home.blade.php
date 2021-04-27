@@ -75,7 +75,7 @@
                         @if($loop->first)
                             <div class="md:hidden border-b-2 border-gray-100"></div>
                         @endif
-                        <x-post-card :post="$post"/>
+                        <x-post-card :post="$post"></x-post-card>
                         @if(!$loop->last)
                             <div class="md:hidden mt-2 border-b-2 border-gray-100"></div>
                         @endif

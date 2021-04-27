@@ -14,14 +14,7 @@ class Highlight extends Action
 {
     use InteractsWithQueue, Queueable;
 
-    /**
-     * Perform the action on the given models.
-     *
-     * @param  \Laravel\Nova\Fields\ActionFields  $fields
-     * @param  \Illuminate\Support\Collection  $models
-     * @return mixed
-     */
-    public function handle(ActionFields $fields, Collection $models)
+    public function handle(ActionFields $fields, Collection $models): array
     {
         if ($models->count() > 1) {
             return Action::danger('Please only select 1 article to highlight.');
@@ -45,15 +38,5 @@ class Highlight extends Action
         $model->save();
 
         return Action::message('Article successfully highlighted!');
-    }
-
-    /**
-     * Get the fields available on the action.
-     *
-     * @return array
-     */
-    public function fields()
-    {
-        return [];
     }
 }

@@ -2,12 +2,16 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Post extends Model
 {
     use HasFactory;
+
+    const WORDS_PER_MINUTE_FALLBACK = 150;
 
     protected $guarded = [];
 
@@ -21,17 +25,17 @@ class Post extends Model
         ''
     ];
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function category()
+    public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
     }
 
-    public function scopePublished($query)
+    public function scopePublished(Builder $query): Builder
     {
         return $query->where([['publish_at', '<=', now()], ['ready', true]]);
     }
@@ -54,13 +58,17 @@ class Post extends Model
     public function calculateRead(): int
     {
         $words = 0;
-        foreach (json_decode($this->content, true)['blocks'] as $block) {
+        foreach (optional(json_decode($this->content, true))['blocks'] ?? [] as $block) {
             try {
                 $words += count(explode(' ', strip_tags($block['data']['text'])));
             } catch (\Exception $e) {}
         }
 
-        $this->minutes = round($words / store('wordsperminute'), 0, PHP_ROUND_HALF_EVEN);
+        if ($words === 0) {
+            return 0;
+        }
+
+        $this->minutes = (int)round($words / (store('wordsperminute') ?? self::WORDS_PER_MINUTE_FALLBACK), 0, PHP_ROUND_HALF_EVEN);
 
         return $this->minutes;
     }

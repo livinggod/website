@@ -8,7 +8,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.4|^8.0",
+        "php": "^8.0",
         "advoor/nova-editor-js": "^2.0",
         "artesaos/seotools": "^0.20.0",
         "bakerkretzmar/nova-settings-tool": "^1.1",
@@ -19,6 +19,7 @@
         "laravel/framework": "^8.12",
         "laravel/horizon": "^5.6",
         "laravel/nova": "~3.0",
+        "laravel/octane": "^0.3.2",
         "laravel/slack-notification-channel": "^2.3",
         "laravel/tinker": "^2.5",
         "league/flysystem-aws-s3-v3": "~1.0",
@@ -34,15 +35,14 @@
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.5",
+        "brianium/paratest": "^6.2",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
         "laravel/breeze": "^1.0",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",
-        "nunomaduro/phpinsights": "^1.14",
-        "pestphp/pest": "^1.0",
-        "pestphp/pest-plugin-laravel": "^1.0",
+        "nunomaduro/larastan": "^0.7.4",
         "phpunit/phpunit": "^9.3.3"
     },
     "repositories": {

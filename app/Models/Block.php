@@ -9,7 +9,7 @@ class Block extends Model
 {
     use HasFactory;
 
-    public function getCode(string $code)
+    public function getCode(string $code): string
     {
         return $this->where('code', $code)->first()->content ?? $code;
     }

@@ -6,13 +6,14 @@ use App\Models\Category;
 use App\Models\Page;
 use App\Models\Post;
 use App\Models\User;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 
 class RedirectController extends Controller
 {
-    public function __invoke(Request $request)
+    public function __invoke(Request $request): ?View
     {
         session()->remove('active');
         $slug = $request->page;
@@ -26,7 +27,7 @@ class RedirectController extends Controller
 
         if ($post = Post::where('slug', $slug)->first()) {
             if (!$post->canShow()) {
-                abort(404);
+                abort(403);
             }
 
             session()->flash('active', 'article');
@@ -39,10 +40,6 @@ class RedirectController extends Controller
         }
 
         if ($topic = Category::where('slug', $slug)->first()) {
-            if (is_null($topic->id)) {
-                abort(404);
-            }
-
             return view('topics.show', [
                 'topic' => $topic,
                 'articles' => $topic->articles()->published()->orderBy('publish_at', 'desc')->paginate(8)
@@ -55,11 +52,13 @@ class RedirectController extends Controller
                 'articles' => $author->posts()->published()->orderBy('publish_at', 'desc')->paginate(8),
             ]);
         }
+
+        abort(404);
     }
 
-    public function home()
+    public function home(): View
     {
-        $highlight = Cache::remember('highlight', now()->addDay(), function () {
+        $highlight = Cache::remember('highlight', now()->addHour(), function () {
             $highlight = Post::with(['user', 'category'])->where('highlight', true)->first();
 
             if ($highlight === null) { // get latest highlight
@@ -69,7 +68,7 @@ class RedirectController extends Controller
             return $highlight;
         });
 
-        $posts = Cache::remember('homepage_posts', now()->addDay(), function () {
+        $posts = Cache::remember('homepage_posts', now()->addHour(), function () {
             return Post::with(['user', 'category'])->published()->orderBy('publish_at', 'desc')->take(8)->get()
                     ->makeHidden(['content', 'published']) ?? new Collection();
         });
@@ -81,7 +80,7 @@ class RedirectController extends Controller
         ]);
     }
 
-    public function articles()
+    public function articles(): View
     {
         return view('posts.index', [
             'articles' => Post::published()->orderBy('publish_at', 'desc')->paginate(12) ?? new Collection()
