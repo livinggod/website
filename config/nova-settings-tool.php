@@ -42,6 +42,13 @@ return [
             'type' => 'number',
             'help' => 'The average amount of words read per minute',
         ],
+
+        [
+            'key' => 'tracking_scripts',
+            'label' => 'Tracking scripts',
+            'type' => 'textarea',
+            'help' => 'Tracking scripts',
+        ],
     ],
 
 ];
