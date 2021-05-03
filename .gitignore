@@ -4,6 +4,7 @@
 /public/storage
 /public/vendor
 /public/css
+/public/sitemap.xml
 /public/js
 /storage/*.key
 /vendor
