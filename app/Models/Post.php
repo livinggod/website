@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\ConvertsToWebp;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -9,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Post extends Model
 {
-    use HasFactory;
+    use HasFactory, ConvertsToWebp;
 
     const WORDS_PER_MINUTE_FALLBACK = 150;
 
@@ -22,7 +23,7 @@ class Post extends Model
     protected $hidden = [
         'created_at',
         'updated_at',
-        ''
+        'password'
     ];
 
     public function user(): BelongsTo
@@ -40,7 +41,7 @@ class Post extends Model
         return $query->where([['publish_at', '<=', now()], ['ready', true]]);
     }
 
-    public function getTitleAttribute(string $title): string
+    public function getTitleAttribute(?string $title): ?string
     {
         return ucwords($title);
     }

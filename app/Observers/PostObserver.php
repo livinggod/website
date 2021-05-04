@@ -3,7 +3,9 @@
 namespace App\Observers;
 
 use App\Models\Post;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Spatie\Image\Image;
 
 class PostObserver
 {
@@ -11,6 +13,10 @@ class PostObserver
     public function creating(Post $post)
     {
         $user = auth()->user();
+
+        if (!app()->runningUnitTests() && explode('.', $post->image)[1] !== 'webp') {
+            $post->convertImage();
+        }
 
         $post->calculateRead();
 
@@ -24,6 +30,10 @@ class PostObserver
     public function updating(Post $post)
     {
         $post->calculateRead();
+
+        if (!app()->runningUnitTests() && explode('.', $post->image)[1] !== 'webp') {
+            $post->convertImage();
+        }
 
         $user = auth()->user();
         if ($user == null || $user->isSuperAdmin()) {
