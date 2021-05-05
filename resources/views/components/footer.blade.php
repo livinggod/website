@@ -32,8 +32,8 @@
                 </div>
             </div>
             <div class="mx-auto flex justify-center mt-10">
-                <a href="https://www.facebook.com/Living-God-102595761894322/" target="_blank" rel="nofollow"  class="mx-2 text-gray-400 hover:text-gray-500">@include('components.icons.facebook')</a>
-                <a href="https://www.instagram.com/livinggodofficial/" target="_blank" rel="nofollow" class="mx-2 text-gray-400 hover:text-gray-500">@include('components.icons.instagram')</a>
+                <a href="https://www.facebook.com/thelivinggodofficial/" target="_blank" rel="noopener" class="mx-2 text-gray-400 hover:text-gray-500">@include('components.icons.facebook')</a>
+                <a href="https://www.instagram.com/livinggodofficial/" target="_blank" rel="noopener" class="mx-2 text-gray-400 hover:text-gray-500">@include('components.icons.instagram')</a>
             </div>
         </div>
     </div>
