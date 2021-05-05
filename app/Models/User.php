@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\ConvertsToWebp;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -11,7 +12,9 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasFactory, HasRoles, Notifiable;
+    use HasFactory, HasRoles, Notifiable, ConvertsToWebp;
+
+    protected string $imageProperty = 'avatar';
 
     protected $fillable = [
         'name',

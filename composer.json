@@ -27,6 +27,7 @@
         "spatie/image": "^1.10",
         "spatie/laravel-backup": "^6.15",
         "spatie/laravel-cookie-consent": "^2.12",
+        "spatie/laravel-disable-floc": "^0.0.2",
         "spatie/laravel-permission": "^3.18",
         "spatie/laravel-ray": "^1.8",
         "spatie/laravel-robots-middleware": "^1.3",
