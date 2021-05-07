@@ -31,9 +31,13 @@
                     </div>
                 </div>
             </div>
-            <div class="mx-auto flex justify-center mt-10">
-                <a href="https://www.facebook.com/thelivinggodofficial/" target="_blank" rel="noopener" class="mx-2 text-gray-400 hover:text-gray-500">@include('components.icons.facebook')</a>
-                <a href="https://www.instagram.com/livinggodofficial/" target="_blank" rel="noopener" class="mx-2 text-gray-400 hover:text-gray-500">@include('components.icons.instagram')</a>
+            <div class="mx-auto flex justify-center items-center mt-10">
+                <a href="{{ store('facebook_social') }}" target="_blank" rel="noopener" class="mx-2 text-gray-400 hover:text-gray-500">
+                    <x-bi-facebook class="h-6 w-6" />
+                </a>
+                <a href="{{ store('instagram_social') }}" target="_blank" rel="noopener" class="mx-2 text-gray-400 hover:text-gray-500">
+                    <x-bi-instagram class="h-6 w-6" />
+                </a>
             </div>
         </div>
     </div>
