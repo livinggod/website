@@ -43,7 +43,8 @@ class Post extends Resource
             Image::make('Image')
                 ->disk('public')
                 ->path('posts')
-                ->creationRules('required'),
+                ->creationRules('required')
+                ->deletable(false),
 
             Text::make('Title')
                 ->sortable()
