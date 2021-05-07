@@ -12,17 +12,15 @@ class PostObserver
 
     public function creating(Post $post)
     {
-        $user = auth()->user();
-
-        if (!app()->runningUnitTests() && explode('.', $post->image)[1] !== 'webp') {
-            $post->convertImage();
-        }
-
         $post->calculateRead();
 
+        $this->convertWebp($post);
+
+        $user = auth()->user();
         if ($user == null || $user->isSuperAdmin()) {
             return;
         }
+
         $post->user_id = $user->id;
         $post->slug = Str::slug($post->title);
     }
@@ -31,9 +29,7 @@ class PostObserver
     {
         $post->calculateRead();
 
-        if (!app()->runningUnitTests() && explode('.', $post->image)[1] !== 'webp') {
-            $post->convertImage();
-        }
+        $this->convertWebp($post);
 
         $user = auth()->user();
         if ($user == null || $user->isSuperAdmin()) {
@@ -41,5 +37,12 @@ class PostObserver
         }
 
         $post->slug = Str::slug($post->title);
+    }
+
+    protected function convertWebp($post)
+    {
+        if (! app()->runningUnitTests() && $post->imageIsWebp()) {
+            $post->convertImage();
+        }
     }
 }

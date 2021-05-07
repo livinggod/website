@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Http\Livewire\Search;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Collection;
@@ -44,6 +45,8 @@ class SearchTest extends TestCase
     /** @test */
     public function it_can_search_for_posts(): void
     {
+        $this->actingAs(User::factory(['super_admin' => true])->create());
+
         Post::factory()->create([
             'title' => 'Test Post',
         ]);

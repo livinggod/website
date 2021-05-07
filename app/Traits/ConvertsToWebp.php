@@ -8,7 +8,7 @@ trait ConvertsToWebp
 {
     protected function getImageProperty()
     {
-        if (! isset($this->imageProperty)) {
+        if (!isset($this->imageProperty)) {
             return 'image';
         }
 
@@ -27,17 +27,13 @@ trait ConvertsToWebp
 
     public function convertImage(): void
     {
-        try {
-            $filePath = explode('.', $this->{$this->getImageProperty()})[0];
-            $oldImagePath = storage_path('app/public/'.$this->{$this->getImageProperty()});
+        $filePath = explode('.', $this->{$this->getImageProperty()})[0];
+        $oldImagePath = storage_path('app/public/' . $this->{$this->getImageProperty()});
 
-            Image::load($oldImagePath)->format('webp')->save(storage_path('app/public/'.$filePath.'.webp'));
+        Image::load($oldImagePath)->format('webp')->save(storage_path('app/public/' . $filePath . '.webp'));
 
-            $this->{$this->getImageProperty()} = explode('.', $this->{$this->getImageProperty()})[0] .'.webp';
+        $this->{$this->getImageProperty()} = explode('.', $this->{$this->getImageProperty()})[0] . '.webp';
 
-            $this->save();
-
-        } catch (\Exception $e) {}
-
+        $this->save();
     }
 }
