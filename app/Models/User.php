@@ -14,7 +14,7 @@ class User extends Authenticatable
 {
     use HasFactory, HasRoles, Notifiable, ConvertsToWebp;
 
-    protected string $imageProperty = 'avatar';
+    public string $imageProperty = 'avatar';
 
     protected $fillable = [
         'name',
