@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\Block;
 use App\Models\Post;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 use Spatie\Valuestore\Valuestore;
@@ -10,12 +12,12 @@ use Spatie\Valuestore\Valuestore;
 if (!function_exists('getBlock')) {
     function getBlock(string $code): string
     {
-        return Cache::rememberForever($code, fn () => \App\Models\Block::firstWhere('code', $code)->content ?? $code);
+        return Cache::rememberForever($code, fn () => Block::firstWhere('code', $code)->content ?? $code);
     }
 }
 
 if (!function_exists('getLatestPosts')) {
-    function getLatestPosts(int $amount = 5): \Illuminate\Support\Collection
+    function getLatestPosts(int $amount = 5): Collection
     {
         return Cache::remember('latest_articles_'.$amount, now()->addHour(),
             fn () => Post::published()->orderBy('publish_at', 'desc')->take($amount)->get()

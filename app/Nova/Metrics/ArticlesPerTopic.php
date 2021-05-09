@@ -4,6 +4,8 @@ namespace App\Nova\Metrics;
 
 use App\Models\Category;
 use App\Models\Post;
+use DateInterval;
+use DateTimeInterface;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Metrics\Partition;
 use Laravel\Nova\Metrics\PartitionResult;
@@ -16,7 +18,7 @@ class ArticlesPerTopic extends Partition
             ->label(fn ($value) => Category::find($value)->name);
     }
 
-    public function cacheFor(): \DateTimeInterface|\DateInterval|float|int
+    public function cacheFor(): DateTimeInterface|DateInterval|float|int
     {
          return now()->addMinutes(10);
     }

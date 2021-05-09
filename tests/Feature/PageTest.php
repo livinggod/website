@@ -13,6 +13,7 @@ class PageTest extends TestCase
     /** @test */
     public function it_can_dynamically_create_pages(): void
     {
+        $this->withExceptionHandling();
         $this->get('/page')->assertStatus(404);
 
         Page::factory()->create([

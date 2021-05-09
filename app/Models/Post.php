@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\ConvertsToWebp;
+use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -62,7 +63,7 @@ class Post extends Model
         foreach (optional(json_decode($this->content, true))['blocks'] ?? [] as $block) {
             try {
                 $words += count(explode(' ', strip_tags($block['data']['text'])));
-            } catch (\Exception $e) {}
+            } catch (Exception $e) {}
         }
 
         if ($words === 0) {

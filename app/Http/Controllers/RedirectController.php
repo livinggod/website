@@ -13,11 +13,11 @@ use Illuminate\Support\Facades\Cache;
 
 class RedirectController extends Controller
 {
-    public function __invoke(Request $request): ?View
+    public function __invoke(Request $request, ?string $slug = '/'): ?View
     {
         session()->remove('active');
-        $slug = $request->page;
-        if ($slug === null) {
+
+        if ($slug === '/') {
             return $this->home();
         }
 
@@ -26,7 +26,7 @@ class RedirectController extends Controller
         }
 
         if ($post = Post::where('slug', $slug)->first()) {
-            if (!$post->canShow()) {
+            if (! $post->canShow()) {
                 abort(403);
             }
 
@@ -35,14 +35,14 @@ class RedirectController extends Controller
             return view('posts.show', compact('post'));
         }
 
-        if ($page = Page::where('url', '/'.$slug)->first()) {
+        if ($page = Page::where('url', '/' . $slug)->first()) {
             return view('page', compact('page'));
         }
 
         if ($topic = Category::where('slug', $slug)->first()) {
             return view('topics.show', [
                 'topic' => $topic,
-                'articles' => $topic->articles()->published()->orderBy('publish_at', 'desc')->paginate(8)
+                'articles' => $topic->articles()->published()->orderBy('publish_at', 'desc')->paginate(8),
             ]);
         }
 
@@ -83,7 +83,7 @@ class RedirectController extends Controller
     public function articles(): View
     {
         return view('posts.index', [
-            'articles' => Post::published()->orderBy('publish_at', 'desc')->paginate(12) ?? new Collection()
+            'articles' => Post::published()->orderBy('publish_at', 'desc')->paginate(12) ?? new Collection(),
         ]);
     }
 }
