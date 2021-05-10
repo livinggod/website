@@ -13,12 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            \Illuminate\Support\Facades\DB::transaction(function () use ($table) {
-                $table->renameColumn('category_id', 'topic_id');
+        Schema::rename('categories', 'topics');
 
-                $table->foreign('topic_id')->references('id')->on('topics');
-            });
+        Schema::table('posts', function (Blueprint $table) {
+            $table->renameColumn('category_id', 'topic_id');
+        });
+
+        Schema::table('posts', function (Blueprint $table) {
+            $table->foreignId('topic_id')->change()->constrained()->cascadeOnDelete();
         });
     }
 };
