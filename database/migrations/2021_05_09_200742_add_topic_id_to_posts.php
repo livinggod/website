@@ -14,11 +14,16 @@ return new class extends Migration
     public function up()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->renameColumn('category_id', 'topic_id');
+            $table->foreignId('topic_id')->constrained()->cascadeOnDelete();
         });
 
+        \Illuminate\Support\Facades\DB::table('posts')
+            ->orderBy('created_at')
+            ->get()
+            ->each(fn ($post) => $post->update(['topic_id' => $post->category_id]));
+
         Schema::table('posts', function (Blueprint $table) {
-            $table->foreignId('topic_id')->change()->constrained()->cascadeOnDelete();
+            $table->dropColumn('category_id');
         });
     }
 
