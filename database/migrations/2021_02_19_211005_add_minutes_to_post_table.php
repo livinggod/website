@@ -14,7 +14,7 @@ class AddMinutesToPostTable extends Migration
     public function up()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->integer('minutes')->default(0);
+            $table->integer('minutes');
         });
     }
 
