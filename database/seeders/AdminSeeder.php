@@ -16,6 +16,7 @@ class AdminSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => bcrypt('quinten123'),
             'remember_token' => Str::random(10),
-        ])->assignRole('super_admin');
+            'super_admin' => true
+        ]);
     }
 }

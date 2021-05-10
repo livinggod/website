@@ -35,7 +35,7 @@ class Post extends Resource
                 ->hideFromIndex()
                 ->default(auth()->user()->id),
 
-            BelongsTo::make('Category')
+            BelongsTo::make('Topic')
                 ->sortable()
                 ->showCreateRelationButton()
                 ->rules('required'),
@@ -52,11 +52,9 @@ class Post extends Resource
                 ->hideFromIndex()
                 ->hideFromDetail(),
 
-            Slug::make('Slug')->from('Title')
-                ->readonly(!auth()->user()->isSuperAdmin())
-                ->rules('required')
-                ->hideFromIndex()
-                ->hideFromDetail(),
+            Text::make('Slug')
+                ->readonly()
+                ->onlyOnDetail(),
 
             Stack::make('Details', [
                 Text::make('Title')

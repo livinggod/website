@@ -26,6 +26,7 @@ class Page extends Resource
             Image::make('Image')
                 ->disk('public')
                 ->path('pages')
+                ->deletable(false)
                 ->creationRules('required'),
             Text::make('Title')->sortable()->placeholder('About us')->required(),
             Text::make('Url')->sortable()->placeholder('/about')->required(),

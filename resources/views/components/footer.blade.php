@@ -4,9 +4,9 @@
         <div class="max-w-7xl mx-auto">
             <div class="md:grid grid-cols-2 gap-8 xl:col-span-2">
                 <x-footer.column title="latest articles">
-                    @foreach(getLatestPosts(5) as $post)
+                    @foreach(\App\Models\Post::getCachedLatestPosts(5) as $post)
                         <x-footer.link class="" href="{{ route('page', $post->slug) }}">
-                            {{ limit($post->title, 30) ?? '' }}
+                            @limit($post->title, 30)
                         </x-footer.link>
                     @endforeach
                 </x-footer.column>

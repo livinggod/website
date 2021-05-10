@@ -14,8 +14,8 @@
             <div class="flex justify-between">
                 <div>
                     <p class="text-xs md:text-sm font-medium text-indigo-600">
-                        <a href="{{ route('page', $post->category->slug) }}" class="relative z-10 hover:underline -ml-2 p-2 md:m-0 md:p-0">
-                            {{ $post->category->name }}
+                        <a href="{{ route('page', $post->topic->slug) }}" class="relative z-10 hover:underline -ml-2 p-2 md:m-0 md:p-0">
+                            {{ $post->topic->name }}
                         </a>
                     </p>
                     <a href="{{ route('page', $post->slug) }}" class="block mt-2 mr-4">
@@ -23,10 +23,10 @@
                             {{ $post->title }}
                         </p>
                         <p class="hidden md:block text-md mt-2 text-gray-500">
-                            {{ limit($post->description, 80) ?? '' }}
+                            @limit($post->description, 80)
                         </p>
                         <p class="md:hidden text-sm text-gray-500">
-                            {{ limit($post->description, 20) ?? '' }}
+                            @limit($post->description, 20)
                         </p>
                     </a>
                 </div>

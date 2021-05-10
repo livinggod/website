@@ -9,10 +9,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class User extends Authenticatable
 {
-    use HasFactory, HasRoles, Notifiable, ConvertsToWebp;
+    use HasFactory, HasRoles, Notifiable, ConvertsToWebp, HasSlug;
 
     public string $imageProperty = 'avatar';
 
@@ -43,5 +45,12 @@ class User extends Authenticatable
     public function isSuperAdmin(): bool
     {
         return $this->super_admin;
+    }
+
+    public function getSlugOptions(): SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('name')
+            ->saveSlugsTo('slug');
     }
 }

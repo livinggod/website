@@ -20,9 +20,7 @@ class PostObserver
         if ($user == null || $user->isSuperAdmin()) {
             return;
         }
-
         $post->user_id = $user->id;
-        $post->slug = Str::slug($post->title);
     }
 
     public function updating(Post $post)
@@ -35,8 +33,6 @@ class PostObserver
         if ($user == null || $user->isSuperAdmin()) {
             return;
         }
-
-        $post->slug = Str::slug($post->title);
     }
 
     protected function convertWebp($post)

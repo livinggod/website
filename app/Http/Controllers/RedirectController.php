@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Page;
 use App\Models\Post;
+use App\Models\Topic;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
@@ -35,11 +35,11 @@ class RedirectController extends Controller
             return view('posts.show', compact('post'));
         }
 
-        if ($page = Page::where('url', '/' . $slug)->first()) {
+        if ($page = Page::where('url', '/'.$slug)->first()) {
             return view('page', compact('page'));
         }
 
-        if ($topic = Category::where('slug', $slug)->first()) {
+        if ($topic = Topic::where('slug', $slug)->first()) {
             return view('topics.show', [
                 'topic' => $topic,
                 'articles' => $topic->articles()->published()->orderBy('publish_at', 'desc')->paginate(8),
@@ -59,18 +59,17 @@ class RedirectController extends Controller
     public function home(): View
     {
         $highlight = Cache::remember('highlight', now()->addHour(), function () {
-            $highlight = Post::with(['user', 'category'])->where('highlight', true)->first();
+            $highlight = Post::with(['user', 'topic'])->where('highlight', true)->first();
 
             if ($highlight === null) { // get latest highlight
-                $highlight = Post::with(['user', 'category'])->published()->orderBy('publish_at', 'desc')->first()->makeHidden(['content', 'published']);
+                $highlight = Post::with(['user', 'topic'])->published()->orderBy('publish_at', 'desc')->first()->makeHidden(['content', 'published']);
             }
 
             return $highlight;
         });
 
         $posts = Cache::remember('homepage_posts', now()->addHour(), function () {
-            return Post::with(['user', 'category'])->published()->orderBy('publish_at', 'desc')->take(8)->get()
-                    ->makeHidden(['content', 'published']) ?? new Collection();
+            return Post::with(['user', 'topic'])->published()->orderBy('publish_at', 'desc')->take(8)->get() ?? new Collection();
         });
 
 

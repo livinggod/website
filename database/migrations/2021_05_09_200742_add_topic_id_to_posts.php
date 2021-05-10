@@ -13,9 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('{{ table }}', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::table('posts', function (Blueprint $table) {
+            $table->renameColumn('category_id', 'topic_id');
+        });
+
+        Schema::table('posts', function (Blueprint $table) {
+            $table->foreignId('topic_id')->change()->constrained()->cascadeOnDelete();
         });
     }
 
@@ -26,6 +29,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('{{ table }}');
+        Schema::table('posts', function (Blueprint $table) {
+            //
+        });
     }
 };

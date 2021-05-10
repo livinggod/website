@@ -6,7 +6,7 @@ use Spatie\Image\Image;
 
 trait ConvertsToWebp
 {
-    protected function getImageProperty()
+    protected function getImageProperty(): string
     {
         if (! isset($this->imageProperty)) {
             return 'image';
@@ -15,12 +15,12 @@ trait ConvertsToWebp
         return $this->imageProperty;
     }
 
-    public function imageExists()
+    public function imageExists(): bool
     {
         return $this->{$this->getImageProperty()} !== null;
     }
 
-    public function imageIsWebp()
+    public function imageIsWebp(): bool
     {
         return explode('.', $this->{$this->getImageProperty()})[1] === 'webp';
     }

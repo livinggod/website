@@ -2,8 +2,8 @@
 
 namespace App\Nova\Metrics;
 
-use App\Models\Category;
 use App\Models\Post;
+use App\Models\Topic;
 use DateInterval;
 use DateTimeInterface;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -14,8 +14,8 @@ class ArticlesPerTopic extends Partition
 {
     public function calculate(NovaRequest $request): PartitionResult
     {
-        return $this->count($request, Post::class, 'category_id')
-            ->label(fn ($value) => Category::find($value)->name);
+        return $this->count($request, Post::class, 'topic_id')
+            ->label(fn ($value) => Topic::find($value)->name);
     }
 
     public function cacheFor(): DateTimeInterface|DateInterval|float|int
