@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -23,6 +24,15 @@ class Topic extends Model
     public function setNameAttribute(string $value): void
     {
         $this->attributes['name'] = ucwords($value);
+    }
+
+    public function setMeta(): void
+    {
+        SEOTools::setTitle($this->name);
+        SEOTools::setDescription($this->description ?? '');
+        SEOTools::opengraph()->setUrl(url()->current());
+        SEOTools::setCanonical(url()->current());
+        SEOTools::twitter()->setSite('@livinggodnet');
     }
 
     public function getSlugOptions(): SlugOptions

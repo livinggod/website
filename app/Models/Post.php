@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\ConvertsToWebp;
+use Artesaos\SEOTools\Facades\SEOTools;
 use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -84,6 +85,17 @@ class Post extends Model
         return Cache::remember('latest_articles_'.$amount, now()->addHour(),
             fn () => Post::published()->orderBy('publish_at', 'desc')->take($amount)->get()
         );
+    }
+
+    public function setMeta(): void
+    {
+        SEOTools::setTitle($this->title);
+        SEOTools::setDescription($this->description);
+        SEOTools::opengraph()->setUrl(url()->current());
+        SEOTools::setCanonical(url()->current());
+        SEOTools::opengraph()->addProperty('type', 'article');
+        SEOTools::twitter()->setSite('@livinggodnet');
+        SEOTools::jsonLd()->addImage(asset('storage/' . $this->image));
     }
 
     public function getSlugOptions(): SlugOptions

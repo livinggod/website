@@ -30,16 +30,22 @@ class RedirectController extends Controller
                 abort(403);
             }
 
+            $post->setMeta();
+
             session()->flash('active', 'article');
 
             return view('posts.show', compact('post'));
         }
 
         if ($page = Page::where('url', '/'.$slug)->first()) {
+            $page->setMeta();
             return view('page', compact('page'));
         }
 
         if ($topic = Topic::where('slug', $slug)->first()) {
+
+            $topic->setMeta();
+
             return view('topics.show', [
                 'topic' => $topic,
                 'articles' => $topic->articles()->published()->orderBy('publish_at', 'desc')->paginate(8),
@@ -47,6 +53,9 @@ class RedirectController extends Controller
         }
 
         if ($author = User::where('slug', $slug)->first()) {
+
+            $author->setMeta();
+
             return view('authors.show', [
                 'author' => $author,
                 'articles' => $author->posts()->published()->orderBy('publish_at', 'desc')->paginate(8),

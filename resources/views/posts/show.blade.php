@@ -3,25 +3,7 @@
         <x-draft/>
     @endif
 
-    <x-slot name="title">
-        {!! $post->title !!}
-    </x-slot>
-
-    <x-slot name="description">
-        {{ $post->description }}
-    </x-slot>
-
-    <x-slot name="author">
-        {{ $post->user->name }}
-    </x-slot>
-
-    <x-slot name="image">
-        {{ asset('storage/' . $post->image) }}
-    </x-slot>
-
-    <x-slot name="type">
-        article
-    </x-slot>
+        <x-slot name="title">{{ $post->title }}</x-slot>
 
     <div class="relative pb-16 bg-white overflow-hidden">
         <div class="relative px-4 sm:px-6 lg:px-8">
@@ -48,7 +30,7 @@
                              src="{{ asset('storage/resizes/500x500/'.$post->user->avatar) }}"
                              alt="{{ $post->user->name }}">
                         <div class="text-sm md:text-base ml-4 self-center">
-                            {{ __('Written by:') }} <a href="{{ route('page', $post->user->slug) }}" class="">{{ $post->user->name }}</a><br>
+                            @lang('Written by:') <a href="{{ route('page', $post->user->slug) }}" class="">{{ $post->user->name }}</a><br>
                             {{ $post->minutes }} {{ __('min read') }}
                         </div>
                     </div>

@@ -1,4 +1,7 @@
 <x-guest-layout>
+
+    <x-slot name="title">{{ $page->title }}</x-slot>
+
     <div class="relative pb-16 bg-white overflow-hidden">
         <div class="relative px-4 sm:px-6 lg:px-8">
             <div class="mt-6 prose prose-lg text-gray-500 mx-auto">

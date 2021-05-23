@@ -25,14 +25,13 @@
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
 
-
-
-    <livewire:styles />
-
     @production
         {!! store('tracking_scripts') ?? '' !!}
     @endproduction
 
+    {!! SEO::generate(true) !!}
+
+    <livewire:styles />
 </head>
 <body x-data="{mobilemenu: false}" class="h-full" :class="{ 'overflow-y-hidden': mobilemenu === true}">
 <x-navbar/>

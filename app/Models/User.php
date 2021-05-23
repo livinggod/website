@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use Advoor\NovaEditorJs\NovaEditorJs;
 use App\Traits\ConvertsToWebp;
+use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -45,6 +47,16 @@ class User extends Authenticatable
     public function isSuperAdmin(): bool
     {
         return $this->super_admin;
+    }
+
+    public function setMeta(): void
+    {
+        SEOTools::setTitle($this->name);
+        SEOTools::setDescription($this->bio ?? '');
+        SEOTools::opengraph()->setUrl(url()->current());
+        SEOTools::setCanonical(url()->current());
+        SEOTools::twitter()->setSite('@livinggodnet');
+        SEOTools::jsonLd()->addImage(asset('storage/' . $this->avatar));
     }
 
     public function getSlugOptions(): SlugOptions
