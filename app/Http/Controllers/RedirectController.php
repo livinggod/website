@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Page;
 use App\Models\Post;
+use App\Models\Topic;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
@@ -13,11 +13,11 @@ use Illuminate\Support\Facades\Cache;
 
 class RedirectController extends Controller
 {
-    public function __invoke(Request $request): ?View
+    public function __invoke(Request $request, ?string $slug = '/'): ?View
     {
         session()->remove('active');
-        $slug = $request->page;
-        if ($slug === null) {
+
+        if ($slug === '/') {
             return $this->home();
         }
 
@@ -26,9 +26,11 @@ class RedirectController extends Controller
         }
 
         if ($post = Post::where('slug', $slug)->first()) {
-            if (!$post->canShow()) {
+            if (! $post->canShow()) {
                 abort(403);
             }
+
+            $post->setMeta();
 
             session()->flash('active', 'article');
 
@@ -36,17 +38,24 @@ class RedirectController extends Controller
         }
 
         if ($page = Page::where('url', '/'.$slug)->first()) {
+            $page->setMeta();
             return view('page', compact('page'));
         }
 
-        if ($topic = Category::where('slug', $slug)->first()) {
+        if ($topic = Topic::where('slug', $slug)->first()) {
+
+            $topic->setMeta();
+
             return view('topics.show', [
                 'topic' => $topic,
-                'articles' => $topic->articles()->published()->orderBy('publish_at', 'desc')->paginate(8)
+                'articles' => $topic->articles()->published()->orderBy('publish_at', 'desc')->paginate(8),
             ]);
         }
 
         if ($author = User::where('slug', $slug)->first()) {
+
+            $author->setMeta();
+
             return view('authors.show', [
                 'author' => $author,
                 'articles' => $author->posts()->published()->orderBy('publish_at', 'desc')->paginate(8),
@@ -59,18 +68,17 @@ class RedirectController extends Controller
     public function home(): View
     {
         $highlight = Cache::remember('highlight', now()->addHour(), function () {
-            $highlight = Post::with(['user', 'category'])->where('highlight', true)->first();
+            $highlight = Post::with(['user', 'topic'])->where('highlight', true)->first();
 
             if ($highlight === null) { // get latest highlight
-                $highlight = Post::with(['user', 'category'])->published()->orderBy('publish_at', 'desc')->first()->makeHidden(['content', 'published']);
+                $highlight = Post::with(['user', 'topic'])->published()->orderBy('publish_at', 'desc')->first()->makeHidden(['content', 'published']);
             }
 
             return $highlight;
         });
 
         $posts = Cache::remember('homepage_posts', now()->addHour(), function () {
-            return Post::with(['user', 'category'])->published()->orderBy('publish_at', 'desc')->take(8)->get()
-                    ->makeHidden(['content', 'published']) ?? new Collection();
+            return Post::with(['user', 'topic'])->published()->orderBy('publish_at', 'desc')->take(8)->get() ?? new Collection();
         });
 
 
@@ -83,7 +91,7 @@ class RedirectController extends Controller
     public function articles(): View
     {
         return view('posts.index', [
-            'articles' => Post::published()->orderBy('publish_at', 'desc')->paginate(12) ?? new Collection()
+            'articles' => Post::published()->orderBy('publish_at', 'desc')->paginate(12) ?? new Collection(),
         ]);
     }
 }

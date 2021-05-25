@@ -9,6 +9,6 @@ Route::get('/storage/resizes/{size}/{file}', ImageController::class)->where('fil
 
 Route::post('/newsletter', [NewsletterController::class, 'store'])->name('newsletter.store');
 
-Route::get('/{page?}', RedirectController::class)
-    ->where('page', '^(?!nova).*$')
+Route::get('/{slug?}', RedirectController::class)
+    ->where('slug', '^(?!nova).*$')
     ->name('page');

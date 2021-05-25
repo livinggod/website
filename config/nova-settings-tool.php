@@ -49,6 +49,20 @@ return [
             'type' => 'textarea',
             'help' => 'Tracking scripts',
         ],
+
+        [
+            'key' => 'facebook_social',
+            'label' => 'Facebook url',
+            'type' => 'text',
+            'help' => 'Facebook url',
+        ],
+
+        [
+            'key' => 'instagram_social',
+            'label' => 'Instagram url',
+            'type' => 'text',
+            'help' => 'Instagram url',
+        ],
     ],
 
 ];

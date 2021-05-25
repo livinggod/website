@@ -15,8 +15,8 @@
                                  src="{{ asset('storage/' . $post->image) }}"
                                  alt="">
                             <div class="ml-6">
-                                <a href="{{ route('page', $post->category->slug) }}" class="relative z-10 hover:underline text-gray-400 p-1 -ml-1 text-xs">
-                                    {{ $post->category->name }}
+                                <a href="{{ route('page', $post->topic->slug) }}" class="relative z-10 hover:underline text-gray-400 p-1 -ml-1 text-xs">
+                                    {{ $post->topic->name }}
                                 </a>
                                 <p class="mt-1 text-sm font-bold">{{ \Illuminate\Support\Str::limit($post->title, 50) }}</p>
                                 <p class="text-gray-400 mt-1 text-xs">

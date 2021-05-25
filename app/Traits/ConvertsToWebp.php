@@ -6,7 +6,7 @@ use Spatie\Image\Image;
 
 trait ConvertsToWebp
 {
-    protected function getImageProperty()
+    protected function getImageProperty(): string
     {
         if (! isset($this->imageProperty)) {
             return 'image';
@@ -15,29 +15,25 @@ trait ConvertsToWebp
         return $this->imageProperty;
     }
 
-    public function imageExists()
+    public function imageExists(): bool
     {
         return $this->{$this->getImageProperty()} !== null;
     }
 
-    public function imageIsWebp()
+    public function imageIsWebp(): bool
     {
         return explode('.', $this->{$this->getImageProperty()})[1] === 'webp';
     }
 
     public function convertImage(): void
     {
-        try {
-            $filePath = explode('.', $this->{$this->getImageProperty()})[0];
-            $oldImagePath = storage_path('app/public/'.$this->{$this->getImageProperty()});
+        $filePath = explode('.', $this->{$this->getImageProperty()})[0];
+        $oldImagePath = storage_path('app/public/'.$this->{$this->getImageProperty()});
 
-            Image::load($oldImagePath)->format('webp')->save(storage_path('app/public/'.$filePath.'.webp'));
+        Image::load($oldImagePath)->format('webp')->save(storage_path('app/public/'.$filePath.'.webp'));
 
-            $this->{$this->getImageProperty()} = explode('.', $this->{$this->getImageProperty()})[0] .'.webp';
+        $this->{$this->getImageProperty()} = explode('.', $this->{$this->getImageProperty()})[0].'.webp';
 
-            $this->save();
-
-        } catch (\Exception $e) {}
-
+        $this->save();
     }
 }

@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -20,6 +21,8 @@ class ArticleTest extends TestCase
     /** @test */
     public function it_meets_publishing_requirements(): void
     {
+        $this->actingAs(User::factory(['super_admin' => true])->create());
+
         $article = Post::factory()->create([
             'publish_at' => now()->addDay(),
             'ready' => false,
@@ -43,6 +46,8 @@ class ArticleTest extends TestCase
     /** @test */
     public function it_calculates_read_minutes(): void
     {
+        $this->actingAs(User::factory(['super_admin' => true])->create());
+
         $article = Post::factory()->create([
             'content' => $this->fakeEditorJS($this->faker->text(10000)),
         ]);

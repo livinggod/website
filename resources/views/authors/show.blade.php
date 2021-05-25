@@ -1,4 +1,7 @@
 <x-guest-layout>
+
+    <x-slot name="title">{{ $author->name }}</x-slot>
+
     <div class="mx-4 md:mx-8">
         <article class="max-w-7xl mx-auto mt-10 md:mt-20 mb-20">
             <div class="max-w-2xl md:flex mx-auto">

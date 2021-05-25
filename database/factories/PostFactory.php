@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Models\Category;
 use App\Models\Post;
+use App\Models\Topic;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
@@ -16,11 +16,12 @@ class PostFactory extends Factory
     {
         $title = $this->faker->sentence();
         return [
-            'category_id' => Category::factory()->create()->id,
+            'topic_id' => Topic::factory()->create()->id,
             'user_id' => User::factory()->create()->id,
             'image' => 'posts/'.Str::uuid().'.jpg',
             'slug' => Str::slug($title),
             'title' => ucwords($title),
+            'description' => $this->faker->realText(200),
             'content' => $this->fakeEditorJS(),
             'publish_at' => now()->subDay(),
             'minutes' => $this->faker->randomDigit(),

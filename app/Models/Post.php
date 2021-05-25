@@ -3,14 +3,20 @@
 namespace App\Models;
 
 use App\Traits\ConvertsToWebp;
+use Artesaos\SEOTools\Facades\SEOTools;
+use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class Post extends Model
 {
-    use HasFactory, ConvertsToWebp;
+    use HasFactory, ConvertsToWebp, HasSlug;
 
     const WORDS_PER_MINUTE_FALLBACK = 150;
 
@@ -31,9 +37,9 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function category(): BelongsTo
+    public function topic(): BelongsTo
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Topic::class);
     }
 
     public function scopePublished(Builder $query): Builder
@@ -41,9 +47,9 @@ class Post extends Model
         return $query->where([['publish_at', '<=', now()], ['ready', true]]);
     }
 
-    public function getTitleAttribute(?string $title): ?string
+    public function setTitleAttribute(?string $title): void
     {
-        return ucwords($title);
+        $this->attributes['title'] = ucwords($title);
     }
 
     public function canShow(): bool
@@ -62,7 +68,7 @@ class Post extends Model
         foreach (optional(json_decode($this->content, true))['blocks'] ?? [] as $block) {
             try {
                 $words += count(explode(' ', strip_tags($block['data']['text'])));
-            } catch (\Exception $e) {}
+            } catch (Exception $e) {}
         }
 
         if ($words === 0) {
@@ -72,5 +78,30 @@ class Post extends Model
         $this->minutes = (int)round($words / (store('wordsperminute') ?? self::WORDS_PER_MINUTE_FALLBACK), 0, PHP_ROUND_HALF_EVEN);
 
         return $this->minutes;
+    }
+
+    public static function getCachedLatestPosts(int $amount): Collection
+    {
+        return Cache::remember('latest_articles_'.$amount, now()->addHour(),
+            fn () => Post::published()->orderBy('publish_at', 'desc')->take($amount)->get()
+        );
+    }
+
+    public function setMeta(): void
+    {
+        SEOTools::setTitle($this->title);
+        SEOTools::setDescription($this->description);
+        SEOTools::opengraph()->setUrl(url()->current());
+        SEOTools::setCanonical(url()->current());
+        SEOTools::opengraph()->addProperty('type', 'article');
+        SEOTools::twitter()->setSite('@livinggodnet');
+        SEOTools::jsonLd()->addImage(asset('storage/' . $this->image));
+    }
+
+    public function getSlugOptions(): SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('title')
+            ->saveSlugsTo('slug');
     }
 }

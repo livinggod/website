@@ -2,12 +2,9 @@
 
 namespace App\Providers;
 
-use App\Models\Category;
 use App\Models\Post;
-use App\Models\User;
-use App\Observers\CategoryObserver;
 use App\Observers\PostObserver;
-use App\Observers\UserObserver;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -30,7 +27,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Post::observe(PostObserver::class);
-        User::observe(UserObserver::class);
-        Category::observe(CategoryObserver::class);
+
+        Blade::directive('block', fn ($expression) => "<?php echo \App\Models\Block::getCachedByCode($expression); ?>");
+        Blade::directive('limit', fn ($expression) => "<?php echo \Illuminate\Support\Str::limit($expression) ?? ''; ?>");
+        Blade::directive('latestposts', fn ($expression) => "<?php echo \App\Models\Post::getCachedLatestPosts($expression); ?>");
     }
 }
