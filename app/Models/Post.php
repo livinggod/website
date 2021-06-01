@@ -12,11 +12,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\HasTranslatableSlug;
 use Spatie\Sluggable\SlugOptions;
+use Spatie\Translatable\HasTranslations;
 
 class Post extends Model
 {
-    use HasFactory, ConvertsToWebp, HasSlug;
+    use HasFactory, ConvertsToWebp;
 
     const WORDS_PER_MINUTE_FALLBACK = 150;
 
@@ -31,6 +33,9 @@ class Post extends Model
         'updated_at',
         'password'
     ];
+
+//    public array $translatable = ['title'];
+//    public $translatable = ['title', 'description', 'content'];
 
     public function user(): BelongsTo
     {
@@ -47,10 +52,10 @@ class Post extends Model
         return $query->where([['publish_at', '<=', now()], ['ready', true]]);
     }
 
-    public function setTitleAttribute(?string $title): void
-    {
-        $this->attributes['title'] = ucwords($title);
-    }
+//    public function setTitleAttribute(?array $titles): void
+//    {
+//        $this->attributes['title'] = array_map(fn ($title) => ucwords($title), $titles);
+//    }
 
     public function canShow(): bool
     {
