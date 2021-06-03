@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "83438cfc5011742d8d5e0b1d6e57097e",
+    "content-hash": "2340d10a50deab02677ab88f5b4b7ec5",
     "packages": [
         {
             "name": "advoor/nova-editor-js",
@@ -3837,6 +3837,68 @@
                 "source": "https://github.com/opis/closure/tree/3.6.2"
             },
             "time": "2021-04-09T13:42:10+00:00"
+        },
+        {
+            "name": "optimistdigital/nova-translatable",
+            "version": "1.9.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/optimistdigital/nova-translatable.git",
+                "reference": "6d81745270a20db85ab3f10b098633511349d23f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/optimistdigital/nova-translatable/zipball/6d81745270a20db85ab3f10b098633511349d23f",
+                "reference": "6d81745270a20db85ab3f10b098633511349d23f",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/nova": "^2.9 || ^3.0",
+                "php": ">=7.1.0",
+                "spatie/laravel-translatable": "^4.0 || ^5.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "OptimistDigital\\NovaTranslatable\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "OptimistDigital\\NovaTranslatable\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tarvo Reinpalu",
+                    "email": "tarvoreinpalu@gmail.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Optimist Digital",
+                    "email": "info@optimistdigital.com",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "A laravel-translatable extension for Laravel Nova.",
+            "keywords": [
+                "i18n",
+                "laravel",
+                "nova",
+                "translatable",
+                "translate"
+            ],
+            "support": {
+                "issues": "https://github.com/optimistdigital/nova-translatable/issues",
+                "source": "https://github.com/optimistdigital/nova-translatable/tree/1.9.0"
+            },
+            "time": "2021-05-26T14:44:03+00:00"
         },
         {
             "name": "paragonie/constant_time_encoding",

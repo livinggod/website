@@ -26,6 +26,7 @@
         "laravel/tinker": "^2.5",
         "league/flysystem-aws-s3-v3": "~1.0",
         "livewire/livewire": "^2.4",
+        "optimistdigital/nova-translatable": "^1.9",
         "spatie/image": "^1.10",
         "spatie/laravel-backup": "^6.15",
         "spatie/laravel-cookie-consent": "^2.12",

@@ -14,6 +14,7 @@ use Laravel\Nova\Fields\Stack;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Illuminate\Database\Eloquent\Builder;
+use Spatie\NovaTranslatable\Translatable;
 
 class Post extends Resource
 {
@@ -48,30 +49,26 @@ class Post extends Resource
 
             Text::make('Title')
                 ->sortable()
+                ->translatable()
                 ->rules('required', 'max:255')
-                ->hideFromIndex()
-                ->hideFromDetail(),
+                ->hideFromIndex(),
 
-            Text::make('Slug')
-                ->readonly()
-                ->onlyOnDetail(),
+            $this->url()->onlyOnDetail(),
+
+            Text::make('Description')
+                ->sortable()
+                ->translatable()
+                ->rules('max:255')
+                ->hideFromIndex(),
 
             Stack::make('Details', [
                 Text::make('Title')
                     ->sortable()
+                    ->translatable()
                     ->rules('required', 'max:255'),
 
-                Text::make('Slug')->resolveUsing(function () {
-                    return view('components.nova.url', [
-                        'post' => $this->resource,
-                    ])->render();
-                })->asHtml(),
-            ]),
-
-            Text::make('Description')
-                ->sortable()
-                ->rules('max:255')
-                ->hideFromIndex(),
+                $this->url(),
+            ])->onlyOnIndex(),
 
             DateTime::make('Publish At')
                 ->format('DD MMM YYYY H:mm:ss')
@@ -91,7 +88,8 @@ class Post extends Resource
                 ->readonly(!auth()->user()->can('publish-post'))
                 ->sortable(),
 
-            NovaEditorJs::make('Content')->hideFromIndex(),
+            NovaEditorJs::make('Content')->onlyOnDetail(),
+            NovaEditorJs::make('Content')->onlyOnForms()->translatable(),
         ];
     }
 
@@ -135,5 +133,14 @@ class Post extends Resource
                 ['user_id', $request->user()->id],
                 ['publish_at', '<=', now()],
             ]);
+    }
+
+    protected function url()
+    {
+        return Text::make(__('Url'), 'slug')->resolveUsing(function () {
+            return view('components.nova.url', [
+                'post' => $this->resource,
+            ])->render();
+        })->asHtml();
     }
 }

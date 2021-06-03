@@ -1,42 +1,34 @@
 <?php
 
+use App\Models\Post;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
+return new class extends Migration {
+    public function up(): void
     {
-//        \App\Models\Post::cursor()
-//            ->each(fn ($post) => $post->update(['title' => $post->title]));
+        Post::cursor()->each(function (Post $post) {
+            $post->title = $post->getRawOriginal('title');
+            $post->description = $post->getRawOriginal('description');
+            $post->content = $post->getRawOriginal('content');
 
-        $posts = \App\Models\Post::first();
-
-        $posts->each(function ($post) {
-            $post->title = json_encode(['en' => $post->title]);
-            $post->save();
+            $post->saveQuietly();
         });
 
+        Schema::table('posts', function (Blueprint $table) {
+            $table->json('title')->change();
+            $table->json('content')->change();
+            $table->json('description')->nullable()->change();
+        });
+    }
+//
+//    public function down()
+//    {
 //        Schema::table('posts', function (Blueprint $table) {
 //            $table->json('title')->change();
+//            $table->json('content')->change();
+//            $table->json('description')->nullable()->change();
 //        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::table('posts', function (Blueprint $table) {
-            //
-        });
-    }
+//    }
 };

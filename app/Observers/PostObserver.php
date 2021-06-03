@@ -26,7 +26,6 @@ class PostObserver
     public function updating(Post $post)
     {
         $post->calculateRead();
-
         $this->convertWebp($post);
 
         $user = auth()->user();
