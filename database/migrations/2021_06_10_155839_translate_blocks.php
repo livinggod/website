@@ -9,10 +9,10 @@ return new class extends Migration
 {
     public function up()
     {
-        Block::cursor()->each(function (Block $topic) {
-            $topic->content = $topic->getRawOriginal('content');
+        Block::cursor()->each(function (Block $block) {
+            $block->content = $block->getRawOriginal('content');
 
-            $topic->saveQuietly();
+            $block->saveQuietly();
         });
 
         Schema::table('blocks', function (Blueprint $table) {

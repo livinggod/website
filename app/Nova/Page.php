@@ -23,14 +23,32 @@ class Page extends Resource
     {
         return [
             ID::make(__('ID'), 'id')->sortable(),
+
             Image::make('Image')
                 ->disk('public')
                 ->path('pages')
                 ->deletable(false)
                 ->creationRules('required'),
-            Text::make('Title')->sortable()->placeholder('About us')->required(),
-            Text::make('Url')->sortable()->placeholder('/about')->required(),
-            NovaEditorJs::make('Content')->hideFromIndex()->required(),
+
+            Text::make('Title')
+                ->sortable()
+                ->translatable()
+                ->placeholder('About us')
+                ->required(),
+
+            Text::make('Url')
+                ->sortable()
+                ->placeholder('/about')
+                ->required(),
+
+            NovaEditorJs::make('Content')
+                ->onlyOnDetail()
+                ->required(),
+
+            NovaEditorJs::make('Content')
+                ->translatable()
+                ->onlyOnForms()
+                ->required(),
         ];
     }
 }
