@@ -13,12 +13,15 @@ use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+use Spatie\Translatable\HasTranslations;
 
 class User extends Authenticatable
 {
-    use HasFactory, HasRoles, Notifiable, ConvertsToWebp, HasSlug;
+    use HasFactory, HasRoles, Notifiable, ConvertsToWebp, HasSlug, HasTranslations;
 
     public string $imageProperty = 'avatar';
+
+    public $translatable = ['bio'];
 
     protected $fillable = [
         'name',
