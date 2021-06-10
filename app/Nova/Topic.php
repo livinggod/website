@@ -26,6 +26,7 @@ class Topic extends Resource
 
             Text::make('Name')
                 ->sortable()
+                ->translatable()
                 ->rules('required', 'max:50'),
 
             Text::make('Slug')
@@ -33,7 +34,8 @@ class Topic extends Resource
                 ->onlyOnDetail(),
 
             Textarea::make('Description')
-            ->rules('max:255'),
+                ->translatable()
+                ->rules('max:255'),
         ];
     }
 }

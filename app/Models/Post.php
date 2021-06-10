@@ -34,7 +34,6 @@ class Post extends Model
         'password'
     ];
 
-//    public array $translatable = ['title'];
     public $translatable = ['title', 'description', 'content'];
 
     public function user(): BelongsTo

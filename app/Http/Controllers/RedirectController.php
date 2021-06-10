@@ -17,6 +17,8 @@ class RedirectController extends Controller
     {
         session()->remove('active');
 
+        // TODO: Refactor if statements to dedicated renderer classes
+
         if ($slug === '/') {
             return $this->home();
         }
