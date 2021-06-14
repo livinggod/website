@@ -34,7 +34,7 @@
                                         </time>
                                     </div>
                                     <div class="mt-2 text-xs md:text-sm text-gray-500">
-                                        {{ $highlight->minutes }} {{ __('min read') }}
+                                        {{ $highlight->minutes }} @lang('min read')
                                     </div>
                                 </div>
                             </div>
@@ -56,10 +56,10 @@
                 <div class="flex justify-between h-10">
                     <a href="{{ route('page', 'articles') }}"
                        class="border-b-2 md:border-0 border-livinggod-green-100 text-livinggod-green-100 md:text-gray-400">
-                        {{ __('New') }}
+                        @lang('New')
                     </a>
                     <a class="text-gray-400 hover:text-gray-600 transition duration-100" href="{{ route('page', 'articles') }}">
-                        {{ __('Show all') }}
+                        @lang('Show all')
 
                         {{-- Hericon: arrow-narrow-right --}}
                         <svg class="inline w-4 fill-current"
@@ -88,13 +88,13 @@
         <div class="mt-20 shadow-inner bg-gray-100 py-10">
             <div class="mx-4 md:mx-8">
                 <div class="max-w-5xl mx-auto">
-                    <h3 class="text-lg md:text-4xl text-livinggod-green-100">Be The First To Receive Our Content</h3>
-                    <p class="text-md text-gray-400">Get our content directly in your inbox</p>
+                    <h3 class="text-lg md:text-4xl text-livinggod-green-100">@lang('Be the first to receive our content')</h3>
+                    <p class="text-md text-gray-400">@lang('Get our content directly in your inbox')</p>
                     <form action="{{ route('newsletter.store') }}" method="post" class="mt-4 sm:flex sm:max-w-md">
                         @csrf
                         @include('components.inputs.input')
                         <div class="mt-3 rounded-md sm:mt-0 sm:ml-3 sm:flex-shrink-0">
-                            @include('components.inputs.button', ['text' => 'Subscribe'])
+                            @include('components.inputs.button', ['text' => __('Subscribe')])
                         </div>
                     </form>
                 </div>

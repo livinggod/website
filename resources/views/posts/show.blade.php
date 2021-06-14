@@ -30,7 +30,7 @@
                              src="{{ asset('storage/resizes/500x500/'.$post->user->avatar) }}"
                              alt="{{ $post->user->name }}">
                         <div class="text-sm md:text-base ml-4 self-center">
-                            @lang('Written by:') <a href="{{ route('page', $post->user->slug) }}" class="">{{ $post->user->name }}</a><br>
+                            @lang('Written by'): <a href="{{ route('page', $post->user->slug) }}" class="">{{ $post->user->name }}</a><br>
                             {{ $post->minutes }} {{ __('min read') }}
                         </div>
                     </div>

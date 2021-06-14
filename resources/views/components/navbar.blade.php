@@ -17,7 +17,7 @@
                 class="flex justify-between items-center h-16 md:justify-start md:space-x-10">
                 <div class="flex justify-start lg:w-0 lg:flex-1">
                     <a href="{{ route('page') }}">
-                        <span class="sr-only">Living God</span>
+                        <span class="sr-only">{{ config('app.name', 'laravel') }}</span>
                         <x-application-logo class="h-6 w-auto sm:h-8"/>
                     </a>
                 </div>
@@ -35,16 +35,16 @@
                 </div>
                 <nav class="hidden md:flex space-x-10 h-full">
                     <x-nav-link :href="route('page', 'articles')" :active="request()->segment(1) === 'articles' || session('active') === 'article'">
-                        {{ __('Articles') }}
+                        @lang('Articles')
                     </x-nav-link>
                     <x-nav-link :href="route('page', 'about')" :active="request()->segment(1) === 'about'">
-                        {{ __('About') }}
+                        @lang('About')
                     </x-nav-link>
                     <x-nav-link :href="route('page', 'what-we-believe')" :active="request()->segment(1) === 'what-we-believe'">
-                        {{ __('What we believe') }}
+                        @lang('What we believe')
                     </x-nav-link>
                     <x-nav-link :href="route('page', 'abc')" :active="request()->segment(1) === 'abc'">
-                        {{ __("The abc's") }}
+                        @lang('The abc')
                     </x-nav-link>
                 </nav>
                 <livewire:search />

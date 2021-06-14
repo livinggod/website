@@ -16,13 +16,13 @@
             <div class="ml-3">
                 <div class="text-sm text-green-700">
                     <p>
-                        {{ session('message') }}
+                        {{ __(session('message')) }}
                     </p>
                 </div>
                 <div class="mt-4">
                     <div class="flex">
                         <button @click="show = false" class="ml-auto bg-green-50 px-2 py-1.5 rounded-md text-sm font-medium text-green-800 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-50 focus:ring-green-600">
-                            Dismiss
+                            @lang('Dismiss')
                         </button>
                     </div>
                 </div>
