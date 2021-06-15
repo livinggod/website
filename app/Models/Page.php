@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Advoor\NovaEditorJs\NovaEditorJs;
 use App\Traits\ConvertsToWebp;
+use App\Traits\IsLocalizable;
 use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -11,9 +12,13 @@ use Spatie\Translatable\HasTranslations;
 
 class Page extends Model
 {
-    use HasFactory, ConvertsToWebp, HasTranslations;
+    use HasFactory, ConvertsToWebp, HasTranslations, IsLocalizable;
 
     public $translatable = ['title', 'content'];
+
+    protected $casts = [
+        'locales' => 'array',
+    ];
 
     public function setMeta(): void
     {

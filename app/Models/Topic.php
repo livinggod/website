@@ -2,20 +2,24 @@
 
 namespace App\Models;
 
+use App\Traits\IsLocalizable;
 use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Str;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Spatie\Translatable\HasTranslations;
 
 class Topic extends Model
 {
-    use HasFactory, HasSlug, HasTranslations;
+    use HasFactory, HasSlug, HasTranslations, IsLocalizable;
 
     protected $guarded = [];
+
+    protected $casts = [
+        'locales' => 'array',
+    ];
 
     public $translatable = ['name', 'description'];
 
@@ -24,7 +28,7 @@ class Topic extends Model
         return $this->hasMany(Post::class);
     }
 
-    public function setNameAttribute(string $value): void
+    public function setNameAttribute(string $value = null): void
     {
         $this->attributes['name'] = ucwords($value);
     }

@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Scopes\LocaleScope;
 use App\Traits\ConvertsToWebp;
+use App\Traits\IsLocalizable;
 use Artesaos\SEOTools\Facades\SEOTools;
 use Exception;
 use Illuminate\Database\Eloquent\Builder;
@@ -10,6 +12,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cache;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\HasTranslatableSlug;
@@ -18,20 +21,21 @@ use Spatie\Translatable\HasTranslations;
 
 class Post extends Model
 {
-    use HasFactory, ConvertsToWebp, HasTranslations;
+    use HasFactory, ConvertsToWebp, HasTranslations, IsLocalizable;
 
     const WORDS_PER_MINUTE_FALLBACK = 150;
 
     protected $guarded = [];
 
     protected $casts = [
-        'publish_at' => 'datetime'
+        'publish_at' => 'datetime',
+        'locales' => 'array',
     ];
 
     protected $hidden = [
         'created_at',
         'updated_at',
-        'password'
+        'password',
     ];
 
     public $translatable = ['title', 'description', 'content'];
@@ -51,10 +55,14 @@ class Post extends Model
         return $query->where([['publish_at', '<=', now()], ['ready', true]]);
     }
 
-//    public function setTitleAttribute(?array $titles): void
-//    {
-//        $this->attributes['title'] = array_map(fn ($title) => ucwords($title), $titles);
-//    }
+    public function scopeLocalized(Builder $builder): Builder
+    {
+        if ($this->canShow()) {
+            return $builder;
+        }
+
+        return $builder->where('locales->' . App::currentLocale(), true);
+    }
 
     public function canShow(): bool
     {
@@ -63,7 +71,7 @@ class Post extends Model
 
     public function isPublished(): bool
     {
-        return !is_null($this->publish_at) && $this->publish_at <= now() && $this->ready;
+        return ! is_null($this->publish_at) && $this->publish_at <= now() && $this->ready;
     }
 
     public function calculateRead(): int
@@ -72,7 +80,8 @@ class Post extends Model
         foreach (optional(json_decode($this->content, true))['blocks'] ?? [] as $block) {
             try {
                 $words += count(explode(' ', strip_tags($block['data']['text'])));
-            } catch (Exception $e) {}
+            } catch (Exception $e) {
+            }
         }
 
         if ($words === 0) {
@@ -86,8 +95,8 @@ class Post extends Model
 
     public static function getCachedLatestPosts(int $amount): Collection
     {
-        return Cache::remember('latest_articles_'.$amount, now()->addHour(),
-            fn () => Post::published()->orderBy('publish_at', 'desc')->take($amount)->get()
+        return Cache::remember('latest_articles_' . App::currentLocale() . '_' . $amount, now()->addHour(),
+            fn () => Post::published()->localized()->orderBy('publish_at', 'desc')->take($amount)->get()
         );
     }
 

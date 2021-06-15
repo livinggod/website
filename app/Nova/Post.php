@@ -7,6 +7,7 @@ use App\Nova\Metrics\ArticlesPerTopic;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\BooleanGroup;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Slug;
@@ -14,10 +15,12 @@ use Laravel\Nova\Fields\Stack;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Illuminate\Database\Eloquent\Builder;
-use Spatie\NovaTranslatable\Translatable;
+use OptimistDigital\NovaTranslatable\HandlesTranslatable;
 
 class Post extends Resource
 {
+    use HandlesTranslatable;
+
     public static string $model = \App\Models\Post::class;
 
     public static $title = 'title';
@@ -50,7 +53,10 @@ class Post extends Resource
             Text::make('Title')
                 ->sortable()
                 ->translatable()
-                ->rules('required', 'max:255')
+                ->rules('max:255')
+                ->rulesFor('en', [
+                    'required',
+                ])
                 ->hideFromIndex(),
 
             $this->url()->onlyOnDetail(),
@@ -65,7 +71,10 @@ class Post extends Resource
                 Text::make('Title')
                     ->sortable()
                     ->translatable()
-                    ->rules('required', 'max:255'),
+                    ->rules('max:255')
+                    ->rulesFor('en', [
+                        'required',
+                    ]),
 
                 $this->url(),
             ])->onlyOnIndex(),
@@ -87,6 +96,8 @@ class Post extends Resource
             Boolean::make('Ready')
                 ->readonly(!auth()->user()->can('publish-post'))
                 ->sortable(),
+
+            BooleanGroup::make('Locales')->options(config('localization.allowed_locales')),
 
             NovaEditorJs::make('Content')->onlyOnDetail(),
             NovaEditorJs::make('Content')->onlyOnForms()->translatable(),
