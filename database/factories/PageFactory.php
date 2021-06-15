@@ -17,6 +17,7 @@ class PageFactory extends Factory
             'image' => 'pages/'.Str::uuid().'.jpg',
             'url' => '/'.Str::slug($title),
             'content' => $this->fakeEditorJS(),
+            'locales' => ['en' => true, 'nl' => true],
         ];
     }
 
