@@ -29,8 +29,8 @@
                                     </a>
                                     <div class="flex space-x-1 text-xs md:text-sm text-gray-500">
                                         <time
-                                            datetime="{{ \Illuminate\Support\Carbon::parse($highlight->publish_at)->format('Y-m-d') ?? '' }}">
-                                            {{ \Illuminate\Support\Carbon::parse($highlight->publish_at)->format('F jS Y') ?? '' }}
+                                            datetime="{{ \App\Extensions\Locale\Locale::parse($highlight->publish_at, 'Y-m-d') }}">
+                                            {{ \App\Extensions\Locale\Locale::parse($highlight->publish_at) }}
                                         </time>
                                     </div>
                                     <div class="mt-2 text-xs md:text-sm text-gray-500">

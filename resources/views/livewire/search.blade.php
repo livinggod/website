@@ -21,7 +21,7 @@
                                 <p class="mt-1 text-sm font-bold">{{ \Illuminate\Support\Str::limit($post->title, 50) }}</p>
                                 <p class="text-gray-400 mt-1 text-xs">
                                     <a href="{{ route('page', $post->user->slug) }}" class="hover:underline relative z-10 p-1 -ml-1">{{ $post->user->name }}</a>
-                                    {{ \Illuminate\Support\Carbon::parse($post->publish_at)->format('F jS Y') ?? '' }}
+                                    {{ \App\Extensions\Locale\Locale::parse($post->publish_at) }}
                                 </p>
                             </div>
                         </div>
