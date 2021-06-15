@@ -3,14 +3,18 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\BooleanGroup;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Slug;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use OptimistDigital\NovaTranslatable\HandlesTranslatable;
 
 class Topic extends Resource
 {
+    use HandlesTranslatable;
+
     public static string $model = \App\Models\Topic::class;
 
     public static $title = 'name';
@@ -26,14 +30,21 @@ class Topic extends Resource
 
             Text::make('Name')
                 ->sortable()
-                ->rules('required', 'max:50'),
+                ->translatable()
+                ->rules('max:50')
+                ->rulesFor('en', [
+                    'required',
+                ]),
 
             Text::make('Slug')
                 ->readonly()
                 ->onlyOnDetail(),
 
             Textarea::make('Description')
-            ->rules('max:255'),
+                ->translatable()
+                ->rules('max:255'),
+
+            BooleanGroup::make('Locales')->options(config('localization.allowed_locales')),
         ];
     }
 }

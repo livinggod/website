@@ -7,6 +7,7 @@ use App\Nova\Metrics\ArticlesPerTopic;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\BooleanGroup;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Slug;
@@ -14,9 +15,12 @@ use Laravel\Nova\Fields\Stack;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Illuminate\Database\Eloquent\Builder;
+use OptimistDigital\NovaTranslatable\HandlesTranslatable;
 
 class Post extends Resource
 {
+    use HandlesTranslatable;
+
     public static string $model = \App\Models\Post::class;
 
     public static $title = 'title';
@@ -48,30 +52,32 @@ class Post extends Resource
 
             Text::make('Title')
                 ->sortable()
-                ->rules('required', 'max:255')
-                ->hideFromIndex()
-                ->hideFromDetail(),
+                ->translatable()
+                ->rules('max:255')
+                ->rulesFor('en', [
+                    'required',
+                ])
+                ->hideFromIndex(),
 
-            Text::make('Slug')
-                ->readonly()
-                ->onlyOnDetail(),
+            $this->url()->onlyOnDetail(),
+
+            Text::make('Description')
+                ->sortable()
+                ->translatable()
+                ->rules('max:255')
+                ->hideFromIndex(),
 
             Stack::make('Details', [
                 Text::make('Title')
                     ->sortable()
-                    ->rules('required', 'max:255'),
+                    ->translatable()
+                    ->rules('max:255')
+                    ->rulesFor('en', [
+                        'required',
+                    ]),
 
-                Text::make('Slug')->resolveUsing(function () {
-                    return view('components.nova.url', [
-                        'post' => $this->resource,
-                    ])->render();
-                })->asHtml(),
-            ]),
-
-            Text::make('Description')
-                ->sortable()
-                ->rules('max:255')
-                ->hideFromIndex(),
+                $this->url(),
+            ])->onlyOnIndex(),
 
             DateTime::make('Publish At')
                 ->format('DD MMM YYYY H:mm:ss')
@@ -91,7 +97,10 @@ class Post extends Resource
                 ->readonly(!auth()->user()->can('publish-post'))
                 ->sortable(),
 
-            NovaEditorJs::make('Content')->hideFromIndex(),
+            BooleanGroup::make('Locales')->options(config('localization.allowed_locales')),
+
+            NovaEditorJs::make('Content')->onlyOnDetail(),
+            NovaEditorJs::make('Content')->onlyOnForms()->translatable(),
         ];
     }
 
@@ -135,5 +144,14 @@ class Post extends Resource
                 ['user_id', $request->user()->id],
                 ['publish_at', '<=', now()],
             ]);
+    }
+
+    protected function url()
+    {
+        return Text::make(__('Url'), 'slug')->resolveUsing(function () {
+            return view('components.nova.url', [
+                'post' => $this->resource,
+            ])->render();
+        })->asHtml();
     }
 }

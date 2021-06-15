@@ -53,7 +53,8 @@ class User extends Resource
                 ->creationRules('required', 'string', 'min:8')
                 ->updateRules('nullable', 'string', 'min:8'),
 
-            Textarea::make('Bio'),
+            Textarea::make('Bio')
+                ->translatable(),
 
             RoleBooleanGroup::make('Roles')
                 ->hideFromIndex(!auth()->user()->can('manage-user-roles'))

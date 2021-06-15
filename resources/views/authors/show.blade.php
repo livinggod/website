@@ -5,16 +5,16 @@
     <div class="mx-4 md:mx-8">
         <article class="max-w-7xl mx-auto mt-10 md:mt-20 mb-20">
             <div class="max-w-2xl md:flex mx-auto">
-                    <div class="md:w-1/3">
-                        <img class="w-32 h-32 rounded-full mx-auto" src="{{ asset('storage/resizes/256x256/'.$author->avatar) }}" alt="{{ $author->name }}">
-                        <h1 class="font-bold text-xl text-center mt-4">{{ $author->name }}</h1>
-                        <ul class="mt-2 text-sm text-gray-400 text-center">
-                            @if($author->show_email)
-                                <li class="my-2"><a href="mailto:{{ $author->email }}">{{ $author->email }}</a></li>
-                            @endif
-                        </ul>
-                        <p class="md:hidden mt-4 text-sm leading-6 text-gray-500">{{ $author->bio }}</p>
-                    </div>
+                <div class="md:w-1/3">
+                    <img class="w-32 h-32 rounded-full mx-auto" src="{{ asset('storage/resizes/256x256/'.$author->avatar) }}" alt="{{ $author->name }}">
+                    <h1 class="font-bold text-xl text-center mt-4">{{ $author->name }}</h1>
+                    <ul class="mt-2 text-sm text-gray-400 text-center">
+                        @if($author->show_email)
+                            <li class="my-2"><a href="mailto:{{ $author->email }}">{{ $author->email }}</a></li>
+                        @endif
+                    </ul>
+                    <p class="md:hidden mt-4 text-sm leading-6 text-gray-500">{{ $author->bio }}</p>
+                </div>
                 <div class="hidden md:block w-2/3">
                     <p class="mt-4 text-md leading-7 text-gray-500">{{ $author->bio }}</p>
                 </div>

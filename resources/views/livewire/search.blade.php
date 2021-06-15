@@ -1,6 +1,6 @@
 <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0 relative">
     @if($active)
-        <input wire:model.debounce.200ms="search" class="w-3/4 rounded-full" type="text" placeholder="Search">
+        <input wire:model.debounce.200ms="search" class="w-3/4 rounded-full" type="text" placeholder="{{ __('Search') }}">
 
         @if($search !== '')
             <div class="absolute w-full lg:w-3/4 top-0 bg-white min-h-10 mt-12 z-1000 shadow-lg border-2 border-gray-100 grid gap-2">
@@ -21,7 +21,7 @@
                                 <p class="mt-1 text-sm font-bold">{{ \Illuminate\Support\Str::limit($post->title, 50) }}</p>
                                 <p class="text-gray-400 mt-1 text-xs">
                                     <a href="{{ route('page', $post->user->slug) }}" class="hover:underline relative z-10 p-1 -ml-1">{{ $post->user->name }}</a>
-                                    {{ \Illuminate\Support\Carbon::parse($post->publish_at)->format('F jS Y') ?? '' }}
+                                    {{ \App\Extensions\Locale\Locale::parse($post->publish_at) }}
                                 </p>
                             </div>
                         </div>

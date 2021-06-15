@@ -14,7 +14,8 @@ class PostObserver
     {
         $post->calculateRead();
 
-        $this->convertWebp($post);
+        // TODO: Reimplement webp convertion correctly
+//        $this->convertWebp($post);
 
         $user = auth()->user();
         if ($user == null || $user->isSuperAdmin()) {
@@ -27,7 +28,8 @@ class PostObserver
     {
         $post->calculateRead();
 
-        $this->convertWebp($post);
+        // TODO: Reimplement webp convertion correctly
+//        $this->convertWebp($post);
 
         $user = auth()->user();
         if ($user == null || $user->isSuperAdmin()) {

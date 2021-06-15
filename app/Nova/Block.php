@@ -32,6 +32,7 @@ class Block extends Resource
                 }),
 
             Trix::make('Content')
+                ->translatable()
                 ->rules('required'),
         ];
     }
