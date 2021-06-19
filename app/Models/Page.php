@@ -14,6 +14,8 @@ class Page extends Model
 {
     use HasFactory, ConvertsToWebp, HasTranslations, IsLocalizable;
 
+    protected $guarded = [];
+
     public $translatable = ['title', 'content'];
 
     protected $casts = [
