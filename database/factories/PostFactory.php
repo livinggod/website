@@ -22,7 +22,7 @@ class PostFactory extends Factory
             'slug' => Str::slug($title),
             'title' => ucwords($title),
             'description' => $this->faker->realText(200),
-            'content' => $this->fakeEditorJS(),
+            'content' => $this->fakeEditorJS($this->faker->text(1000)),
             'publish_at' => now()->subDay(),
             'minutes' => $this->faker->randomDigit(),
             'highlight' => false,
@@ -30,8 +30,8 @@ class PostFactory extends Factory
         ];
     }
 
-    protected function fakeEditorJS(): string
+    protected function fakeEditorJS(string $text): string
     {
-        return '{"time":1615732528852,"blocks":[{"type":"paragraph","data":{"text":"Lorem ipsum dolor sit amet."}}],"version":"2.19.0"}';
+        return '{"time":1615732528852,"blocks":[{"type":"paragraph","data":{"text":"'.$text.'"}}],"version":"2.19.0"}';
     }
 }

@@ -36,7 +36,7 @@
             </div>
         </div>
         <div class="md:hidden mt-4 text-xs md:text-xs text-gray-500">
-            {{ $post->minutes }} {{ __('min read') }}
+            {{ $post->minutes }} @lang('min read')
         </div>
         <div class="mt-2 md:mt-6 flex w-full">
             <a class="hidden md:block relative z-10" href="{{ route('page', $post->user->slug) }}">
@@ -52,12 +52,12 @@
                     </a>
                 </p>
                 <div class="flex text-xs ml-2 md:ml-0 md:text-xs text-gray-500">
-                    <time datetime="{{ \Illuminate\Support\Carbon::parse($post->publish_at)->format('Y-m-d') ?? '' }}">
-                        {{ \Illuminate\Support\Carbon::parse($post->publish_at)->format('F jS Y') ?? '' }}
+                    <time datetime="{{ \App\Extensions\Locale\Locale::parse($post->publish_at, 'Y-m-d') ?? '' }}">
+                        {{ \App\Extensions\Locale\Locale::parse($post->publish_at) }}
                     </time>
                 </div>
                 <div class="hidden md:block mt-2 text-xs md:text-xs text-gray-500">
-                    {{ $post->minutes }} {{ __('min read') }}
+                    {{ $post->minutes }} @lang('min read')
                 </div>
             </div>
         </div>

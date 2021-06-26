@@ -26,6 +26,8 @@
         "laravel/tinker": "^2.5",
         "league/flysystem-aws-s3-v3": "~1.0",
         "livewire/livewire": "^2.4",
+        "optimistdigital/nova-translatable": "^1.9",
+        "quintenbuis/laravel-localization": "*",
         "spatie/image": "^1.10",
         "spatie/laravel-backup": "^6.15",
         "spatie/laravel-cookie-consent": "^2.12",
@@ -35,6 +37,7 @@
         "spatie/laravel-robots-middleware": "^1.3",
         "spatie/laravel-sitemap": "^6.0",
         "spatie/laravel-sluggable": "^3.0",
+        "spatie/laravel-translatable": "^5.0",
         "spatie/nova-backup-tool": "^4.1",
         "vink/nova-cache-card": "^1.0",
         "vyuldashev/nova-permission": "^2.10"

@@ -12,8 +12,8 @@
                 <article class="text-lg max-w-prose leading-9 mx-auto">
                     <div class="text-center">
                         <time class="text-xs md:text-sm w-full"
-                              datetime="{{ \Illuminate\Support\Carbon::parse($post->publish_at)->format('Y-m-d') ?? '' }}">
-                            {{ \Illuminate\Support\Carbon::parse($post->publish_at)->format('F jS Y') ?? '' }}
+                              datetime="{{ \App\Extensions\Locale\Locale::parse($post->publish_at, 'Y-m-d') }}">
+                            {{ \App\Extensions\Locale\Locale::parse($post->publish_at) ?? '' }}
                         </time>
                     </div>
                     <h1>
@@ -30,7 +30,7 @@
                              src="{{ asset('storage/resizes/500x500/'.$post->user->avatar) }}"
                              alt="{{ $post->user->name }}">
                         <div class="text-sm md:text-base ml-4 self-center">
-                            @lang('Written by:') <a href="{{ route('page', $post->user->slug) }}" class="">{{ $post->user->name }}</a><br>
+                            @lang('Written by'): <a href="{{ route('page', $post->user->slug) }}" class="">{{ $post->user->name }}</a><br>
                             {{ $post->minutes }} {{ __('min read') }}
                         </div>
                     </div>
