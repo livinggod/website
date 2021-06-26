@@ -22,8 +22,10 @@ class Locale extends BaseLocale
 
         $path = ltrim($path, $locale . '/');
 
-        $domain = str_replace(config('app.base_domain'), $locale . '.' . config('app.base_domain'), config('app.url'));
+        $scheme = (explode('://', config('app.url'))[0] ?? 'http') . '://';
 
-        return rtrim($domain, '/') . '/' . $path;
+        $domain = $locale . '.' . config('app.base_domain');
+
+        return $scheme . rtrim($domain, '/') . '/' . $path;
     }
 }
