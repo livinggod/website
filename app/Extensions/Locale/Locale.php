@@ -24,8 +24,12 @@ class Locale extends BaseLocale
 
         $scheme = (explode('://', config('app.url'))[0] ?? 'http') . '://';
 
-        $domain = $locale . '.' . config('app.base_domain');
+        $domain = $scheme . $locale . '.' . config('app.base_domain');
 
-        return $scheme . rtrim($domain, '/') . '/' . $path;
+        if ($locale === config('localization.default_locale')) {
+            $domain = config('app.url');
+        }
+
+        return rtrim($domain, '/') . '/' . $path;
     }
 }
