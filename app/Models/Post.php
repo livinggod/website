@@ -21,7 +21,7 @@ use Spatie\Translatable\HasTranslations;
 
 class Post extends Model
 {
-    use HasFactory, ConvertsToWebp, HasTranslations, IsLocalizable;
+    use HasFactory, ConvertsToWebp, HasTranslations, HasSlug, IsLocalizable;
 
     const WORDS_PER_MINUTE_FALLBACK = 150;
 
@@ -88,9 +88,7 @@ class Post extends Model
             return 0;
         }
 
-        $this->minutes = (int)round($words / (store('wordsperminute') ?? self::WORDS_PER_MINUTE_FALLBACK), 0, PHP_ROUND_HALF_EVEN);
-
-        return $this->minutes;
+        return (int)round($words / (store('wordsperminute') ?? self::WORDS_PER_MINUTE_FALLBACK), 0, PHP_ROUND_HALF_EVEN);
     }
 
     public static function getCachedLatestPosts(int $amount): Collection

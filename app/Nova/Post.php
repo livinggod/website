@@ -5,6 +5,7 @@ namespace App\Nova;
 use Advoor\NovaEditorJs\NovaEditorJs;
 use App\Nova\Metrics\ArticlesPerTopic;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\BooleanGroup;

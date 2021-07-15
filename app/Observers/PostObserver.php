@@ -12,7 +12,7 @@ class PostObserver
 
     public function creating(Post $post)
     {
-        $post->calculateRead();
+        $post->minutes = $post->calculateRead();
 
         // TODO: Reimplement webp convertion correctly
 //        $this->convertWebp($post);
@@ -26,7 +26,7 @@ class PostObserver
 
     public function updating(Post $post)
     {
-        $post->calculateRead();
+        $post->minutes = $post->calculateRead();
 
         // TODO: Reimplement webp convertion correctly
 //        $this->convertWebp($post);
