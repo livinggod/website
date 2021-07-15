@@ -7,11 +7,13 @@ use Quintenbuis\Localization\Locale as BaseLocale;
 
 class Locale extends BaseLocale
 {
-    public static function parse(Carbon $date, string $format = null): string
+    public static function parse(Carbon $date = null, string $format = null): string
     {
-        $renderer = LocaleDateFactory::create();
+        if ($date === null) {
+            $date = now()->subDay();
+        }
 
-        return $renderer->render($date, $format);
+        return LocaleDateFactory::create()->render($date, $format);
     }
 
     public static function redirectToLocale(string $locale): string
