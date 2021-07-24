@@ -26,6 +26,10 @@ class HomeResponse extends BaseResponse
 
     protected function highlight(): Post
     {
+        if (request()->user()?->can('see-drafts')) {
+            return Post::with(['user', 'topic'])->localized()->published()->orderBy('publish_at', 'desc')->first()->makeHidden(['content', 'published']);
+        }
+
         return Cache::remember('highlight_' . App::currentLocale(), now()->addHour(), function () {
 
             // TODO: Set highlight per locale
@@ -42,6 +46,10 @@ class HomeResponse extends BaseResponse
 
     protected function posts(): Collection
     {
+        if (request()->user()?->can('see-drafts')) {
+            return Post::with(['user', 'topic'])->published()->localized()->orderBy('publish_at', 'desc')->take(8)->get() ?? new Collection();
+        }
+
         return Cache::remember('homepage_posts_' . App::currentLocale(), now()->addHour(), function () {
             return Post::with(['user', 'topic'])->published()->localized()->orderBy('publish_at', 'desc')->take(8)->get() ?? new Collection();
         });
