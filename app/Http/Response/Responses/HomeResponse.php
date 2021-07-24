@@ -27,17 +27,20 @@ class HomeResponse extends BaseResponse
     protected function highlight(): Post
     {
         return Cache::remember('highlight_' . App::currentLocale(), now()->addHour(), function () {
-            $highlight = Post::with(['user', 'topic'])->where('highlight', true)->first();
+
+            // TODO: Set highlight per locale
+            $highlight = null;
+//            $highlight = Post::with(['user', 'topic'])->where('highlight', true)->first();
 
             if ($highlight === null) { // get latest highlight
-                $highlight = Post::with(['user', 'topic'])->published()->orderBy('publish_at', 'desc')->first()->makeHidden(['content', 'published']);
+                $highlight = Post::with(['user', 'topic'])->localized()->published()->orderBy('publish_at', 'desc')->first()->makeHidden(['content', 'published']);
             }
 
             return $highlight;
         });
     }
 
-    protected function posts()
+    protected function posts(): Collection
     {
         return Cache::remember('homepage_posts_' . App::currentLocale(), now()->addHour(), function () {
             return Post::with(['user', 'topic'])->published()->localized()->orderBy('publish_at', 'desc')->take(8)->get() ?? new Collection();
