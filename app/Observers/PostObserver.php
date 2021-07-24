@@ -14,7 +14,7 @@ class PostObserver
     {
         $post->minutes = $post->calculateRead();
 
-        $post->slug = Str::slug($post->title);
+//        $post->slug = Str::slug($post->title);
 
         // TODO: Reimplement webp convertion correctly
 //        $this->convertWebp($post);

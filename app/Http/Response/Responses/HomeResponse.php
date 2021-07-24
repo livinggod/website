@@ -40,7 +40,7 @@ class HomeResponse extends BaseResponse
         });
     }
 
-    protected function posts()
+    protected function posts(): Collection
     {
         return Cache::remember('homepage_posts_' . App::currentLocale(), now()->addHour(), function () {
             return Post::with(['user', 'topic'])->published()->localized()->orderBy('publish_at', 'desc')->take(8)->get() ?? new Collection();

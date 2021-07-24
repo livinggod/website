@@ -20,7 +20,7 @@ use Spatie\Translatable\HasTranslations;
 
 class Post extends Model
 {
-    use HasFactory, ConvertsToWebp, HasTranslations, HasSlug, IsLocalizable;
+    use HasFactory, ConvertsToWebp, HasTranslations, HasTranslatableSlug, IsLocalizable;
 
     const WORDS_PER_MINUTE_FALLBACK = 150;
 
@@ -37,7 +37,7 @@ class Post extends Model
         'password',
     ];
 
-    public $translatable = ['title', 'description', 'content'];
+    public $translatable = ['title', 'description', 'content', 'slug'];
 
     public function user(): BelongsTo
     {

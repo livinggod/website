@@ -4,6 +4,7 @@ namespace App\Http\Response\Responses;
 
 use App\Models\Post;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\App;
 
 class PostResponse extends BaseResponse
 {
@@ -26,6 +27,6 @@ class PostResponse extends BaseResponse
 
     public function canHandleSlug(string $slug): bool
     {
-        return ($this->post = Post::where('slug', $slug)->localized()->first()) !== null;
+        return ($this->post = Post::where('slug->' . App::currentLocale(), $slug)->localized()->first()) !== null;
     }
 }
