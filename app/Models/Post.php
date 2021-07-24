@@ -65,7 +65,7 @@ class Post extends Model
 
     public function canShow(): bool
     {
-        return $this->isPublished() || optional(auth()->user())->can('see-drafts');
+        return $this->isPublished() || auth()->user()?->can('see-drafts');
     }
 
     public function isPublished(): bool
