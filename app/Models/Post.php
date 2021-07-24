@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Scopes\LocaleScope;
 use App\Traits\ConvertsToWebp;
 use App\Traits\IsLocalizable;
 use Artesaos\SEOTools\Facades\SEOTools;

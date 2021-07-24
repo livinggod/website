@@ -27,10 +27,13 @@ class HomeResponse extends BaseResponse
     protected function highlight(): Post
     {
         return Cache::remember('highlight_' . App::currentLocale(), now()->addHour(), function () {
-            $highlight = Post::with(['user', 'topic'])->where('highlight', true)->first();
+
+            // TODO: Set highlight per locale
+            $highlight = null;
+//            $highlight = Post::with(['user', 'topic'])->where('highlight', true)->first();
 
             if ($highlight === null) { // get latest highlight
-                $highlight = Post::with(['user', 'topic'])->published()->orderBy('publish_at', 'desc')->first()->makeHidden(['content', 'published']);
+                $highlight = Post::with(['user', 'topic'])->localized()->published()->orderBy('publish_at', 'desc')->first()->makeHidden(['content', 'published']);
             }
 
             return $highlight;
