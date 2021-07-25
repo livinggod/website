@@ -42,6 +42,10 @@ class User extends Authenticatable
         'super_admin' => 'boolean',
     ];
 
+    protected $with = [
+        'roles',
+    ];
+
     public function posts(): HasMany
     {
         return $this->hasMany(Post::class);
