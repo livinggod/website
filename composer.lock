@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e1e8b1436944985c0e4773719d9c0f02",
+    "content-hash": "87e4336204a8cadcb21ba8fa355720f2",
     "packages": [
         {
             "name": "advoor/nova-editor-js",
@@ -4701,6 +4701,80 @@
                 "source": "https://github.com/bobthecow/psysh/tree/v0.10.8"
             },
             "time": "2021-04-10T16:23:39+00:00"
+        },
+        {
+            "name": "quintenbuis/laravel-instant-login",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/quintenbuis/laravel-instant-login.git",
+                "reference": "e5b9b32f7e1cc2979b26a8bbf42531c927ed4c71"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/quintenbuis/laravel-instant-login/zipball/e5b9b32f7e1cc2979b26a8bbf42531c927ed4c71",
+                "reference": "e5b9b32f7e1cc2979b26a8bbf42531c927ed4c71",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^8.37",
+                "php": "^7.4|^8.0",
+                "spatie/laravel-package-tools": "^1.4.3"
+            },
+            "require-dev": {
+                "brianium/paratest": "^6.2",
+                "nunomaduro/collision": "^5.3",
+                "orchestra/testbench": "^6.15",
+                "pestphp/pest": "^1.12",
+                "phpunit/phpunit": "^9.3",
+                "spatie/laravel-ray": "^1.23"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Quintenbuis\\InstantLogin\\InstantLoginServiceProvider"
+                    ],
+                    "aliases": {
+                        "InstantLogin": "Quintenbuis\\InstantLogin\\InstantLoginFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Quintenbuis\\InstantLogin\\": "src",
+                    "Quintenbuis\\InstantLogin\\Database\\Factories\\": "database/factories"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Quinten Buis",
+                    "email": "quinten.buis@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Instantly login as user via a single button tap. Especially useful for dev environments.",
+            "homepage": "https://github.com/quintenbuis/laravel-instant-login",
+            "keywords": [
+                "laravel",
+                "laravel-instant-login",
+                "quintenbuis"
+            ],
+            "support": {
+                "issues": "https://github.com/quintenbuis/laravel-instant-login/issues",
+                "source": "https://github.com/quintenbuis/laravel-instant-login/tree/1.0.2"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/quintenbuis",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-07-31T10:49:46+00:00"
         },
         {
             "name": "quintenbuis/laravel-localization",
