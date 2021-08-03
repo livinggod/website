@@ -1,5 +1,5 @@
 <x-guest-layout>
-    @if(!$post->isPublished())
+    @if(! $post->isPublished())
         <x-draft/>
     @endif
 
@@ -41,5 +41,7 @@
         </div>
     </div>
 
-    <x-reftagger/>
+    @if(app()->currentLocale() === 'en')
+        <x-reftagger/>
+    @endif
 </x-guest-layout>
