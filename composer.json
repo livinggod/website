@@ -53,6 +53,8 @@
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",
         "nunomaduro/larastan": "^0.7.4",
+        "pestphp/pest": "^1.14",
+        "pestphp/pest-plugin-laravel": "^1.1",
         "phpunit/phpunit": "^9.3.3",
         "spatie/laravel-stubs": "^2.2"
     },

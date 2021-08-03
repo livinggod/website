@@ -2,18 +2,26 @@
 
 namespace App\Http\Response\Responses;
 
+use App\Extensions\Locale\Locale;
 use App\Models\Post;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\App;
 
 class PostResponse extends BaseResponse
 {
     protected ?Post $post;
 
-    public function handle(): View
+    protected string $redirectUrl = '';
+
+    public function handle(): View | RedirectResponse
     {
         if (! $this->post->canShow()) {
             abort(404);
+        }
+
+        if (! empty($this->redirectUrl)) {
+            return redirect($this->redirectUrl);
         }
 
         $this->post->setMeta();
@@ -27,6 +35,23 @@ class PostResponse extends BaseResponse
 
     public function canHandleSlug(string $slug): bool
     {
-        return ($this->post = Post::where('slug->' . App::currentLocale(), $slug)->localized()->first()) !== null;
+        $this->post = Post::query()->where('slug', 'LIKE', "%{$slug}%")->first();
+
+        if (! $this->post) {
+            return false;
+        }
+
+        $currentLocaleSupported = ! $this->post->locales->filter()->only(App::currentLocale())->isEmpty();
+
+        if (! $currentLocaleSupported) {
+            $locale = $this->post->locales->filter()->keys()[0];
+
+            $this->redirectUrl = Locale::redirectToLocale(
+                locale: $locale,
+                path: $this->post->getTranslation('slug', $locale)
+            );
+        }
+
+        return true;
     }
 }
