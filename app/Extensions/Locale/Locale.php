@@ -16,9 +16,9 @@ class Locale extends BaseLocale
         return LocaleDateFactory::create()->render($date, $format);
     }
 
-    public static function redirectToLocale(string $locale): string
+    public static function redirectToLocale(string $locale, string $path = null): string
     {
-        if (($path = request()->path()) === '/') {
+        if ($path === null && ($path = request()->path()) === '/') {
             $path = null;
         }
 

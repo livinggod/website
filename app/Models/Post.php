@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\PostSaved;
 use App\Traits\ConvertsToWebp;
 use App\Traits\IsLocalizable;
 use Artesaos\SEOTools\Facades\SEOTools;
@@ -28,7 +29,7 @@ class Post extends Model
 
     protected $casts = [
         'publish_at' => 'datetime',
-        'locales' => 'array',
+        'locales' => 'collection',
     ];
 
     protected $hidden = [
@@ -38,6 +39,11 @@ class Post extends Model
     ];
 
     public $translatable = ['title', 'description', 'content', 'slug'];
+
+
+    protected $dispatchesEvents = [
+        'saved' => PostSaved::class,
+    ];
 
     public function user(): BelongsTo
     {
