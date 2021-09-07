@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Integrations\SendPortal;
+namespace App\Domain\SendPortal\Integrations;
 
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Support\Facades\Http;
@@ -13,10 +13,9 @@ class SendPortal
     {
         $this->client = Http::withToken(
             token: config('sendportal.api_key')
-        )
-            ->baseUrl(
-                url: $this->getBaseUrl()
-            );
+        )->baseUrl(
+            url: $this->getBaseUrl()
+        );
     }
 
     protected function getBaseUrl(): string
@@ -37,7 +36,7 @@ class SendPortal
         )->throw()->json();
     }
 
-    public function get(string $endpoint)
+    public function get(string $endpoint): array
     {
         return $this->client->get(
             url: $endpoint
