@@ -25,11 +25,7 @@
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
 
-    @production
-        {!! store('tracking_scripts') ?? '' !!}
-    @endproduction
-        <script defer data-domain="livinggod.test" src="https://plausible.io/js/plausible.js"></script>
-        <script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
+    {!! store('tracking_scripts') ?? '' !!}
 
     {!! SEO::generate(true) !!}
 
