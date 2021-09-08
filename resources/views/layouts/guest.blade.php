@@ -28,10 +28,13 @@
     @production
         {!! store('tracking_scripts') ?? '' !!}
     @endproduction
+        <script defer data-domain="livinggod.test" src="https://plausible.io/js/plausible.js"></script>
+        <script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
 
     {!! SEO::generate(true) !!}
 
     <livewire:styles />
+    @stack('scripts')
 </head>
 <body x-data="{mobilemenu: false}" class="h-full" :class="{ 'overflow-y-hidden': mobilemenu === true}">
 <x-navbar/>

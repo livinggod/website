@@ -90,13 +90,7 @@
                 <div class="max-w-5xl mx-auto">
                     <h3 class="text-lg md:text-4xl text-livinggod-green-100">@lang('Be the first to receive our content')</h3>
                     <p class="text-md text-gray-400">@lang('Get our content directly in your inbox')</p>
-                    <form action="{{ route('newsletter.store') }}" method="post" class="mt-4 sm:flex sm:max-w-md">
-                        @csrf
-                        @include('components.inputs.input')
-                        <div class="mt-3 rounded-md sm:mt-0 sm:ml-3 sm:flex-shrink-0">
-                            @include('components.inputs.button', ['text' => __('Subscribe')])
-                        </div>
-                    </form>
+                    <x-newsletter />
                 </div>
             </div>
         </div>
