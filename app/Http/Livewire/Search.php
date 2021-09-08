@@ -26,7 +26,10 @@ class Search extends Component
 
     public function updatedSearch()
     {
-        $this->items = Post::where('title', 'LIKE', "%{$this->search}%")->published()->orderBy('publish_at', 'desc')->take(10)->get();
+        $this->items = Post::with([
+            'topic',
+            'user'
+        ])->where('title', 'LIKE', "%{$this->search}%")->published()->orderBy('publish_at', 'desc')->take(10)->get();
     }
 
     public function render()

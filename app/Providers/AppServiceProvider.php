@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Domain\SendPortal\Integrations\SendPortal;
 use App\Models\Post;
 use App\Observers\PostObserver;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Blade;
@@ -18,7 +20,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton('sendportal', SendPortal::class);
     }
 
     /**
@@ -31,6 +33,8 @@ class AppServiceProvider extends ServiceProvider
         Post::observe(PostObserver::class);
 
         Carbon::setLocale(App::currentLocale());
+
+        Model::preventLazyLoading(! app()->isProduction());
 
         Blade::directive('block', fn ($expression) => "<?php echo \App\Models\Block::getCachedByCode($expression); ?>");
         Blade::directive('limit', fn ($expression) => "<?php echo \Illuminate\Support\Str::limit($expression) ?? ''; ?>");
