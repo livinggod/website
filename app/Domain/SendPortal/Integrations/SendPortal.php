@@ -20,7 +20,7 @@ class SendPortal
 
     protected function getBaseUrl(): string
     {
-        return $this->fallbackSlash(config('sendportal.url'));
+        return $this->fallbackSlash(config('sendportal.url', ''));
     }
 
     protected function fallbackSlash(string $item): string

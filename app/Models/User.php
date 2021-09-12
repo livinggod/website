@@ -72,4 +72,14 @@ class User extends Authenticatable
             ->generateSlugsFrom('name')
             ->saveSlugsTo('slug');
     }
+
+    public function canImpersonate($impersonated = null): bool
+    {
+        return $this->isSuperAdmin() || $this->hasRole('admin');
+    }
+
+    public function canBeImpersonated(?\Illuminate\Contracts\Auth\Authenticatable $impersonator = null): bool
+    {
+        return ! $this->isSuperAdmin();
+    }
 }
