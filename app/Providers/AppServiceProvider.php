@@ -34,7 +34,7 @@ class AppServiceProvider extends ServiceProvider
 
         Carbon::setLocale(App::currentLocale());
 
-        Model::preventLazyLoading(! app()->isProduction());
+        Model::preventLazyLoading(app()->isLocal());
 
         Blade::directive('block', fn ($expression) => "<?php echo \App\Models\Block::getCachedByCode($expression); ?>");
         Blade::directive('limit', fn ($expression) => "<?php echo \Illuminate\Support\Str::limit($expression) ?? ''; ?>");

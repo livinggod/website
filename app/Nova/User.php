@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use KABBOUCHI\NovaImpersonate\Impersonate;
 use Laravel\Nova\Fields\Avatar;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
@@ -62,6 +63,11 @@ class User extends Resource
                 ->hideWhenUpdating(!auth()->user()->can('manage-user-roles')),
 
             new Panel('Settings', $this->settings()),
+
+            Impersonate::make($this->resource)
+                ->withMeta([
+                    'redirect_to' => '/nova'
+                ]),
         ];
     }
 
