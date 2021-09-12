@@ -53,7 +53,7 @@ class User extends Authenticatable
 
     public function isSuperAdmin(): bool
     {
-        return $this->super_admin;
+        return $this->super_admin ?? false;
     }
 
     public function setMeta(): void
