@@ -12,15 +12,11 @@ class PostObserver
 
     public function creating(Post $post)
     {
-        $post->minutes = $post->calculateRead();
-
-//        $post->slug = Str::slug($post->title);
-
         // TODO: Reimplement webp convertion correctly
 //        $this->convertWebp($post);
 
         $user = auth()->user();
-        if ($user == null || $user->isSuperAdmin()) {
+        if ($user === null || $user->isSuperAdmin()) {
             return;
         }
         $post->user_id = $user->id;
@@ -28,13 +24,11 @@ class PostObserver
 
     public function updating(Post $post)
     {
-        $post->minutes = $post->calculateRead();
-
         // TODO: Reimplement webp convertion correctly
 //        $this->convertWebp($post);
 
         $user = auth()->user();
-        if ($user == null || $user->isSuperAdmin()) {
+        if ($user === null || $user->isSuperAdmin()) {
             return;
         }
     }

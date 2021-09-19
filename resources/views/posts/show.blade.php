@@ -31,7 +31,7 @@
                              alt="{{ $post->user->name }}">
                         <div class="text-sm md:text-base ml-4 self-center">
                             @lang('Written by'): <a href="{{ route('page', $post->user->slug) }}" class="">{{ $post->user->name }}</a><br>
-                            {{ $post->minutes }} {{ __('min read') }}
+                            {{ $post->calculateRead() }} {{ __('min read') }}
                         </div>
                     </div>
 
