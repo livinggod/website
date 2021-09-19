@@ -84,12 +84,12 @@ class Post extends Model
         $words = 0;
         foreach (optional(json_decode($this->content, true))['blocks'] ?? [] as $block) {
             try {
-                $words += count(explode(' ', strip_tags($block['data']['text'])));
+                $words += str_word_count($block['data']['text']);
             } catch (Exception $e) {
             }
         }
 
-        if ($words === 0) {
+        if (! $words) {
             return 0;
         }
 
