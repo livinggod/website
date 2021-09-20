@@ -34,7 +34,7 @@
                                         </time>
                                     </div>
                                     <div class="mt-2 text-xs md:text-sm text-gray-500">
-                                        {{ $highlight->minutes }} @lang('min read')
+                                        {{ $highlight->calculateRead() }} @lang('min read')
                                     </div>
                                 </div>
                             </div>
