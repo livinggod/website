@@ -10,4 +10,11 @@ class Newsletter extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public static function remember(string $email): static
+    {
+        return static::create([
+            'email' => $email
+        ]);
+    }
 }
