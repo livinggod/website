@@ -19,10 +19,16 @@ class NewsletterOptInController
             )->with('message', __('This email address is already subscribed.'));
         }
 
+        $tags = [];
+
+        if ($tag = Tag::findByName($request->language)) {
+            $tags[] = $tag->id;
+        }
+
         Subscriber::add(
             email: $request->email,
             firstname: explode('@', $request->email)[0],
-            tags: [Tag::findByName($request->language)?->id]
+            tags: $tags
         );
 
         return redirect(
