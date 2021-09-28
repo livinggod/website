@@ -24,7 +24,6 @@ class PostFactory extends Factory
             'description' => $this->faker->realText(200),
             'content' => $this->fakeEditorJS($this->faker->text(1000)),
             'publish_at' => now()->subDay(),
-            'minutes' => $this->faker->randomDigit(),
             'highlight' => false,
             'ready' => true,
         ];

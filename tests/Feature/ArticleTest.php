@@ -43,25 +43,6 @@ class ArticleTest extends TestCase
         $this->assertFalse($article->isPublished());
     }
 
-    /** @test */
-    public function it_calculates_read_minutes(): void
-    {
-        $this->actingAs(User::factory(['super_admin' => true])->create());
-
-        $article = Post::factory()->create([
-            'content' => $this->fakeEditorJS($this->faker->text(10000)),
-        ]);
-
-        $this->assertIsInt($oldMinutes = $article->minutes);
-        $this->assertGreaterThan(1, $oldMinutes);
-
-        $article->update([
-            'content' => $this->fakeEditorJS($this->faker->text(100000)),
-        ]);
-
-        $this->assertNotEquals($oldMinutes, $article->fresh()->minutes);
-    }
-
     protected function fakeEditorJS(string $content): string
     {
         return '{"time":1615732528852,"blocks":[{"type":"paragraph","data":{"text":"'.$content.'"}}],"version":"2.19.0"}';
