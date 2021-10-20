@@ -3,7 +3,12 @@
 namespace App\Domain\SendPortal\Models;
 
 use App\Domain\SendPortal\Facades\SendPortal;
+use Illuminate\Support\Collection;
 
+/**
+ * @property Collection $tags
+ * @property string $email
+ */
 class Subscriber extends BaseModel
 {
     /**
@@ -25,7 +30,7 @@ class Subscriber extends BaseModel
         return $subscriber;
     }
 
-    public static function findByEmail(string $email)
+    public static function findByEmail(string $email): ?self
     {
         $subscribers = SendPortal::get('subscribers')['data'];
 

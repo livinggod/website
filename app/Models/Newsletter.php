@@ -11,7 +11,7 @@ class Newsletter extends Model
 
     protected $guarded = [];
 
-    public static function remember(string $email): static
+    public static function remember(string $email): self
     {
         return static::create([
             'email' => $email

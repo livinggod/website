@@ -11,6 +11,9 @@ use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Spatie\Translatable\HasTranslations;
 
+/**
+ * @property string $name
+ */
 class Topic extends Model
 {
     use HasFactory, HasSlug, HasTranslations, IsLocalizable;

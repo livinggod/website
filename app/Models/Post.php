@@ -19,6 +19,10 @@ use Spatie\Sluggable\HasTranslatableSlug;
 use Spatie\Sluggable\SlugOptions;
 use Spatie\Translatable\HasTranslations;
 
+/**
+ * @property string $title
+ * @property string $description
+ */
 class Post extends Model
 {
     use HasFactory, ConvertsToWebp, HasTranslations, HasTranslatableSlug, IsLocalizable;
@@ -82,7 +86,7 @@ class Post extends Model
     public function calculateRead(): int
     {
         $words = 0;
-        foreach (optional(json_decode($this->content, true))['blocks'] ?? [] as $block) {
+        foreach (optional(json_decode($this->getTranslation('content', app()->getLocale()), true))['blocks'] ?? [] as $block) {
             try {
                 $words += str_word_count($block['data']['text']);
             } catch (Exception $e) {

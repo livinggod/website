@@ -21,11 +21,15 @@ class ResponseFactory
         AuthorResponse::class,
     ];
 
-    public static function createFromSlug(string $slug = null)
+    public static function createFromSlug(string $slug = null): BaseResponse
     {
-        return collect(static::$responses)
+        $response = collect(static::$responses)
             ->map(fn (string $response) => new $response())
             ->filter(fn (BaseResponse $response) => $response->canHandleSlug($slug))
-            ->first() ?? abort(404);
+            ->first();
+
+        abort_if(! $response, 404);
+
+        return $response;
     }
 }
