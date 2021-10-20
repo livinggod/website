@@ -12,6 +12,7 @@
         "advoor/nova-editor-js": "^2.0",
         "artesaos/seotools": "^0.20.0",
         "bakerkretzmar/nova-settings-tool": "^1.1",
+        "based/laravel-fluent": "^0.0.6",
         "blade-ui-kit/blade-heroicons": "^1.2",
         "davidhsianturi/blade-bootstrap-icons": "^1.0",
         "fideloper/proxy": "^4.4",
