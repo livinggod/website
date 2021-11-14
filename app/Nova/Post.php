@@ -147,7 +147,7 @@ class Post extends Resource
             ]);
     }
 
-    protected function url()
+    protected function url(): Text
     {
         return Text::make(__('Url'), 'slug')->resolveUsing(function () {
             return view('components.nova.url', [

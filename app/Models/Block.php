@@ -11,7 +11,7 @@ class Block extends Model
 {
     use HasFactory, HasTranslations;
 
-    public $translatable = ['content'];
+    public array $translatable = ['content'];
 
     public static function getCachedByCode(string $code): string
     {

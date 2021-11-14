@@ -24,7 +24,7 @@ class Topic extends Model
         'locales' => 'array',
     ];
 
-    public $translatable = ['name', 'description'];
+    public array $translatable = ['name', 'description'];
 
     public function articles(): HasMany
     {

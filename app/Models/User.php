@@ -21,7 +21,7 @@ class User extends Authenticatable
 
     public string $imageProperty = 'avatar';
 
-    public $translatable = ['bio'];
+    public array $translatable = ['bio'];
 
     protected $fillable = [
         'name',
@@ -73,7 +73,7 @@ class User extends Authenticatable
             ->saveSlugsTo('slug');
     }
 
-    public function canImpersonate($impersonated = null): bool
+    public function canImpersonate(self $impersonated = null): bool
     {
         return $this->isSuperAdmin() || $this->hasRole('admin');
     }

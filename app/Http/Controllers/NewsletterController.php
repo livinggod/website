@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Domain\SendPortal\Models\Subscriber;
 use App\Mail\NewsletterOptInMail;
 use App\Models\Newsletter;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cache;
@@ -13,7 +14,7 @@ use Illuminate\Support\Facades\URL;
 
 class NewsletterController extends Controller
 {
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $valid = $request->validate([
             'email' => 'required|email'

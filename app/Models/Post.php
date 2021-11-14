@@ -6,6 +6,7 @@ use App\Events\PostSaved;
 use App\Traits\ConvertsToWebp;
 use App\Traits\IsLocalizable;
 use Artesaos\SEOTools\Facades\SEOTools;
+use Based\Fluent\Fluent;
 use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -26,7 +27,11 @@ use Spatie\Translatable\HasTranslations;
  */
 class Post extends Model
 {
-    use HasFactory, ConvertsToWebp, HasTranslations, HasTranslatableSlug, IsLocalizable;
+    use HasFactory;
+    use ConvertsToWebp;
+    use HasTranslations;
+    use HasTranslatableSlug;
+    use IsLocalizable;
 
     const WORDS_PER_MINUTE_FALLBACK = 150;
 
