@@ -15,6 +15,10 @@ use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Spatie\Translatable\HasTranslations;
 
+/**
+ * @property string $name
+ * @property string $bio
+ */
 class User extends Authenticatable
 {
     use HasFactory, HasRoles, Notifiable, ConvertsToWebp, HasSlug, HasTranslations;

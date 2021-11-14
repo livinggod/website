@@ -23,9 +23,10 @@ class ResponseFactory
 
     public static function createFromSlug(string $slug = null): BaseResponse
     {
+        /** @var ?BaseResponse $response */
         $response = collect(static::$responses)
-            ->map(fn (string $response) => new $response())
-            ->filter(fn (BaseResponse $response) => $response->canHandleSlug($slug))
+            ->map(fn (string $response): object => new $response())
+            ->filter(fn (BaseResponse $response): bool => $response->canHandleSlug($slug))
             ->first();
 
         abort_if(! $response, 404);

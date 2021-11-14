@@ -13,6 +13,7 @@ use Spatie\Translatable\HasTranslations;
 
 /**
  * @property string $name
+ * @property string $description
  */
 class Topic extends Model
 {
