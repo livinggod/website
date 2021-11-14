@@ -22,6 +22,7 @@ use Spatie\Translatable\HasTranslations;
 /**
  * @property string $title
  * @property string $description
+ * @property Collection $locales
  */
 class Post extends Model
 {
@@ -42,7 +43,7 @@ class Post extends Model
         'password',
     ];
 
-    public $translatable = ['title', 'description', 'content', 'slug'];
+    public array $translatable = ['title', 'description', 'content', 'slug'];
 
 
     protected $dispatchesEvents = [

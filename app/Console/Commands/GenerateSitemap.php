@@ -15,6 +15,6 @@ class GenerateSitemap extends Command
     {
         SitemapGenerator::create(config('app.url'))->writeToFile(public_path('sitemap.xml'));
 
-        return 0;
+        return self::SUCCESS;
     }
 }

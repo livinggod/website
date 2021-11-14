@@ -23,9 +23,9 @@ class SendPortal
         return $this->fallbackSlash(config('sendportal.url', ''));
     }
 
-    protected function fallbackSlash(string $item): string
+    protected function fallbackSlash(?string $item = null): string
     {
-        return rtrim($item, '/').'/';
+        return rtrim($item ?? '', '/').'/';
     }
 
     public function post(string $endpoint, array $data): array

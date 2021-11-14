@@ -15,7 +15,7 @@ class HomeResponse extends BaseResponse
     {
         return view('pages.home', [
             'posts' => $this->posts(),
-            'highlight' => $this->highlight() ?? null,
+            'highlight' => $this->highlight(),
         ]);
     }
 
@@ -47,11 +47,11 @@ class HomeResponse extends BaseResponse
     protected function posts(): Collection
     {
         if (request()->user()?->can('see-drafts')) {
-            return Post::with(['user', 'topic'])->published()->localized()->orderBy('publish_at', 'desc')->take(8)->get() ?? new Collection();
+            return Post::with(['user', 'topic'])->published()->localized()->orderBy('publish_at', 'desc')->take(8)->get();
         }
 
         return Cache::remember('homepage_posts_' . App::currentLocale(), now()->addHour(), function () {
-            return Post::with(['user', 'topic'])->published()->localized()->orderBy('publish_at', 'desc')->take(8)->get() ?? new Collection();
+            return Post::with(['user', 'topic'])->published()->localized()->orderBy('publish_at', 'desc')->take(8)->get();
         });
     }
 }
