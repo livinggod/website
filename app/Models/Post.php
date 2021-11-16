@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Casts\FlexibleLayoutsCast;
 use App\Events\PostSaved;
 use App\Traits\ConvertsToWebp;
 use App\Traits\IsLocalizable;
@@ -19,6 +20,7 @@ use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\HasTranslatableSlug;
 use Spatie\Sluggable\SlugOptions;
 use Spatie\Translatable\HasTranslations;
+use Whitecube\NovaFlexibleContent\Value\FlexibleCast;
 
 /**
  * @property string $title
@@ -40,6 +42,7 @@ class Post extends Model
     protected $casts = [
         'publish_at' => 'datetime',
         'locales' => 'collection',
+        'content' => 'object',
     ];
 
     protected $hidden = [
@@ -91,6 +94,7 @@ class Post extends Model
 
     public function calculateRead(): int
     {
+        return 2;
         $words = 0;
         foreach (optional(json_decode($this->getTranslation('content', app()->getLocale()), true))['blocks'] ?? [] as $block) {
             try {

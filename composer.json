@@ -43,7 +43,8 @@
         "spatie/laravel-translatable": "^5.0",
         "spatie/nova-backup-tool": "^4.1",
         "vink/nova-cache-card": "^1.0",
-        "vyuldashev/nova-permission": "^2.10"
+        "vyuldashev/nova-permission": "^2.10",
+        "whitecube/nova-flexible-content": "^0.2.8"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.5",

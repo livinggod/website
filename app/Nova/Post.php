@@ -11,12 +11,14 @@ use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\BooleanGroup;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\Image;
+use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Fields\Slug;
 use Laravel\Nova\Fields\Stack;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Illuminate\Database\Eloquent\Builder;
 use OptimistDigital\NovaTranslatable\HandlesTranslatable;
+use Whitecube\NovaFlexibleContent\Flexible;
 
 class Post extends Resource
 {
@@ -102,8 +104,22 @@ class Post extends Resource
 
             BooleanGroup::make('Locales')->options(config('localization.allowed_locales')),
 
-            NovaEditorJs::make('Content')->onlyOnDetail(),
-            NovaEditorJs::make('Content')->onlyOnForms()->translatable(),
+            NovaEditorJs::make('Content')->readonly()->onlyOnDetail(),
+            NovaEditorJs::make('Content')->readonly()->onlyOnForms()->translatable(),
+
+            Flexible::make('Content')
+                ->button('Add new section')
+                ->confirmRemove()
+                ->addLayout('Simple content section', 'wysiwyg', [
+                    Text::make('Title'),
+                    Markdown::make('Content')
+                ])
+                ->addLayout('Video section', 'video', [
+                    Text::make('Title'),
+                    Image::make('Video Thumbnail', 'thumbnail'),
+                    Text::make('Video ID (YouTube)', 'video'),
+                    Text::make('Video Caption', 'caption')
+                ]),
         ];
     }
 

@@ -35,7 +35,11 @@
                         </div>
                     </div>
 
-                    <div id="article-content">{!! \Advoor\NovaEditorJs\NovaEditorJs::generateHtmlOutput($post->content) !!}</div>
+                    <div id="article-content">
+{{--                        {!! \Advoor\NovaEditorJs\NovaEditorJs::generateHtmlOutput($post->content) !!}--}}
+
+                        @flexible($post->content)
+                    </div>
                 </article>
             </div>
         </div>
