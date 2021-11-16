@@ -14,6 +14,8 @@ class Block extends Resource
 
     public static $title = 'code';
 
+    public static $group = 'Content';
+
     public static $search = [
         'id', 'code'
     ];

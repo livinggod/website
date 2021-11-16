@@ -19,6 +19,8 @@ class Topic extends Resource
 
     public static $title = 'name';
 
+    public static $group = 'Content';
+
     public static $search = [
         'id', 'name'
     ];
@@ -44,7 +46,9 @@ class Topic extends Resource
                 ->translatable()
                 ->rules('max:255'),
 
-            BooleanGroup::make('Locales')->options(config('localization.allowed_locales')),
+            BooleanGroup::make('Locales')->options(
+                config('localization.allowed_locales')
+            ),
         ];
     }
 }

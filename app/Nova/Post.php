@@ -26,6 +26,8 @@ class Post extends Resource
 
     public static $title = 'title';
 
+    public static $group = 'Content';
+
     public static $search = [
         'id', 'title', 'slug'
     ];
