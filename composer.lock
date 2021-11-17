@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "61a85e36aaa63ee5dc363d470c1263b1",
+    "content-hash": "b25d7f2524816f9bda451afb53f4d30c",
     "packages": [
         {
             "name": "advoor/nova-editor-js",
@@ -5636,21 +5636,14 @@
         {
             "name": "sloveniangooner/locale-anywhere",
             "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/slovenianGooner/locale-anywhere.git",
-                "reference": "b4ac01673558b4de07595a88fdc73b3de4d1ff05"
-            },
             "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/slovenianGooner/locale-anywhere/zipball/b4ac01673558b4de07595a88fdc73b3de4d1ff05",
-                "reference": "b4ac01673558b4de07595a88fdc73b3de4d1ff05",
-                "shasum": ""
+                "type": "path",
+                "url": "packages/locale-anywhere",
+                "reference": "0dc3b435a27830dde5aabdae5a2805862f42c24a"
             },
             "require": {
                 "php": ">=7.1.0"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "laravel": {
@@ -5664,7 +5657,6 @@
                     "Sloveniangooner\\LocaleAnywhere\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -5673,11 +5665,9 @@
                 "laravel",
                 "nova"
             ],
-            "support": {
-                "issues": "https://github.com/slovenianGooner/locale-anywhere/issues",
-                "source": "https://github.com/slovenianGooner/locale-anywhere/tree/master"
-            },
-            "time": "2019-12-16T09:30:02+00:00"
+            "transport-options": {
+                "relative": true
+            }
         },
         {
             "name": "spatie/backtrace",

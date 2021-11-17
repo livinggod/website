@@ -31,7 +31,7 @@
         "optimistdigital/nova-translatable": "^1.9",
         "quintenbuis/laravel-instant-login": "^1.0",
         "quintenbuis/laravel-localization": "*",
-        "sloveniangooner/locale-anywhere": "dev-master",
+        "sloveniangooner/locale-anywhere": "@dev",
         "spatie/image": "^1.10",
         "spatie/laravel-backup": "^6.15",
         "spatie/laravel-cookie-consent": "^2.12",
@@ -67,6 +67,10 @@
         "laravel/nova": {
             "type": "composer",
             "url": "https://nova.laravel.com"
+        },
+        "sloveniangooner/locale-anywhere": {
+            "type": "path",
+            "url": "packages/locale-anywhere"
         }
     },
     "config": {

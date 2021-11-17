@@ -28,7 +28,7 @@ class Post extends Model
 {
     use HasFactory;
     use ConvertsToWebp;
-    use \Sloveniangooner\LocaleAnywhere\HasTranslations;
+    use HasTranslations;
     use HasTranslatableSlug;
     use IsLocalizable;
 

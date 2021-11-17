@@ -45,7 +45,6 @@ class Post extends Resource
                 ->default(auth()->user()->id),
 
             BelongsTo::make('Topic')
-                ->sortable()
                 ->showCreateRelationButton()
                 ->rules('required'),
 
@@ -56,30 +55,19 @@ class Post extends Resource
                 ->deletable(false),
 
             Text::make('Title')
-                ->sortable()
-                ->translatable()
                 ->rules('max:255')
-                ->rulesFor('en', [
-                    'required',
-                ])
                 ->hideFromIndex(),
 
             $this->url()->onlyOnDetail(),
 
             Text::make('Description')
-                ->sortable()
-                ->translatable()
                 ->rules('max:255')
                 ->hideFromIndex(),
 
             Stack::make('Details', [
                 Text::make('Title')
-                    ->sortable()
-                    ->translatable()
-                    ->rules('max:255')
-                    ->rulesFor('en', [
-                        'required',
-                    ]),
+                    ->rules('max:255'),
+
 
                 $this->url(),
             ])->onlyOnIndex(),
@@ -103,9 +91,6 @@ class Post extends Resource
                 ->sortable(),
 
             BooleanGroup::make('Locales')->options(config('localization.allowed_locales')),
-
-//            NovaEditorJs::make('Content')->readonly()->onlyOnDetail(),
-//            NovaEditorJs::make('Content')->readonly()->onlyOnForms()->translatable(),
 
             Flexible::make('Content')
                 ->button('Add new section')

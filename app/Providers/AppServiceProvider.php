@@ -32,7 +32,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Post::observe(PostObserver::class);
-        Carbon::setLocale(App::currentLocale());
         Model::preventLazyLoading(app()->isLocal());
 
         $files = Storage::disk('app')->allFiles('Directives');
