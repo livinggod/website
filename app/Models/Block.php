@@ -15,6 +15,7 @@ class Block extends Model
 
     public static function getCachedByCode(string $code): string
     {
-        return (Cache::rememberForever($code, fn () => self::firstWhere('code', $code)))->content ?? $code;
+        $block = Cache::rememberForever($code, fn () => self::firstWhere('code', $code));
+        return $block->content ?? $code;
     }
 }

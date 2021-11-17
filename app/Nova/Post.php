@@ -104,8 +104,8 @@ class Post extends Resource
 
             BooleanGroup::make('Locales')->options(config('localization.allowed_locales')),
 
-            NovaEditorJs::make('Content')->readonly()->onlyOnDetail(),
-            NovaEditorJs::make('Content')->readonly()->onlyOnForms()->translatable(),
+//            NovaEditorJs::make('Content')->readonly()->onlyOnDetail(),
+//            NovaEditorJs::make('Content')->readonly()->onlyOnForms()->translatable(),
 
             Flexible::make('Content')
                 ->button('Add new section')

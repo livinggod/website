@@ -44,7 +44,6 @@ class AppServiceProvider extends ServiceProvider
             );
 
             $class = "App\\Directives\\{$className}";
-
             Blade::directive(strtolower($className), fn ($expression) => "<?php echo $class::render($expression); ?>");
         }
 

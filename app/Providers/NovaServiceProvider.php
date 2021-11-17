@@ -8,6 +8,7 @@ use Bakerkretzmar\NovaSettingsTool\SettingsTool;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
+use Sloveniangooner\LocaleAnywhere\LocaleAnywhere;
 use Spatie\BackupTool\BackupTool;
 use Vink\NovaCacheCard\CacheCard;
 use Vyuldashev\NovaPermission\NovaPermissionTool;
@@ -92,6 +93,15 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                 ->canSeeWhen('manage-backups'),
             SettingsTool::make()
                 ->canSeeWhen('manage-settings'),
+
+            new LocaleAnywhere([
+                "locales" => [
+                    "en" => "English",
+                    "nl" => "Dutch",
+                ],
+
+                "useFallback"         => false,
+            ]),
         ];
     }
 
