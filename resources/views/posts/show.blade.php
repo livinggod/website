@@ -3,7 +3,7 @@
         <x-draft/>
     @endif
 
-        <x-slot name="title">{{ $post->title }}</x-slot>
+    <x-slot name="title">{{ $post->title }}</x-slot>
 
     <div class="relative pb-16 bg-white overflow-hidden">
         <div class="relative px-4 sm:px-6 lg:px-8">
@@ -35,7 +35,13 @@
                         </div>
                     </div>
 
-                    <div id="article-content">{!! \Advoor\NovaEditorJs\NovaEditorJs::generateHtmlOutput($post->content) !!}</div>
+                    <div id="article-content">
+                        @if(is_array($post->content))
+                            @flexible($post->content)
+                        @else
+                            {!! \Advoor\NovaEditorJs\NovaEditorJs::generateHtmlOutput($post->content) !!}
+                        @endif
+                    </div>
                 </article>
             </div>
         </div>

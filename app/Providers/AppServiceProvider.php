@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -31,10 +32,19 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Post::observe(PostObserver::class);
-
-        Carbon::setLocale(App::currentLocale());
-
         Model::preventLazyLoading(app()->isLocal());
+
+        $files = Storage::disk('app')->allFiles('Directives');
+
+        foreach ($files as $file) {
+            $className = ltrim(
+                rtrim($file, '.php'),
+                'Directives/'
+            );
+
+            $class = "App\\Directives\\{$className}";
+            Blade::directive(strtolower($className), fn ($expression) => "<?php echo $class::render($expression); ?>");
+        }
 
         Blade::directive('block', fn ($expression) => "<?php echo \App\Models\Block::getCachedByCode($expression); ?>");
         Blade::directive('limit', fn ($expression) => "<?php echo \Illuminate\Support\Str::limit($expression) ?? ''; ?>");

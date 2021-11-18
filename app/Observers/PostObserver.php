@@ -12,7 +12,7 @@ class PostObserver
 
     public function creating(Post $post): void
     {
-        // TODO: Reimplement webp convertion correctly
+        // TODO: Reimplement webp conversion correctly
 //        $this->convertWebp($post);
 
         $user = auth()->user();

@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Advoor\NovaEditorJs\NovaEditorJs;
 use App\Traits\ConvertsToWebp;
 use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -21,7 +20,12 @@ use Spatie\Translatable\HasTranslations;
  */
 class User extends Authenticatable
 {
-    use HasFactory, HasRoles, Notifiable, ConvertsToWebp, HasSlug, HasTranslations;
+    use HasFactory;
+    use HasRoles;
+    use Notifiable;
+    use ConvertsToWebp;
+    use HasSlug;
+    use HasTranslations;
 
     public string $imageProperty = 'avatar';
 

@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
+use App\Directives\Flexible;
 use App\Events\PostSaved;
 use App\Traits\ConvertsToWebp;
 use App\Traits\IsLocalizable;
 use Artesaos\SEOTools\Facades\SEOTools;
-use Based\Fluent\Fluent;
 use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -15,7 +15,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cache;
-use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\HasTranslatableSlug;
 use Spatie\Sluggable\SlugOptions;
 use Spatie\Translatable\HasTranslations;
@@ -37,9 +36,12 @@ class Post extends Model
 
     protected $guarded = [];
 
+    public bool $useFallback = true;
+
     protected $casts = [
         'publish_at' => 'datetime',
         'locales' => 'collection',
+        'content' => 'object',
     ];
 
     protected $hidden = [
@@ -92,15 +94,26 @@ class Post extends Model
     public function calculateRead(): int
     {
         $words = 0;
-        foreach (optional(json_decode($this->getTranslation('content', app()->getLocale()), true))['blocks'] ?? [] as $block) {
-            try {
-                $words += str_word_count($block['data']['text']);
-            } catch (Exception $e) {
+        $content = $this->getTranslation('content', app()->getLocale());
+
+        // Content is flexible
+        if (is_array($content)) {
+            $words = str_word_count(
+                strip_tags(
+                    Flexible::render($content)
+                )
+            );
+        } else {
+            foreach (optional(json_decode($content, true))['blocks'] ?? [] as $block) {
+                try {
+                    $words += str_word_count($block['data']['text']);
+                } catch (Exception $e) {
+                }
             }
         }
 
         if (! $words) {
-            return 0;
+            return 1;
         }
 
         return (int)round($words / (store('wordsperminute') ?? self::WORDS_PER_MINUTE_FALLBACK), 0, PHP_ROUND_HALF_EVEN);

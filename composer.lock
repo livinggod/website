@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3bda46f027a385959f534283b79cd304",
+    "content-hash": "5d385adfc8151aed5776a8f115bcd149",
     "packages": [
         {
             "name": "advoor/nova-editor-js",
@@ -5634,6 +5634,41 @@
             "time": "2021-09-25T23:10:38+00:00"
         },
         {
+            "name": "sloveniangooner/locale-anywhere",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:quintenbuis/locale-anywhere.git",
+                "reference": "55f9b71f03de8e1a71584e9fbb354b807b2e2ace"
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Sloveniangooner\\LocaleAnywhere\\ToolServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sloveniangooner\\LocaleAnywhere\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova tool.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "time": "2021-11-17T21:13:19+00:00"
+        },
+        {
             "name": "spatie/backtrace",
             "version": "1.2.1",
             "source": {
@@ -10193,6 +10228,69 @@
             "time": "2021-03-09T10:59:23+00:00"
         },
         {
+            "name": "whitecube/nova-flexible-content",
+            "version": "v0.2.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/whitecube/nova-flexible-content.git",
+                "reference": "86dc57aad7d830caef4a7d8b35a9fff7b7e7e5ac"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/whitecube/nova-flexible-content/zipball/86dc57aad7d830caef4a7d8b35a9fff7b7e7e5ac",
+                "reference": "86dc57aad7d830caef4a7d8b35a9fff7b7e7e5ac",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/nova": "^3.2",
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Whitecube\\NovaFlexibleContent\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Whitecube\\NovaFlexibleContent\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Toon Van den Bos",
+                    "email": "toon@whitecube.be"
+                }
+            ],
+            "description": "Flexible Content & Repeater Fields for Laravel Nova.",
+            "keywords": [
+                "Flexible",
+                "field",
+                "group",
+                "laravel",
+                "layout",
+                "nova",
+                "repeat"
+            ],
+            "support": {
+                "issues": "https://github.com/whitecube/nova-flexible-content/issues",
+                "source": "https://github.com/whitecube/nova-flexible-content/tree/v0.2.8"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/whitecube",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-03-12T14:43:02+00:00"
+        },
+        {
             "name": "zbateson/mail-mime-parser",
             "version": "2.1.0",
             "source": {
@@ -14611,7 +14709,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "larabug/larabug": 20
+        "larabug/larabug": 20,
+        "sloveniangooner/locale-anywhere": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
