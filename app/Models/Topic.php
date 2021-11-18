@@ -13,6 +13,7 @@ use Spatie\Translatable\HasTranslations;
 
 /**
  * @property string $name
+ * @property string $description
  */
 class Topic extends Model
 {
@@ -24,7 +25,7 @@ class Topic extends Model
         'locales' => 'array',
     ];
 
-    public $translatable = ['name', 'description'];
+    public array $translatable = ['name', 'description'];
 
     public function articles(): HasMany
     {

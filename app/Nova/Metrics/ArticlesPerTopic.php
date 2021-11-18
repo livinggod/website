@@ -15,7 +15,7 @@ class ArticlesPerTopic extends Partition
     public function calculate(NovaRequest $request): PartitionResult
     {
         return $this->count($request, Post::class, 'topic_id')
-            ->label(fn ($value) => Topic::find($value)->name);
+            ->label(fn (int $value): string => Topic::query()->find($value)->name);
     }
 
     public function cacheFor(): DateTimeInterface|DateInterval|float|int

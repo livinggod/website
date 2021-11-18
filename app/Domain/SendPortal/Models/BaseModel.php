@@ -30,7 +30,7 @@ class BaseModel implements Arrayable
         return $this->data[$name] ?? null;
     }
 
-    protected function getEndpoint()
+    protected function getEndpoint(): string
     {
         return $this->endpoint ?? Str::plural(class_basename(static::class));
     }

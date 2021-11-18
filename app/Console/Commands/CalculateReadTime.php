@@ -20,6 +20,6 @@ class CalculateReadTime extends Command
             $post->save();
         }
 
-        return 0;
+        return self::SUCCESS;
     }
 }

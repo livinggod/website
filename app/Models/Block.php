@@ -11,10 +11,11 @@ class Block extends Model
 {
     use HasFactory, HasTranslations;
 
-    public $translatable = ['content'];
+    public array $translatable = ['content'];
 
     public static function getCachedByCode(string $code): string
     {
-        return (Cache::rememberForever($code, fn () => self::firstWhere('code', $code)))->content ?? $code;
+        $block = Cache::rememberForever($code, fn () => self::firstWhere('code', $code));
+        return $block->content ?? $code;
     }
 }

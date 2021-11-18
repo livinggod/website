@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Advoor\NovaEditorJs\NovaEditorJs;
 use App\Traits\ConvertsToWebp;
 use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -15,13 +14,22 @@ use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Spatie\Translatable\HasTranslations;
 
+/**
+ * @property string $name
+ * @property string $bio
+ */
 class User extends Authenticatable
 {
-    use HasFactory, HasRoles, Notifiable, ConvertsToWebp, HasSlug, HasTranslations;
+    use HasFactory;
+    use HasRoles;
+    use Notifiable;
+    use ConvertsToWebp;
+    use HasSlug;
+    use HasTranslations;
 
     public string $imageProperty = 'avatar';
 
-    public $translatable = ['bio'];
+    public array $translatable = ['bio'];
 
     protected $fillable = [
         'name',
@@ -73,7 +81,7 @@ class User extends Authenticatable
             ->saveSlugsTo('slug');
     }
 
-    public function canImpersonate($impersonated = null): bool
+    public function canImpersonate(self $impersonated = null): bool
     {
         return $this->isSuperAdmin() || $this->hasRole('admin');
     }

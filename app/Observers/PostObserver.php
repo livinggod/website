@@ -10,9 +10,9 @@ use Spatie\Image\Image;
 class PostObserver
 {
 
-    public function creating(Post $post)
+    public function creating(Post $post): void
     {
-        // TODO: Reimplement webp convertion correctly
+        // TODO: Reimplement webp conversion correctly
 //        $this->convertWebp($post);
 
         $user = auth()->user();
@@ -22,7 +22,7 @@ class PostObserver
         $post->user_id = $user->id;
     }
 
-    public function updating(Post $post)
+    public function updating(Post $post): void
     {
         // TODO: Reimplement webp convertion correctly
 //        $this->convertWebp($post);
@@ -33,7 +33,7 @@ class PostObserver
         }
     }
 
-    protected function convertWebp($post)
+    protected function convertWebp(Post $post): void
     {
         if (! app()->runningUnitTests() && $post->imageIsWebp()) {
             $post->convertImage();

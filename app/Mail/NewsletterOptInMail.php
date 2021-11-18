@@ -19,8 +19,11 @@ class NewsletterOptInMail extends Mailable
 
     public function build(): static
     {
+        /** @var string $subject */
+        $subject = __('Newsletter subscription');
+
         return $this
-            ->subject(__('Newsletter subscription'))
+            ->subject($subject)
             ->markdown('mail.newsletter.opt-in');
     }
 }

@@ -6,10 +6,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Spatie\Image\Image;
 use Spatie\Image\Manipulations;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class ImageController extends Controller
 {
-    public function __invoke(Request $request, string $size, string $file)
+    public function __invoke(Request $request, string $size, string $file): BinaryFileResponse
     {
         abort_unless(in_array($size, config('imageresizer.sizes')), 400, 'The requested size is not whitelisted.');
 

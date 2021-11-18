@@ -19,6 +19,8 @@ class Page extends Resource
 
     public static $title = 'url';
 
+    public static $group = 'Content';
+
     public static $search = [
         'id', 'url'
     ];

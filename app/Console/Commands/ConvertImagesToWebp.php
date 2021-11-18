@@ -19,6 +19,6 @@ class ConvertImagesToWebp extends Command
         User::cursor()->each(fn ($user) => $user->imageExists() && $user->imageIsWebp() ?: $user->convertImage());
         Page::cursor()->each(fn ($page) => $page->imageExists() && $page->imageIsWebp() ?: $page->convertImage());
 
-        return 0;
+        return self::SUCCESS;
     }
 }

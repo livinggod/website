@@ -19,7 +19,7 @@ class Page extends Model
 
     protected $guarded = [];
 
-    public $translatable = ['title', 'content'];
+    public array $translatable = ['title', 'content'];
 
     protected $casts = [
         'locales' => 'array',

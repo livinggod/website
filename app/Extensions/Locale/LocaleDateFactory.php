@@ -12,14 +12,17 @@ class LocaleDateFactory
 
     protected static array $localeHandlers = [
         NLRenderer::class,
-        ENRenderer::class
+        ENRenderer::class,
     ];
 
     public static function create(): BaseRenderer
     {
-        return collect(self::$localeHandlers)
-            ->map(fn (string $renderer) => new $renderer())
-            ->filter(fn (BaseRenderer $renderer) => $renderer->canRender())
-            ->first() ?? new self::$defaultRenderer();
+        /** @var BaseRenderer $renderer */
+        $renderer = collect(self::$localeHandlers)
+                ->map(fn (string $renderer): object => new $renderer())
+                ->filter(fn (BaseRenderer $renderer): bool => $renderer->canRender())
+                ->first() ?? new self::$defaultRenderer();
+
+        return $renderer;
     }
 }

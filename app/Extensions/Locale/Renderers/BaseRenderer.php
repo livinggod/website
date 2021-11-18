@@ -13,5 +13,5 @@ abstract class BaseRenderer
         return Carbon::parse($date)->translatedFormat($format ?? $this->format);
     }
 
-    abstract public function canRender();
+    abstract public function canRender(): bool;
 }
