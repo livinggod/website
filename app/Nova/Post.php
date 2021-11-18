@@ -101,9 +101,7 @@ class Post extends Resource
                 ])
                 ->addLayout('Video section', 'video', [
                     Text::make('Title'),
-                    Image::make('Video Thumbnail', 'thumbnail'),
                     Text::make('Video ID (YouTube)', 'video'),
-                    Text::make('Video Caption', 'caption')
                 ]),
         ];
     }
