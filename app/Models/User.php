@@ -90,19 +90,4 @@ class User extends Authenticatable
     {
         return ! $this->isSuperAdmin();
     }
-
-    public function getLocaleAttribute()
-    {
-        return ['nl', 'en'];
-    }
-
-    public function allowedLocale()
-    {
-        return $this->allowedAllLocale() || $this->locale[app()->getLocale()];
-    }
-
-    public function allowedAllLocale()
-    {
-        return true;
-    }
 }
