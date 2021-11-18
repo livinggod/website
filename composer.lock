@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5d385adfc8151aed5776a8f115bcd149",
+    "content-hash": "e85781c56e9df7d822267ac1a15c5336",
     "packages": [
         {
             "name": "advoor/nova-editor-js",
@@ -5638,7 +5638,7 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "git@github.com:quintenbuis/locale-anywhere.git",
+                "url": "https://github.com/quintenbuis/locale-anywhere.git",
                 "reference": "55f9b71f03de8e1a71584e9fbb354b807b2e2ace"
             },
             "require": {

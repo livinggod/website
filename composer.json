@@ -70,7 +70,7 @@
         },
         "sloveniangooner/locale-anywhere": {
             "type": "git",
-            "url": "git@github.com:quintenbuis/locale-anywhere.git"
+            "url": "https://github.com/quintenbuis/locale-anywhere.git"
         }
     },
     "config": {
