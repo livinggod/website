@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b25d7f2524816f9bda451afb53f4d30c",
+    "content-hash": "5d385adfc8151aed5776a8f115bcd149",
     "packages": [
         {
             "name": "advoor/nova-editor-js",
@@ -5636,14 +5636,15 @@
         {
             "name": "sloveniangooner/locale-anywhere",
             "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "packages/locale-anywhere",
-                "reference": "0dc3b435a27830dde5aabdae5a2805862f42c24a"
+            "source": {
+                "type": "git",
+                "url": "git@github.com:quintenbuis/locale-anywhere.git",
+                "reference": "55f9b71f03de8e1a71584e9fbb354b807b2e2ace"
             },
             "require": {
                 "php": ">=7.1.0"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "laravel": {
@@ -5665,9 +5666,7 @@
                 "laravel",
                 "nova"
             ],
-            "transport-options": {
-                "relative": true
-            }
+            "time": "2021-11-17T21:13:19+00:00"
         },
         {
             "name": "spatie/backtrace",

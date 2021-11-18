@@ -69,8 +69,8 @@
             "url": "https://nova.laravel.com"
         },
         "sloveniangooner/locale-anywhere": {
-            "type": "path",
-            "url": "packages/locale-anywhere"
+            "type": "git",
+            "url": "git@github.com:quintenbuis/locale-anywhere.git"
         }
     },
     "config": {
