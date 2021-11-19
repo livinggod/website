@@ -20,7 +20,7 @@ class Localize
                 collect(config('localization.allowed_locales'))
                     ->where('domain', $request->getSchemeAndHttpHost())
                     ->keys()
-                    ->first()
+                    ->first() ?? 'en'
             );
         }
 

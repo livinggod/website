@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/storage/resizes/{size}/{file}', ImageController::class)->where('file', '.*');
 
 Route::domain('{locale}.livinggod.net')->group(function () {
-    Route::get('/{url}', RedirectSubdomainController::class)->where('url', '.*');
+    Route::get('/{url}', RedirectSubdomainController::class)->where(['url' => '.*', 'locale' => '(\b[a-zA-Z]{2}\b)']);
 });
 
 Route::post('/newsletter', [NewsletterController::class, 'store'])->name('newsletter.store');
