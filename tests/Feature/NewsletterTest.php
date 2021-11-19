@@ -57,7 +57,7 @@ class NewsletterTest extends TestCase
         $this
             ->get($url)
             ->assertRedirect(
-                uri: Locale::redirectToLocale('nl', '/')
+                uri: config("localization.allowed_locales.nl.domain")
             );
     }
 

@@ -46,10 +46,15 @@ class PostResponse extends BaseResponse
         if (! $currentLocaleSupported) {
             $locale = $this->post->locales->filter()->keys()[0];
 
-            $this->redirectUrl = Locale::redirectToLocale(
-                locale: $locale,
-                path: $this->post->getTranslation('slug', $locale)
-            );
+            $this->redirectUrl = config("localization.allowed_locales.{$locale}.domain")."/{$this->post->getTranslation('slug', $locale)}";
+        } else {
+            // check if the given slug belongs to the locale
+
+            if (request()->path() !== $this->post->getTranslation('slug', App::currentLocale())) {
+                $locale = $this->post->locales->filter()->keys()[0];
+
+                $this->redirectUrl = config("localization.allowed_locales.{$locale}.domain")."/{$this->post->getTranslation('slug', $locale)}";
+            }
         }
 
         return true;

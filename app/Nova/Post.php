@@ -68,7 +68,6 @@ class Post extends Resource
                 Text::make('Title')
                     ->rules('max:255'),
 
-
                 $this->url(),
             ])->onlyOnIndex(),
 
@@ -90,7 +89,9 @@ class Post extends Resource
                 ->readonly(!auth()->user()->can('publish-post'))
                 ->sortable(),
 
-            BooleanGroup::make('Locales')->options(config('localization.allowed_locales')),
+            BooleanGroup::make('Locales')->options(
+                array_keys(config('localization.allowed_locales'))
+            ),
 
             Flexible::make('Content')
                 ->button('Add new section')
