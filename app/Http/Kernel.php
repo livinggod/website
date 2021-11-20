@@ -2,13 +2,12 @@
 
 namespace App\Http;
 
-use App\Extensions\Locale\LocalizeExtended;
 use App\Http\Middleware\Authenticate;
 use App\Http\Middleware\EncryptCookies;
 use App\Http\Middleware\PreventRequestsDuringMaintenance;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Middleware\Robots;
-use App\Http\Middleware\SetLocale;
+use App\Http\Middleware\Localize;
 use App\Http\Middleware\TrimStrings;
 use App\Http\Middleware\TrustProxies;
 use App\Http\Middleware\VerifyCsrfToken;
@@ -27,7 +26,6 @@ use Illuminate\Routing\Middleware\ThrottleRequests;
 use Illuminate\Routing\Middleware\ValidateSignature;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
-use Quintenbuis\Localization\Middleware\Localize;
 
 class Kernel extends HttpKernel
 {
@@ -63,8 +61,7 @@ class Kernel extends HttpKernel
             ShareErrorsFromSession::class,
             VerifyCsrfToken::class,
             SubstituteBindings::class,
-            SetLocale::class,
-            LocalizeExtended::class,
+            Localize::class,
         ],
 
         'api' => [

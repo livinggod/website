@@ -1,6 +1,13 @@
 <div {{ $attributes->merge(['class' => 'inline-block relative text-left']) }} x-data="{open: false}">
     <div>
-        <button x-on:click="open = !open" type="button" class="rounded-full flex items-center text-gray-400 hover:text-gray-600 focus:outline-none" id="menu-button" aria-expanded="true" aria-haspopup="true">
+        <button
+            x-on:click="open = !open"
+            type="button"
+            class="rounded-full flex items-center text-gray-400 hover:text-gray-600 focus:outline-none"
+            id="menu-button"
+            aria-expanded="true"
+            aria-haspopup="true"
+        >
             {{ app()->currentLocale() }}
             <span class="sr-only">@lang('Open languages')</span>
             <x-heroicon-s-chevron-down class="h-5 w-5" />
@@ -22,10 +29,8 @@
          x-transition:leave-end="transform opacity-0 scale-95"
     >
         <div class="py-1" role="none">
-            <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
-
-            @foreach(config('localization.allowed_locales') as $locale)
-                <a href="{{ \App\Extensions\Locale\Locale::redirectToLocale($locale) }}" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1">{{ $locale }}</a>
+            @foreach(config('localization.allowed_locales') as $key => $locale)
+                <a href="{{ $locale['domain'].request()->path() }}" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1">{{ $key }}</a>
             @endforeach
         </div>
     </div>

@@ -16,7 +16,7 @@ class NewsletterOptInController
         App::setLocale($request->language);
         if (Subscriber::findByEmail($request->email)) {
             return redirect(
-                Locale::redirectToLocale($request->language, '/')
+                config("localization.allowed_locales.{$request->language}.domain")
             )->with('message', __('This email address is already subscribed.'));
         }
 
@@ -33,7 +33,7 @@ class NewsletterOptInController
         );
 
         return redirect(
-            Locale::redirectToLocale($request->language, '/')
+            config("localization.allowed_locales.{$request->language}.domain")
         )->with('message', __("Thanks for signing up! You'll now receive updates on our latest articles!"));
     }
 }

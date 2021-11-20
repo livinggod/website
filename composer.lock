@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e85781c56e9df7d822267ac1a15c5336",
+    "content-hash": "5bea731cfd95ad046cd2c5d04373a6a8",
     "packages": [
         {
             "name": "advoor/nova-editor-js",
@@ -5337,80 +5337,6 @@
                 }
             ],
             "time": "2021-07-31T10:49:46+00:00"
-        },
-        {
-            "name": "quintenbuis/laravel-localization",
-            "version": "0.0.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/quintenbuis/laravel-localization.git",
-                "reference": "6a03ce0fd6085a4bf533f0e4b2639620fb539063"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/quintenbuis/laravel-localization/zipball/6a03ce0fd6085a4bf533f0e4b2639620fb539063",
-                "reference": "6a03ce0fd6085a4bf533f0e4b2639620fb539063",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/contracts": "^8.37",
-                "php": "^8.0",
-                "spatie/laravel-package-tools": "^1.4.3"
-            },
-            "require-dev": {
-                "brianium/paratest": "^6.2",
-                "nunomaduro/collision": "^5.3",
-                "orchestra/testbench": "^6.15",
-                "phpunit/phpunit": "^9.3",
-                "spatie/laravel-ray": "^1.9",
-                "vimeo/psalm": "^4.4"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Quintenbuis\\Localization\\LocalizationServiceProvider"
-                    ],
-                    "aliases": {
-                        "Localization": "Quintenbuis\\Localization\\LocalizationFacade"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Quintenbuis\\Localization\\": "src",
-                    "Quintenbuis\\Localization\\Database\\Factories\\": "database/factories"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Quinten Buis",
-                    "email": "quinten.buis@gmail.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Localize your laravel application via subdomain.",
-            "homepage": "https://github.com/quintenbuis/laravel-localization",
-            "keywords": [
-                "laravel",
-                "laravel-localization",
-                "quintenbuis"
-            ],
-            "support": {
-                "issues": "https://github.com/quintenbuis/laravel-localization/issues",
-                "source": "https://github.com/quintenbuis/laravel-localization/tree/0.0.3"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/quintenbuis",
-                    "type": "github"
-                }
-            ],
-            "time": "2021-06-15T15:33:00+00:00"
         },
         {
             "name": "ralouphie/getallheaders",

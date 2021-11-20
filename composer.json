@@ -30,7 +30,6 @@
         "livewire/livewire": "^2.4",
         "optimistdigital/nova-translatable": "^1.9",
         "quintenbuis/laravel-instant-login": "^1.0",
-        "quintenbuis/laravel-localization": "*",
         "sloveniangooner/locale-anywhere": "@dev",
         "spatie/image": "^1.10",
         "spatie/laravel-backup": "^6.15",
