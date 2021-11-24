@@ -8,7 +8,7 @@ return [
         ],
         'nl' => [
             'text' => 'Dutch',
-            'domain' => 'https://livinggod.nl/'
+            'domain' => 'https://livinggod.nl'
         ]
     ],
 
