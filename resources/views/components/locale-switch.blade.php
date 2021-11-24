@@ -30,7 +30,7 @@
     >
         <div class="py-1" role="none">
             @foreach(config('localization.allowed_locales') as $key => $locale)
-                <a href="{{ $locale['domain'].request()->path() }}" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1">{{ $key }}</a>
+                <a href="{{ $locale['domain'].'/'.request()->path() }}" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1">{{ $key }}</a>
             @endforeach
         </div>
     </div>
