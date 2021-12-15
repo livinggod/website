@@ -20,3 +20,5 @@ rr
 .rr.yaml
 
 packages/*
+
+.envault.json
