@@ -7,5 +7,7 @@ use Filament\Resources\Pages\EditRecord;
 
 class EditUser extends EditRecord
 {
+    use EditRecord\Concerns\Translatable;
+
     protected static string $resource = UserResource::class;
 }

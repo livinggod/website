@@ -9,6 +9,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Permission\Traits\HasRoles;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
@@ -18,14 +21,14 @@ use Spatie\Translatable\HasTranslations;
  * @property string $name
  * @property string $bio
  */
-class User extends Authenticatable
+class User extends Authenticatable implements HasMedia
 {
     use HasFactory;
     use HasRoles;
     use Notifiable;
-    use ConvertsToWebp;
     use HasSlug;
     use HasTranslations;
+    use InteractsWithMedia;
 
     public string $imageProperty = 'avatar';
 
@@ -74,13 +77,6 @@ class User extends Authenticatable
         SEOTools::jsonLd()->addImage(asset('storage/' . $this->avatar));
     }
 
-    public function getSlugOptions(): SlugOptions
-    {
-        return SlugOptions::create()
-            ->generateSlugsFrom('name')
-            ->saveSlugsTo('slug');
-    }
-
     public function canImpersonate(self $impersonated = null): bool
     {
         return $this->isSuperAdmin() || $this->hasRole('admin');
@@ -89,5 +85,21 @@ class User extends Authenticatable
     public function canBeImpersonated(?\Illuminate\Contracts\Auth\Authenticatable $impersonator = null): bool
     {
         return ! $this->isSuperAdmin();
+    }
+
+    public function getSlugOptions(): SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('name')
+            ->saveSlugsTo('slug');
+    }
+
+    public function registerMediaConversions(Media $media = null): void
+    {
+        $this->addMediaConversion('optimized')
+            ->width(368)
+            ->height(232)
+            ->format('webp')
+            ->sharpen(10);
     }
 }
