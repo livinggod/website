@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Cards\TimestampCard;
 use App\Filament\Resources\TopicResource\Pages;
 use App\Filament\Resources\TopicResource\RelationManagers;
 use App\Models\Topic;
@@ -25,20 +26,30 @@ class TopicResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
+            ->columns(3)
             ->schema([
-                Forms\Components\Card::make()
-                    ->columns(2)
+                Forms\Components\Group::make()
+                    ->columnSpan(2)
                     ->schema([
-                        Forms\Components\TextInput::make('name')
-                            ->required()
-                            ->reactive()
-                            ->afterStateUpdated(fn ($state, callable $set) => $set('slug', Str::slug($state))),
-                        Forms\Components\TextInput::make('slug')
-                            ->disabled()
-                            ->required()
-                            ->unique(Topic::class, 'slug', fn ($record) => $record),
-                        Forms\Components\Textarea::make('description')
-                            ->columnSpan(2),
+                        Forms\Components\Card::make()
+                            ->columns(2)
+                            ->schema([
+                                Forms\Components\TextInput::make('name')
+                                    ->required()
+                                    ->reactive()
+                                    ->afterStateUpdated(fn ($state, callable $set) => $set('slug', Str::slug($state))),
+                                Forms\Components\TextInput::make('slug')
+                                    ->disabled()
+                                    ->required()
+                                    ->unique(Topic::class, 'slug', fn ($record) => $record),
+                                Forms\Components\Textarea::make('description')
+                                    ->columnSpan(2),
+                            ]),
+                    ]),
+                Forms\Components\Group::make()
+                    ->columnSpan(1)
+                    ->schema([
+                        TimestampCard::make(),
                     ]),
             ]);
     }
@@ -64,9 +75,9 @@ class TopicResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListTopics::route('/'),
+            'index'  => Pages\ListTopics::route('/'),
             'create' => Pages\CreateTopic::route('/create'),
-            'edit' => Pages\EditTopic::route('/{record}/edit'),
+            'edit'   => Pages\EditTopic::route('/{record}/edit'),
         ];
     }
 }

@@ -2,10 +2,9 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Cards\TimestampCard;
 use App\Filament\Resources\PostResource\Pages;
-use App\Filament\Resources\PostResource\RelationManagers;
 use App\Models\Post;
-use App\Models\Topic;
 use Filament\Forms;
 use Filament\Resources\Concerns\Translatable;
 use Filament\Resources\Form;
@@ -93,15 +92,7 @@ class PostResource extends Resource
                                 Forms\Components\Toggle::make('ready'),
                                 Forms\Components\Toggle::make('highlight'),
                             ]),
-                        Forms\Components\Card::make()
-                            ->schema([
-                                Forms\Components\Placeholder::make('created_at')
-                                    ->label('Created at')
-                                    ->content(fn (?Post $record): string => $record ? $record->created_at->diffForHumans() : '-'),
-                                Forms\Components\Placeholder::make('updated_at')
-                                    ->label('Last modified at')
-                                    ->content(fn (?Post $record): string => $record ? $record->updated_at->diffForHumans() : '-'),
-                            ]),
+                        TimestampCard::make(),
                     ]),
             ]);
     }
