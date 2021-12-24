@@ -19,6 +19,7 @@ class PostResource extends Resource
     use Translatable;
 
     protected static ?string $model = Post::class;
+    protected static ?string $slug = 'blog/posts';
     protected static ?string $navigationIcon = 'heroicon-o-newspaper';
     protected static ?string $navigationGroup = 'Blog';
 
@@ -50,8 +51,19 @@ class PostResource extends Resource
                             ]),
                         Forms\Components\Card::make()
                             ->schema([
-                                Forms\Components\RichEditor::make('content')
-                                    ->required(),
+                                Forms\Components\Builder::make('content')
+                                    ->blocks([
+                                        Forms\Components\Builder\Block::make('paragraph')
+                                            ->schema([
+                                                Forms\Components\TextInput::make('title'),
+                                                Forms\Components\MarkdownEditor::make('content'),
+                                            ]),
+                                        Forms\Components\Builder\Block::make('youtube_video')
+                                            ->schema([
+                                                Forms\Components\TextInput::make('title'),
+                                                Forms\Components\TextInput::make('url'),
+                                            ]),
+                                    ]),
                             ]),
                     ]),
                 Forms\Components\Group::make()

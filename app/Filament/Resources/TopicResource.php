@@ -18,9 +18,8 @@ class TopicResource extends Resource
     use Translatable;
 
     protected static ?string $model = Topic::class;
-
+    protected static ?string $slug = 'blog/topics';
     protected static ?string $navigationIcon = 'heroicon-o-light-bulb';
-
     protected static ?string $navigationGroup = 'Blog';
 
     public static function form(Form $form): Form

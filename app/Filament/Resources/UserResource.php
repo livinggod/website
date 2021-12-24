@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\UserResource\Pages;
-use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
 use Filament\Forms;
 use Filament\Resources\Concerns\Translatable;
@@ -17,9 +16,8 @@ class UserResource extends Resource
     use Translatable;
 
     protected static ?string $model = User::class;
-
+    protected static ?string $slug = 'settings/users';
     protected static ?string $navigationIcon = 'heroicon-o-users';
-
     protected static ?string $navigationGroup = 'Settings';
 
     public static function form(Form $form): Form
