@@ -49,10 +49,10 @@ class PostResource extends Resource
                                     ]),
                             ]),
                         Forms\Components\Card::make()
-                        ->schema([
-                            Forms\Components\RichEditor::make('content')
-                                ->required(),
-                        ]),
+                            ->schema([
+                                Forms\Components\RichEditor::make('content')
+                                    ->required(),
+                            ]),
                     ]),
                 Forms\Components\Group::make()
                     ->columnSpan(1)
@@ -120,9 +120,9 @@ class PostResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListPosts::route('/'),
+            'index'  => Pages\ListPosts::route('/'),
             'create' => Pages\CreatePost::route('/create'),
-            'edit' => Pages\EditPost::route('/{record}/edit'),
+            'edit'   => Pages\EditPost::route('/{record}/edit'),
         ];
     }
 }
