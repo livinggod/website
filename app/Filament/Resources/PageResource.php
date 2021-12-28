@@ -2,10 +2,11 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Cards\TimestampCard;
 use App\Filament\Resources\PageResource\Pages;
-use App\Filament\Resources\PageResource\RelationManagers;
 use App\Models\Page;
 use Filament\Forms;
+use Filament\Resources\Concerns\Translatable;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
@@ -13,6 +14,8 @@ use Filament\Tables;
 
 class PageResource extends Resource
 {
+    use Translatable;
+
     protected static ?string $model = Page::class;
     protected static ?string $slug = 'content/pages';
     protected static ?string $navigationGroup = 'Content';
@@ -21,17 +24,58 @@ class PageResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
+            ->columns(3)
             ->schema([
-                Forms\Components\TextInput::make('title')
-                    ->required(),
-                Forms\Components\TextInput::make('url')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('image')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('content')
-                    ->required(),
+                Forms\Components\Group::make()
+                    ->columnSpan(2)
+                    ->schema([
+                        Forms\Components\Card::make()
+                            ->schema([
+                                Forms\Components\Grid::make()
+                                    ->schema([
+                                        Forms\Components\TextInput::make('title')
+                                            ->required(),
+                                        Forms\Components\TextInput::make('url')
+                                            ->required()
+                                            ->prefix(config('app.url').'/')
+                                            ->maxLength(255),
+                                    ]),
+                            ]),
+
+                        Forms\Components\Card::make()
+                            ->schema([
+                                Forms\Components\Grid::make()
+                                    ->schema([
+                                        Forms\Components\SpatieMediaLibraryFileUpload::make('image')
+                                            ->required()
+                                            ->columnSpan(2)
+                                            ->image(),
+                                    ]),
+                            ]),
+
+                        Forms\Components\Card::make()
+                            ->schema([
+                                Forms\Components\Builder::make('content')
+                                    ->blocks([
+                                        Forms\Components\Builder\Block::make('paragraph')
+                                            ->schema([
+                                                Forms\Components\TextInput::make('title'),
+                                                Forms\Components\MarkdownEditor::make('content'),
+                                            ]),
+                                        Forms\Components\Builder\Block::make('youtube_video')
+                                            ->schema([
+                                                Forms\Components\TextInput::make('title'),
+                                                Forms\Components\TextInput::make('url'),
+                                            ]),
+                                    ]),
+                            ]),
+                    ]),
+
+                Forms\Components\Group::make()
+                    ->columnSpan(1)
+                    ->schema([
+                        TimestampCard::make(),
+                    ]),
             ]);
     }
 
