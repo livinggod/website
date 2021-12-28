@@ -50,6 +50,15 @@ class PostResource extends Resource
                             ]),
                         Forms\Components\Card::make()
                             ->schema([
+                                Forms\Components\Grid::make()
+                                    ->schema([
+                                        Forms\Components\SpatieMediaLibraryFileUpload::make('image')
+                                            ->columnSpan(2)
+                                            ->image(),
+                                    ]),
+                            ]),
+                        Forms\Components\Card::make()
+                            ->schema([
                                 Forms\Components\Builder::make('content')
                                     ->blocks([
                                         Forms\Components\Builder\Block::make('paragraph')
@@ -76,15 +85,6 @@ class PostResource extends Resource
                                 Forms\Components\BelongsToSelect::make('topic_id')
                                     ->relationship('topic', 'name')
                                     ->required(),
-                            ]),
-                        Forms\Components\Card::make()
-                            ->schema([
-                                Forms\Components\Grid::make()
-                                    ->schema([
-                                        Forms\Components\SpatieMediaLibraryFileUpload::make('image')
-                                            ->columnSpan(2)
-                                            ->image(),
-                                    ]),
                             ]),
                         Forms\Components\Card::make()
                             ->schema([
