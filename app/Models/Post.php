@@ -38,8 +38,6 @@ class Post extends Model implements HasMedia
 
     protected $guarded = [];
 
-    public bool $useFallback = true;
-
     protected $casts = [
         'publish_at' => 'datetime',
         'locales' => 'collection',

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Traits\ConvertsToWebp;
 use Artesaos\SEOTools\Facades\SEOTools;
+use Filament\Models\Contracts\FilamentUser;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -21,18 +22,20 @@ use Spatie\Translatable\HasTranslations;
  * @property string $name
  * @property string $bio
  */
-class User extends Authenticatable implements HasMedia
+class User extends Authenticatable implements HasMedia, FilamentUser
 {
-    use HasFactory;
-    use HasRoles;
-    use Notifiable;
     use HasSlug;
+    use HasRoles;
+    use HasFactory;
+    use Notifiable;
     use HasTranslations;
     use InteractsWithMedia;
 
     public string $imageProperty = 'avatar';
 
-    public array $translatable = ['bio'];
+    public array $translatable = [
+        'bio'
+    ];
 
     protected $fillable = [
         'name',
@@ -50,7 +53,7 @@ class User extends Authenticatable implements HasMedia
 
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'super_admin' => 'boolean',
+        'super_admin'       => 'boolean',
     ];
 
     protected $with = [
@@ -74,7 +77,7 @@ class User extends Authenticatable implements HasMedia
         SEOTools::opengraph()->setUrl(url()->current());
         SEOTools::setCanonical(url()->current());
         SEOTools::twitter()->setSite('@livinggodnet');
-        SEOTools::jsonLd()->addImage(asset('storage/' . $this->avatar));
+        SEOTools::jsonLd()->addImage(asset('storage/'.$this->avatar));
     }
 
     public function canImpersonate(self $impersonated = null): bool
@@ -96,10 +99,15 @@ class User extends Authenticatable implements HasMedia
 
     public function registerMediaConversions(Media $media = null): void
     {
-        $this->addMediaConversion('optimized')
-            ->width(368)
-            ->height(232)
+        $this->addMediaConversion('card')
+            ->width(80)
+            ->height(80)
             ->format('webp')
-            ->sharpen(10);
+            ->performOnCollections();
+    }
+
+    public function canAccessFilament(): bool
+    {
+        return true;
     }
 }

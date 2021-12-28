@@ -35,6 +35,7 @@ class UserResource extends Resource
                     ->required()
                     ->maxLength(255),
                 Forms\Components\MarkdownEditor::make('bio')
+                    ->nullable()
                     ->columnSpan(2),
                 Forms\Components\Toggle::make('show_email')
                     ->columnSpan(2)
