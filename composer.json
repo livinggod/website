@@ -16,6 +16,10 @@
         "blade-ui-kit/blade-heroicons": "^1.2",
         "davidhsianturi/blade-bootstrap-icons": "^1.0",
         "fideloper/proxy": "^4.4",
+        "filament/filament": "^2.0",
+        "filament/spatie-laravel-media-library-plugin": "^2.0",
+        "filament/spatie-laravel-settings-plugin": "^2.0",
+        "filament/spatie-laravel-translatable-plugin": "^2.0",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "kabbouchi/nova-impersonate": "^1.7",
@@ -76,7 +80,10 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "platform": {
+            "php": "8.0.13"
+        }
     },
     "extra": {
         "laravel": {

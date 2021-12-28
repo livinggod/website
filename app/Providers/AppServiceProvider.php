@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Domain\SendPortal\Integrations\SendPortal;
 use App\Models\Post;
 use App\Observers\PostObserver;
+use Filament\Facades\Filament;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\App;
@@ -34,6 +35,11 @@ class AppServiceProvider extends ServiceProvider
         Post::observe(PostObserver::class);
         Model::preventLazyLoading(app()->isLocal());
 
+        $this->loadDirectives();
+    }
+
+    public function loadDirectives(): void
+    {
         $files = Storage::disk('app')->allFiles('Directives');
 
         foreach ($files as $file) {

@@ -15,6 +15,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cache;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Sluggable\HasTranslatableSlug;
 use Spatie\Sluggable\SlugOptions;
 use Spatie\Translatable\HasTranslations;
@@ -24,13 +26,13 @@ use Spatie\Translatable\HasTranslations;
  * @property string $description
  * @property Collection $locales
  */
-class Post extends Model
+class Post extends Model implements HasMedia
 {
     use HasFactory;
     use ConvertsToWebp;
     use HasTranslations;
-    use HasTranslatableSlug;
     use IsLocalizable;
+    use InteractsWithMedia;
 
     const WORDS_PER_MINUTE_FALLBACK = 150;
 
@@ -45,13 +47,10 @@ class Post extends Model
     ];
 
     protected $hidden = [
-        'created_at',
-        'updated_at',
-        'password',
+        'image'
     ];
 
     public array $translatable = ['title', 'description', 'content', 'slug'];
-
 
     protected $dispatchesEvents = [
         'saved' => PostSaved::class,
@@ -135,12 +134,5 @@ class Post extends Model
         SEOTools::opengraph()->addProperty('type', 'article');
         SEOTools::twitter()->setSite('@livinggodnet');
         SEOTools::jsonLd()->addImage(asset('storage/' . $this->image));
-    }
-
-    public function getSlugOptions(): SlugOptions
-    {
-        return SlugOptions::create()
-            ->generateSlugsFrom('title')
-            ->saveSlugsTo('slug');
     }
 }
