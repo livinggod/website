@@ -12,12 +12,12 @@ class TimestampCard
     {
         return Card::make()
             ->schema([
-                Placeholder::make('created_at')
-                    ->label('Created at')
-                    ->content(fn ($record): string => $record ? $record->created_at->diffForHumans() : '-'),
                 Placeholder::make('updated_at')
                     ->label('Last modified at')
                     ->content(fn ($record): string => $record ? $record->updated_at->diffForHumans() : '-'),
+                Placeholder::make('created_at')
+                    ->label('Created at')
+                    ->content(fn ($record): string => $record ? $record->created_at->diffForHumans() : '-'),
             ]);
     }
 }
