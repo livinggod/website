@@ -6,6 +6,7 @@ use Advoor\NovaEditorJs\NovaEditorJs;
 use App\Traits\ConvertsToWebp;
 use App\Traits\IsLocalizable;
 use Artesaos\SEOTools\Facades\SEOTools;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
@@ -18,12 +19,15 @@ use Spatie\Translatable\HasTranslations;
 class Page extends Model implements HasMedia
 {
     use HasFactory;
-    use ConvertsToWebp;
     use HasTranslations;
     use IsLocalizable;
     use InteractsWithMedia;
 
     protected $guarded = [];
+
+    protected $attributes = [
+        'image' => 'test', // TODO: remove image column
+    ];
 
     protected $hidden = [
         'image'
@@ -32,7 +36,7 @@ class Page extends Model implements HasMedia
     public array $translatable = ['title', 'content'];
 
     protected $casts = [
-        'locales' => 'array',
+        'content' => 'array',
     ];
 
     public function setMeta(): void
