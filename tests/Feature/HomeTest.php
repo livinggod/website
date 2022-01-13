@@ -14,7 +14,7 @@ class HomeTest extends TestCase
     /** @test */
     public function it_has_a_home_page(): void
     {
-        $this->actingAs(User::factory()->create(['super_admin' => true]));
+        $this->actingAs(User::factory()->superAdmin()->create());
 
         Post::factory()->create();
 

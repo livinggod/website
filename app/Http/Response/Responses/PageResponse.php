@@ -20,6 +20,6 @@ class PageResponse extends BaseResponse
 
     public function canHandleSlug(string $slug): bool
     {
-        return ($this->page = Page::where('url', '/'.$slug)->localized()->first()) !== null;
+        return ($this->page = Page::query()->where('url', '/'.$slug)->localized()->first()) !== null;
     }
 }

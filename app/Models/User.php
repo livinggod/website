@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Traits\ConvertsToWebp;
 use Artesaos\SEOTools\Facades\SEOTools;
+use Database\Factories\UserFactory;
 use Filament\Models\Contracts\FilamentUser;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -21,6 +22,8 @@ use Spatie\Translatable\HasTranslations;
 /**
  * @property string $name
  * @property string $bio
+ *
+ * @method static UserFactory factory(...$parameters)
  */
 class User extends Authenticatable implements HasMedia, FilamentUser
 {
@@ -109,5 +112,10 @@ class User extends Authenticatable implements HasMedia, FilamentUser
     public function canAccessFilament(): bool
     {
         return true;
+    }
+
+    public function newFactory(): UserFactory
+    {
+        return new UserFactory();
     }
 }
