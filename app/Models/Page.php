@@ -37,6 +37,7 @@ class Page extends Model implements HasMedia
 
     protected $casts = [
         'content' => 'array',
+        'locales' => 'array'
     ];
 
     public function setMeta(): void
