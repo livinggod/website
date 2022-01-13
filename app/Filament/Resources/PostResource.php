@@ -81,12 +81,14 @@ class PostResource extends Resource
                             ->schema([
                                 Forms\Components\BelongsToSelect::make('user_id')
                                     ->relationship('user', 'name')
+                                    ->disabled(fn () => ! request()->user()->can('change-author'))
                                     ->required(),
                                 Forms\Components\BelongsToSelect::make('topic_id')
                                     ->relationship('topic', 'name')
                                     ->required(),
                             ]),
                         Forms\Components\Card::make()
+                            ->hidden(fn () => ! auth()->user()->can('publish-post'))
                             ->schema([
                                 Forms\Components\DateTimePicker::make('publish_at'),
                                 Forms\Components\Toggle::make('ready'),

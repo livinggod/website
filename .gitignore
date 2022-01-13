@@ -22,3 +22,5 @@ rr
 packages/*
 
 .envault.json
+
+Plugins/
