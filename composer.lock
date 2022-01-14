@@ -6313,12 +6313,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/reworck/filament-settings.git",
-                "reference": "723e8d9cc40ca24e371f2c67ec1290e4ba541316"
+                "reference": "7fb81a375c6a9338aec257d737e55d711c752048"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/reworck/filament-settings/zipball/723e8d9cc40ca24e371f2c67ec1290e4ba541316",
-                "reference": "723e8d9cc40ca24e371f2c67ec1290e4ba541316",
+                "url": "https://api.github.com/repos/reworck/filament-settings/zipball/7fb81a375c6a9338aec257d737e55d711c752048",
+                "reference": "7fb81a375c6a9338aec257d737e55d711c752048",
                 "shasum": ""
             },
             "require": {
@@ -6351,9 +6351,9 @@
             "description": "Manage your settings in filament for spatie/valuestore",
             "support": {
                 "issues": "https://github.com/reworck/filament-settings/issues",
-                "source": "https://github.com/reworck/filament-settings/tree/0.0.1"
+                "source": "https://github.com/reworck/filament-settings/tree/0.1.0"
             },
-            "time": "2022-01-07T22:07:29+00:00"
+            "time": "2022-01-14T20:08:43+00:00"
         },
         {
             "name": "reworck/laravel-image-resizer",
