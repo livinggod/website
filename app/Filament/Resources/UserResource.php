@@ -45,6 +45,8 @@ class UserResource extends Resource
                     ->required(),
                 Forms\Components\SpatieMediaLibraryFileUpload::make('avatar')
                     ->image(),
+
+                Forms\Components\BelongsToManyMultiSelect::make('user_roles')->relationship('roles', 'name')
             ]);
     }
 
