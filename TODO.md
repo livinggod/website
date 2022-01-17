@@ -5,4 +5,4 @@
     [] Remove '/' in url (auto script) 
 [] Blocks
 [] Settings
-
+test
