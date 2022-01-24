@@ -13,7 +13,7 @@ class Localize
     {
         if ($request->is('nova*')) {
             app()->setLocale(
-                cache()->get(optional(auth())->id().'.locale') ?? App::currentLocale()
+                cache()->get(auth()?->id().'.locale') ?? App::currentLocale()
             );
         } else {
             app()->setLocale(

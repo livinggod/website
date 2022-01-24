@@ -57,14 +57,16 @@ class PageResource extends Resource
                             ->schema([
                                 Forms\Components\Builder::make('content')
                                     ->blocks([
-                                        Forms\Components\Builder\Block::make('paragraph')
+                                        Forms\Components\Builder\Block::make('title')
                                             ->schema([
                                                 Forms\Components\TextInput::make('title'),
+                                            ]),
+                                        Forms\Components\Builder\Block::make('paragraph')
+                                            ->schema([
                                                 Forms\Components\MarkdownEditor::make('content'),
                                             ]),
                                         Forms\Components\Builder\Block::make('youtube_video')
                                             ->schema([
-                                                Forms\Components\TextInput::make('title'),
                                                 Forms\Components\TextInput::make('url'),
                                             ]),
                                     ]),

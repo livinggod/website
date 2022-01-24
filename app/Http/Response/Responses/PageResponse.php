@@ -11,15 +11,15 @@ class PageResponse extends BaseResponse
 
     public function handle(): View
     {
-            $this->page->setMeta();
+        $this->page->setMeta();
 
-            return view('page', [
-                'page' => $this->page
-            ]);
+        return view('page', [
+            'page' => $this->page,
+        ]);
     }
 
     public function canHandleSlug(string $slug): bool
     {
-        return ($this->page = Page::query()->where('url', '/'.$slug)->localized()->first()) !== null;
+        return ($this->page = Page::query()->where('url', $slug)->localized()->first()) !== null;
     }
 }

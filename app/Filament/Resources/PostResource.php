@@ -95,6 +95,9 @@ class PostResource extends Resource
                                 Forms\Components\DateTimePicker::make('publish_at'),
                                 Forms\Components\Toggle::make('ready'),
                                 Forms\Components\Toggle::make('highlight'),
+                                Forms\Components\CheckboxList::make('locales')->options(
+                                    collect(array_keys(config('localization.allowed_locales')))->mapWithKeys(fn ($locale) => [$locale => $locale])->toArray()
+                                ),
                             ]),
                         TimestampCard::make(),
                     ]),

@@ -14,11 +14,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Cache;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
-use Spatie\Sluggable\HasTranslatableSlug;
-use Spatie\Sluggable\SlugOptions;
 use Spatie\Translatable\HasTranslations;
 
 /**
@@ -75,7 +72,7 @@ class Post extends Model implements HasMedia
             return $builder;
         }
 
-        return $builder->where('locales->' . App::currentLocale(), true);
+        return $builder->whereJsonContains('locales', App::currentLocale());
     }
 
     public function canShow(): bool
@@ -90,6 +87,7 @@ class Post extends Model implements HasMedia
 
     public function calculateRead(): int
     {
+        return 0;
         $words = 0;
         $content = $this->getTranslation('content', app()->getLocale());
 
@@ -118,7 +116,7 @@ class Post extends Model implements HasMedia
 
     public static function getCachedLatestPosts(int $amount): Collection
     {
-        return Cache::remember('latest_articles_' . App::currentLocale() . '_' . $amount, now()->addHour(),
+        return cache()->remember('latest_articles_' . App::currentLocale() . '_' . $amount, now()->addHour(),
             fn () => Post::published()->localized()->orderBy('publish_at', 'desc')->take($amount)->get()
         );
     }
