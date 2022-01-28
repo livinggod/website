@@ -9,12 +9,12 @@ class Flexible
     public static function render(array $layouts): string
     {
         $html = '';
-        foreach ($layouts as $layout) {
-            $viewName = strtolower($layout['layout']);
-            $view = "flexible.layouts.{$viewName}";
+        foreach ($layouts as $component) {
+            $viewName = strtolower($component['type']);
+            $view = "flexible.components.{$viewName}";
 
             if (View::exists($view)) {
-                $html .= view($view, $layout['attributes']);
+                $html .= view($view, $component['data']);
             }
         }
 
