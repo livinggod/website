@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Cards\TimestampCard;
+use App\Filament\CustomFields\LocaleCheckbox;
 use App\Filament\Resources\PageResource\Pages;
 use App\Models\Page;
 use Filament\Forms;
@@ -77,6 +78,10 @@ class PageResource extends Resource
                     ->columnSpan(1)
                     ->schema([
                         TimestampCard::make(),
+                        Forms\Components\Card::make()
+                            ->schema([
+                                LocaleCheckbox::make(),
+                            ]),
                     ]),
             ]);
     }

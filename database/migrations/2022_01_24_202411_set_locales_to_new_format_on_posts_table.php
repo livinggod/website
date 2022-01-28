@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Post;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
@@ -12,18 +13,26 @@ return new class extends Migration
             'nl'
         ];
 
-        Post::query()->cursor()->each(function (Post $post) use ($localesToCheck) {
-            $locales = [];
+        $queries = [
+            Post::query(),
+            \App\Models\Page::query(),
+            \App\Models\Topic::query(),
+        ];
 
-            foreach ($localesToCheck as $checkLocale) {
-                if ($post->locales[$checkLocale] ?? false) {
-                    $locales[] = $checkLocale;
+        foreach ($queries as $query) {
+            $query->cursor()->each(function (Model $model) use ($localesToCheck) {
+                $locales = [];
+
+                foreach ($localesToCheck as $checkLocale) {
+                    if ($model->locales[$checkLocale] ?? false) {
+                        $locales[] = $checkLocale;
+                    }
                 }
-            }
 
-            $post->locales = $locales;
+                $model->locales = $locales;
 
-            $post->save();
-        });
+                $model->save();
+            });
+        }
     }
 };
