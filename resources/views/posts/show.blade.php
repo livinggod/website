@@ -23,7 +23,7 @@
                             class="mt-2 block text-center leading-8 tracking-tight text-gray-400 text-base sm:text-lg">{{ $post->description }}</span>
                     </h1>
 
-                    <img class="mx-auto rounded-lg" src="{{ asset('storage/' . $post->image) }}" alt="">
+                    <img class="mx-auto rounded-lg" src="{{ $post->getFirstMedia()->getUrl() }}" alt="">
 
                     <div class="flex m-0">
                         <img class="w-12 h-12 md:w-14 md:h-14 object-cover rounded-full"
@@ -36,11 +36,7 @@
                     </div>
 
                     <div id="article-content">
-                        @if(is_array($post->content))
-                            @flexible($post->content)
-                        @else
-                            {!! \Advoor\NovaEditorJs\NovaEditorJs::generateHtmlOutput($post->content) !!}
-                        @endif
+                        @flexible($post->content)
                     </div>
                 </article>
             </div>
