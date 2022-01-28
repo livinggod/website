@@ -25,26 +25,16 @@ return new class extends Migration {
                         }
 
                         foreach ($content as $block) {
-                            if (isset($block['type']) || $block['layout'] ?? '' !== 'wysiwyg') {
+                            if (isset($block['type']) || (isset($block['layout']) && $block['layout'] ?? '' !== 'wysiwyg')) {
                                 continue; // already converted
                             }
 
                             if (isset($block['attributes']['title'])) {
-                                $newContent[] = [
-                                    'data' => [
-                                        'title' => $block['attributes']['title'],
-                                    ],
-                                    'type' => 'title',
-                                ];
+                                $newContent[] = '# '.$block['attributes']['title'];
                             }
 
                             if (isset($block['attributes']['content'])) {
-                                $newContent[] = [
-                                    'data' => [
-                                        'content' => $block['attributes']['content'],
-                                    ],
-                                    'type' => 'paragraph',
-                                ];
+                                $newContent[] = $block['attributes']['content'];
                             }
                         }
                     } else {
@@ -61,37 +51,33 @@ return new class extends Migration {
 
                             if (isset($block['data']['style'])) { // Bullet lists
                                 foreach ($block['data']['items'] as $item) {
-                                    $newContent[] = [
-                                        'data' => [
-                                            'content' => '* '.$item,
-                                        ],
-                                        'type' => 'paragraph',
-                                    ];
+                                    $newContent[] = '* '.$item;
                                 }
 
                                 continue;
                             }
 
                             if (isset($block['data']['file'])) { // files
-                                $newContent[] = [
-                                    'data' => [
-                                        'content' => "![image]({$block['data']['file']['url']})",
-                                    ],
-                                    'type' => 'paragraph',
-                                ];
+                                $newContent[] = "![image]({$block['data']['file']['url']})";
 
                                 continue;
                             }
 
-                            $newContent[] = [
-                                'data' => [
-                                    'content' => $block['data']['text'],
-                                ],
-                                'type' => 'paragraph',
-                            ];
+                            $newContent[] = $block['data']['text'];
                         }
                     }
-                    $model->setTranslation('content', $locale, $newContent);
+
+                    $newContent = array_map(fn (string $item) => \Illuminate\Support\Str::replace('\n', ' ', $item), $newContent);
+
+                    $final = [
+                        [
+                            'data' => [
+                                'content' => implode(PHP_EOL.PHP_EOL, $newContent),
+                            ],
+                            'type' => 'paragraph',
+                        ],
+                    ];
+                    $model->setTranslation('content', $locale, $final);
                 }
 
                 $model->save();
