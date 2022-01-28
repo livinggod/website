@@ -8,12 +8,12 @@
                 <article class="text-lg max-w-prose leading-9 mx-auto">
 
                     <div class="relative min-h-[400px]">
-                        <img class="mx-auto rounded-lg" src="{{ asset('storage/resizes/700x700/' . $page->image) }}" alt="">
+                        <img class="mx-auto rounded-lg" src="{{ $page->getFirstMedia()->getUrl() }}" alt="">
                         <div class="absolute inset-0 bg-gradient-to-t from-black rounded-lg"></div>
                         <p class="absolute bottom-0 left-0 text-white font-bold text-2xl md:text-4xl mx-6">{{ $page->title }}</p>
                     </div>
 
-                    {!! \Advoor\NovaEditorJs\NovaEditorJs::generateHtmlOutput($page->content) !!}
+                    @flexible($page->content)
                 </article>
             </div>
         </div>

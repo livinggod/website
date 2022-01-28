@@ -51,6 +51,6 @@ class Page extends Model implements HasMedia
         SEOTools::opengraph()->setUrl(url()->current());
         SEOTools::setCanonical(url()->current());
         SEOTools::twitter()->setSite('@livinggodnet');
-        SEOTools::jsonLd()->addImage(asset('storage/' . $this->image));
+        SEOTools::jsonLd()->addImage($this->getFirstMedia()->getUrl());
     }
 }

@@ -129,6 +129,6 @@ class Post extends Model implements HasMedia
         SEOTools::setCanonical(url()->current());
         SEOTools::opengraph()->addProperty('type', 'article');
         SEOTools::twitter()->setSite('@livinggodnet');
-        SEOTools::jsonLd()->addImage(asset('storage/' . $this->image));
+        SEOTools::jsonLd()->addImage($this->getFirstMedia()->getUrl());
     }
 }

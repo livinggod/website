@@ -7,7 +7,7 @@
                     <a class="absolute w-full h-full z-20" href="{{ route('page', $highlight->slug) }}"></a>
                     <div class="flex flex-col md:flex-row md:min-h-80 lg:min-h-120">
                         <img class="md:hidden rounded-t-lg md:rounded-r-lg h-15 w-full object-cover"
-                             src="{{ asset('storage/resizes/800/' . $highlight->image) }}"
+                             src="{{ $highlight->getFirstMedia()?->getUrl() }}"
                              alt="{{ $highlight->title }}">
                         <div
                             class="md:w-1/2 md:px-20 p-4 -mt-2 bg-white rounded-lg md:rounded-l-lg flex flex-col justify-between">
@@ -19,7 +19,7 @@
                             <div class="flex mt-2 mb-4">
                                 <a href="{{ route('page', $highlight->user->slug) }}">
                                     <img class="relative w-8 h-8 z-30 md:w-10 md:h-10 object-cover rounded-full"
-                                         src="{{ asset('storage/resizes/80x80/'.$highlight->user->avatar) }}"
+                                         src="{{ $highlight->user->getFirstMedia()->getUrl() }}"
                                          alt="{{ $highlight->user->name }}">
                                 </a>
                                 <div class="ml-4">
@@ -44,7 +44,7 @@
                                 <path d="M136.5 0H30H0V400H30L136.5 0Z" fill="white"/>
                             </svg>
                             <img class="rounded-r-lg h-full w-full object-cover absolute"
-                                 src="{{ asset('storage/resizes/800x600/' . $highlight->image) }}"
+                                 src="{{ $highlight->getFirstMedia()?->getUrl() }}"
                                  alt="{{ $highlight->title }}">
                         </div>
                     </div>

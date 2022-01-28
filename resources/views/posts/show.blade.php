@@ -27,7 +27,7 @@
 
                     <div class="flex m-0">
                         <img class="w-12 h-12 md:w-14 md:h-14 object-cover rounded-full"
-                             src="{{ asset('storage/resizes/500x500/'.$post->user->avatar) }}"
+                             src="{{ $post->user->getFirstMedia()->getUrl() }}"
                              alt="{{ $post->user->name }}">
                         <div class="text-sm md:text-base ml-4 self-center">
                             @lang('Written by'): <a href="{{ route('page', $post->user->slug) }}" class="">{{ $post->user->name }}</a><br>

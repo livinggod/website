@@ -61,6 +61,7 @@ class User extends Authenticatable implements HasMedia, FilamentUser
 
     protected $with = [
         'roles',
+        'media'
     ];
 
     public function posts(): HasMany
@@ -80,7 +81,7 @@ class User extends Authenticatable implements HasMedia, FilamentUser
         SEOTools::opengraph()->setUrl(url()->current());
         SEOTools::setCanonical(url()->current());
         SEOTools::twitter()->setSite('@livinggodnet');
-        SEOTools::jsonLd()->addImage(asset('storage/'.$this->avatar));
+        SEOTools::jsonLd()->addImage($this->getFirstMedia()->getUrl());
     }
 
     public function canImpersonate(self $impersonated = null): bool
