@@ -46,6 +46,13 @@ class AppServiceProvider extends ServiceProvider
             TextInput::make('facebook_social')->url(),
             TextInput::make('instagram_social')->url(),
         ]);
+
+        Filament::registerNavigationGroups([
+            'Content',
+            'Blog',
+            'Filament Shield',
+            'Settings',
+        ]);
     }
 
     public function loadDirectives(): void
