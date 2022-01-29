@@ -7,5 +7,7 @@ use Filament\Resources\Pages\CreateRecord;
 
 class CreateBlock extends CreateRecord
 {
+    use CreateRecord\Concerns\Translatable;
+
     protected static string $resource = BlockResource::class;
 }

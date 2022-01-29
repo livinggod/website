@@ -44,6 +44,8 @@ class PostResource extends Resource
                                             ->columnSpan(2)
                                             ->disabled()
                                             ->required()
+                                            ->prefix(config('app.url').'/')
+                                            ->maxLength(255)
                                             ->unique(Post::class, 'slug', fn ($record) => $record),
                                         Forms\Components\TextInput::make('description')
                                             ->columnSpan('full'),

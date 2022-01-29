@@ -41,6 +41,8 @@ class TopicResource extends Resource
                                 Forms\Components\TextInput::make('slug')
                                     ->disabled()
                                     ->required()
+                                    ->prefix(config('app.url').'/')
+                                    ->maxLength(255)
                                     ->unique(Topic::class, 'slug', fn ($record) => $record),
                                 Forms\Components\Textarea::make('description')
                                     ->columnSpan(2),

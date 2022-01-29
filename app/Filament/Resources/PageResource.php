@@ -39,10 +39,10 @@ class PageResource extends Resource
                                         Forms\Components\TextInput::make('url')
                                             ->required()
                                             ->prefix(config('app.url').'/')
-                                            ->maxLength(255),
+                                            ->maxLength(255)
+                                            ->unique(Page::class, 'slug', fn ($record) => $record),
                                     ]),
                             ]),
-
                         Forms\Components\Card::make()
                             ->schema([
                                 Forms\Components\Grid::make()
@@ -108,9 +108,9 @@ class PageResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListPages::route('/'),
+            'index'  => Pages\ListPages::route('/'),
             'create' => Pages\CreatePage::route('/create'),
-            'edit' => Pages\EditPage::route('/{record}/edit'),
+            'edit'   => Pages\EditPage::route('/{record}/edit'),
         ];
     }
 }
