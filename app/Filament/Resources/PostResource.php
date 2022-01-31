@@ -12,6 +12,7 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
 
 class PostResource extends Resource
@@ -135,5 +136,17 @@ class PostResource extends Resource
             'create' => Pages\CreatePost::route('/create'),
             'edit'   => Pages\EditPost::route('/{record}/edit'),
         ];
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()
+            ->with('user')
+            ->when(
+                ! auth()->user()->isSuperAdmin()
+                || auth()->user()->can('view-posts'),
+                fn (Builder $builder) =>
+                    $builder->whereBelongsTo(auth()->user())
+            );
     }
 }

@@ -35,11 +35,10 @@ class TopicResource extends Resource
                             ->columns(2)
                             ->schema([
                                 Forms\Components\TextInput::make('name')
-                                    ->required()
-                                    ->reactive()
-                                    ->afterStateUpdated(fn ($state, callable $set) => $set('slug', Str::slug($state))),
+                                    ->required(),
                                 Forms\Components\TextInput::make('slug')
-                                    ->disabled()
+                                    ->disabled(fn ($record) => ! is_null($record))
+                                    ->helperText(__("Can't be changed later after creating"))
                                     ->required()
                                     ->prefix(config('app.url').'/')
                                     ->maxLength(255)

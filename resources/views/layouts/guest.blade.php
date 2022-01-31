@@ -43,5 +43,8 @@
 <x-footer/>
 @include('cookieConsent::index')
 <livewire:scripts />
+<div class="relative z-50">
+    <x-impersonate::banner />
+</div>
 </body>
 </html>

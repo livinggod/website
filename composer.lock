@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2bcfa5733533731ccf089f45f1197209",
+    "content-hash": "c365bae4d265026030108d28be098e74",
     "packages": [
         {
             "name": "advoor/nova-editor-js",
@@ -2801,52 +2801,6 @@
                 }
             ],
             "time": "2021-12-16T16:49:26+00:00"
-        },
-        {
-            "name": "kabbouchi/nova-impersonate",
-            "version": "v1.10.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/KABBOUCHI/nova-impersonate.git",
-                "reference": "0c6cff8a2dcc6597d438850849b836e49b945876"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/KABBOUCHI/nova-impersonate/zipball/0c6cff8a2dcc6597d438850849b836e49b945876",
-                "reference": "0c6cff8a2dcc6597d438850849b836e49b945876",
-                "shasum": ""
-            },
-            "require": {
-                "lab404/laravel-impersonate": "^1.4.1",
-                "php": ">=7.1.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "KABBOUCHI\\NovaImpersonate\\ToolServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "KABBOUCHI\\NovaImpersonate\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "A Laravel Nova field allows you to authenticate as your users.",
-            "keywords": [
-                "laravel",
-                "nova"
-            ],
-            "support": {
-                "issues": "https://github.com/KABBOUCHI/nova-impersonate/issues",
-                "source": "https://github.com/KABBOUCHI/nova-impersonate/tree/v1.10.0"
-            },
-            "time": "2021-11-13T13:45:08+00:00"
         },
         {
             "name": "lab404/laravel-impersonate",
@@ -6243,12 +6197,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/reworck/filament-settings.git",
-                "reference": "7fb81a375c6a9338aec257d737e55d711c752048"
+                "reference": "1e2b0cdeb0c3584c46bfa1f00911daf39682e48b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/reworck/filament-settings/zipball/7fb81a375c6a9338aec257d737e55d711c752048",
-                "reference": "7fb81a375c6a9338aec257d737e55d711c752048",
+                "url": "https://api.github.com/repos/reworck/filament-settings/zipball/1e2b0cdeb0c3584c46bfa1f00911daf39682e48b",
+                "reference": "1e2b0cdeb0c3584c46bfa1f00911daf39682e48b",
                 "shasum": ""
             },
             "require": {
@@ -6281,9 +6235,9 @@
             "description": "Manage your settings in filament for spatie/valuestore",
             "support": {
                 "issues": "https://github.com/reworck/filament-settings/issues",
-                "source": "https://github.com/reworck/filament-settings/tree/0.1.0"
+                "source": "https://github.com/reworck/filament-settings/tree/0.2.0"
             },
-            "time": "2022-01-14T20:08:43+00:00"
+            "time": "2022-01-31T21:14:07+00:00"
         },
         {
             "name": "shuvroroy/filament-spatie-laravel-backup",
@@ -8141,6 +8095,50 @@
                 }
             ],
             "time": "2021-12-03T16:51:45+00:00"
+        },
+        {
+            "name": "stechstudio/filament-impersonate",
+            "version": "2.4.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/stechstudio/filament-impersonate.git",
+                "reference": "ea1b43fad35c0d100fae7e55f13552a53b49fa47"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/stechstudio/filament-impersonate/zipball/ea1b43fad35c0d100fae7e55f13552a53b49fa47",
+                "reference": "ea1b43fad35c0d100fae7e55f13552a53b49fa47",
+                "shasum": ""
+            },
+            "require": {
+                "lab404/laravel-impersonate": "^1.7"
+            },
+            "require-dev": {
+                "filament/filament": "^2.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "STS\\FilamentImpersonate\\FilamentImpersonateServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "STS\\FilamentImpersonate\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Filament record action that allows you to impersonate your users.",
+            "support": {
+                "issues": "https://github.com/stechstudio/filament-impersonate/issues",
+                "source": "https://github.com/stechstudio/filament-impersonate/tree/2.4.2"
+            },
+            "time": "2022-01-21T00:54:13+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

@@ -10,6 +10,7 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use STS\FilamentImpersonate\Impersonate;
 
 class UserResource extends Resource
 {
@@ -61,6 +62,9 @@ class UserResource extends Resource
             ])
             ->filters([
                 //
+            ])
+            ->prependActions([
+                Impersonate::make('impersonate'),
             ]);
     }
 

@@ -4,11 +4,10 @@ namespace App\Models;
 
 use App\Traits\IsLocalizable;
 use Artesaos\SEOTools\Facades\SEOTools;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Spatie\Sluggable\HasSlug;
-use Spatie\Sluggable\SlugOptions;
 use Spatie\Translatable\HasTranslations;
 
 /**
@@ -17,7 +16,9 @@ use Spatie\Translatable\HasTranslations;
  */
 class Topic extends Model
 {
-    use HasFactory, HasSlug, HasTranslations, IsLocalizable;
+    use HasFactory;
+    use HasTranslations;
+    use IsLocalizable;
 
     protected $guarded = [];
 
@@ -32,9 +33,11 @@ class Topic extends Model
         return $this->hasMany(Post::class);
     }
 
-    public function setNameAttribute(string $value = null): void
+    public function name(): Attribute
     {
-        $this->attributes['name'] = ucwords($value);
+        return new Attribute(
+            set: fn ($value) => ucwords($value)
+        );
     }
 
     public function setMeta(): void
@@ -44,12 +47,5 @@ class Topic extends Model
         SEOTools::opengraph()->setUrl(url()->current());
         SEOTools::setCanonical(url()->current());
         SEOTools::twitter()->setSite('@livinggodnet');
-    }
-
-    public function getSlugOptions(): SlugOptions
-    {
-        return SlugOptions::create()
-            ->generateSlugsFrom('name')
-            ->saveSlugsTo('slug');
     }
 }

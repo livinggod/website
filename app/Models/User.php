@@ -61,6 +61,7 @@ class User extends Authenticatable implements HasMedia, FilamentUser
 
     protected $with = [
         'roles',
+        'permissions',
         'media'
     ];
 
@@ -89,7 +90,7 @@ class User extends Authenticatable implements HasMedia, FilamentUser
         return $this->isSuperAdmin() || $this->hasRole('admin');
     }
 
-    public function canBeImpersonated(?\Illuminate\Contracts\Auth\Authenticatable $impersonator = null): bool
+    public function canBeImpersonated(): bool
     {
         return ! $this->isSuperAdmin();
     }
@@ -118,5 +119,10 @@ class User extends Authenticatable implements HasMedia, FilamentUser
     public function newFactory(): UserFactory
     {
         return new UserFactory();
+    }
+
+    public function canManageSettings(): bool
+    {
+        return $this->isSuperAdmin() || $this->can('manage-settings');
     }
 }

@@ -38,9 +38,11 @@ class PageResource extends Resource
                                             ->required(),
                                         Forms\Components\TextInput::make('url')
                                             ->required()
+                                            ->disabled(fn (?Page $record) => ! is_null($record))
                                             ->prefix(config('app.url').'/')
                                             ->maxLength(255)
-                                            ->unique(Page::class, 'slug', fn ($record) => $record),
+                                            ->helperText(__("Can't be changed later after creating"))
+                                            ->unique(Page::class, 'url', fn ($record) => $record),
                                     ]),
                             ]),
                         Forms\Components\Card::make()
