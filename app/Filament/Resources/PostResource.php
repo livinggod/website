@@ -144,7 +144,7 @@ class PostResource extends Resource
             ->with('user')
             ->when(
                 ! auth()->user()->isSuperAdmin()
-                || auth()->user()->can('view-posts'),
+                || ! auth()->user()->can('view-posts'),
                 fn (Builder $builder) =>
                     $builder->whereBelongsTo(auth()->user())
             );
