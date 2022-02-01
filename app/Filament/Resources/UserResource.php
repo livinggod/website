@@ -43,6 +43,7 @@ class UserResource extends Resource
                     ->required(),
                 Forms\Components\Toggle::make('super_admin')
                     ->columnSpan(2)
+                    ->visible(auth()->user()->isSuperAdmin())
                     ->required(),
                 Forms\Components\SpatieMediaLibraryFileUpload::make('avatar')
                     ->image(),
@@ -58,7 +59,6 @@ class UserResource extends Resource
                 Tables\Columns\SpatieMediaLibraryImageColumn::make('avatar'),
                 Tables\Columns\TextColumn::make('name'),
                 Tables\Columns\TextColumn::make('email'),
-                Tables\Columns\BooleanColumn::make('super_admin'),
             ])
             ->filters([
                 //
