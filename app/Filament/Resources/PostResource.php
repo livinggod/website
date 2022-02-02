@@ -110,7 +110,6 @@ class PostResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('image'),
                 Tables\Columns\TextColumn::make('title'),
                 Tables\Columns\TextColumn::make('publish_at')
                     ->dateTime(),
