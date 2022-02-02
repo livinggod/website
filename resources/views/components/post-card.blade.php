@@ -41,7 +41,7 @@
         <div class="mt-2 md:mt-6 flex w-full">
             <a class="hidden md:block relative z-10" href="{{ route('page', $post->user->slug) }}">
                 <img class="w-8 h-8 md:w-10 md:h-10 object-cover rounded-full"
-                     src="{{ $post->user->getFirstMedia()->getUrl() }}"
+                     src="{{ $post->user->getFirstMedia()?->getUrl() }}"
                      alt="">
             </a>
 
