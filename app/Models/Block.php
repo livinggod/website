@@ -9,9 +9,12 @@ use Spatie\Translatable\HasTranslations;
 
 class Block extends Model
 {
-    use HasFactory, HasTranslations;
+    use HasFactory;
+    use HasTranslations;
 
     public array $translatable = ['content'];
+
+    protected $guarded = [];
 
     public static function getCachedByCode(string $code): string
     {

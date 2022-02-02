@@ -4,11 +4,16 @@ namespace App\Models;
 
 use App\Traits\ConvertsToWebp;
 use Artesaos\SEOTools\Facades\SEOTools;
+use Database\Factories\UserFactory;
+use Filament\Models\Contracts\FilamentUser;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Permission\Traits\HasRoles;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
@@ -17,19 +22,23 @@ use Spatie\Translatable\HasTranslations;
 /**
  * @property string $name
  * @property string $bio
+ *
+ * @method static UserFactory factory(...$parameters)
  */
-class User extends Authenticatable
+class User extends Authenticatable implements HasMedia, FilamentUser
 {
-    use HasFactory;
-    use HasRoles;
-    use Notifiable;
-    use ConvertsToWebp;
     use HasSlug;
+    use HasRoles;
+    use HasFactory;
+    use Notifiable;
     use HasTranslations;
+    use InteractsWithMedia;
 
     public string $imageProperty = 'avatar';
 
-    public array $translatable = ['bio'];
+    public array $translatable = [
+        'bio'
+    ];
 
     protected $fillable = [
         'name',
@@ -47,11 +56,13 @@ class User extends Authenticatable
 
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'super_admin' => 'boolean',
+        'super_admin'       => 'boolean',
     ];
 
     protected $with = [
         'roles',
+        'permissions',
+        'media'
     ];
 
     public function posts(): HasMany
@@ -71,7 +82,17 @@ class User extends Authenticatable
         SEOTools::opengraph()->setUrl(url()->current());
         SEOTools::setCanonical(url()->current());
         SEOTools::twitter()->setSite('@livinggodnet');
-        SEOTools::jsonLd()->addImage(asset('storage/' . $this->avatar));
+        SEOTools::jsonLd()->addImage($this->getFirstMedia()->getUrl());
+    }
+
+    public function canImpersonate(self $impersonated = null): bool
+    {
+        return $this->isSuperAdmin() || $this->hasRole('admin');
+    }
+
+    public function canBeImpersonated(): bool
+    {
+        return ! $this->isSuperAdmin();
     }
 
     public function getSlugOptions(): SlugOptions
@@ -81,13 +102,32 @@ class User extends Authenticatable
             ->saveSlugsTo('slug');
     }
 
-    public function canImpersonate(self $impersonated = null): bool
+    public function registerMediaConversions(Media $media = null): void
     {
-        return $this->isSuperAdmin() || $this->hasRole('admin');
+        $this->addMediaConversion('card')
+            ->width(80)
+            ->height(80)
+            ->format('webp')
+            ->performOnCollections();
     }
 
-    public function canBeImpersonated(?\Illuminate\Contracts\Auth\Authenticatable $impersonator = null): bool
+    public function canAccessFilament(): bool
     {
-        return ! $this->isSuperAdmin();
+        return true;
+    }
+
+    public function newFactory(): UserFactory
+    {
+        return new UserFactory();
+    }
+
+    public function canManageSettings(): bool
+    {
+        return $this->isSuperAdmin() || $this->can('manage-settings');
+    }
+
+    public function canManageBackups(): bool
+    {
+        return $this->isSuperAdmin() || $this->can('manage-backups');
     }
 }

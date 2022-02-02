@@ -11,7 +11,7 @@ class ArticlesResponse extends BaseResponse
     public function handle(): View
     {
         return view('posts.index', [
-            'articles' => Post::with('topic', 'user')->published()->localized()->orderBy('publish_at', 'desc')->paginate(12),
+            'articles' => Post::with('topic', 'user', 'media')->published()->localized()->orderBy('publish_at', 'desc')->paginate(12),
         ]);
     }
 

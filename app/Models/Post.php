@@ -14,44 +14,38 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Cache;
-use Spatie\Sluggable\HasTranslatableSlug;
-use Spatie\Sluggable\SlugOptions;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Translatable\HasTranslations;
 
 /**
- * @property string $title
- * @property string $description
+ * @property string     $title
+ * @property string     $description
  * @property Collection $locales
  */
-class Post extends Model
+class Post extends Model implements HasMedia
 {
     use HasFactory;
     use ConvertsToWebp;
     use HasTranslations;
-    use HasTranslatableSlug;
     use IsLocalizable;
+    use InteractsWithMedia;
 
     const WORDS_PER_MINUTE_FALLBACK = 150;
 
     protected $guarded = [];
 
-    public bool $useFallback = true;
-
     protected $casts = [
         'publish_at' => 'datetime',
-        'locales' => 'collection',
-        'content' => 'object',
+        'locales'    => 'collection',
+        'content'    => 'object',
     ];
 
     protected $hidden = [
-        'created_at',
-        'updated_at',
-        'password',
+        'image',
     ];
 
     public array $translatable = ['title', 'description', 'content', 'slug'];
-
 
     protected $dispatchesEvents = [
         'saved' => PostSaved::class,
@@ -78,7 +72,7 @@ class Post extends Model
             return $builder;
         }
 
-        return $builder->where('locales->' . App::currentLocale(), true);
+        return $builder->whereJsonContains('locales', App::currentLocale());
     }
 
     public function canShow(): bool
@@ -96,21 +90,15 @@ class Post extends Model
         $words = 0;
         $content = $this->getTranslation('content', app()->getLocale());
 
-        // Content is flexible
-        if (is_array($content)) {
-            $words = str_word_count(
-                strip_tags(
-                    Flexible::render($content)
-                )
-            );
-        } else {
-            foreach (optional(json_decode($content, true))['blocks'] ?? [] as $block) {
-                try {
-                    $words += str_word_count($block['data']['text']);
-                } catch (Exception $e) {
-                }
-            }
+        if (!is_array($content)) {
+            return 1;
         }
+
+        $words = str_word_count(
+            strip_tags(
+                Flexible::render($content)
+            )
+        );
 
         if (! $words) {
             return 1;
@@ -121,7 +109,7 @@ class Post extends Model
 
     public static function getCachedLatestPosts(int $amount): Collection
     {
-        return Cache::remember('latest_articles_' . App::currentLocale() . '_' . $amount, now()->addHour(),
+        return cache()->remember('latest_articles_'.App::currentLocale().'_'.$amount, now()->addHour(),
             fn () => Post::published()->localized()->orderBy('publish_at', 'desc')->take($amount)->get()
         );
     }
@@ -134,13 +122,6 @@ class Post extends Model
         SEOTools::setCanonical(url()->current());
         SEOTools::opengraph()->addProperty('type', 'article');
         SEOTools::twitter()->setSite('@livinggodnet');
-        SEOTools::jsonLd()->addImage(asset('storage/' . $this->image));
-    }
-
-    public function getSlugOptions(): SlugOptions
-    {
-        return SlugOptions::create()
-            ->generateSlugsFrom('title')
-            ->saveSlugsTo('slug');
+        SEOTools::jsonLd()->addImage($this->getFirstMedia()->getUrl());
     }
 }

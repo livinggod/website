@@ -44,8 +44,13 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/api.php'));
 
             Route::middleware('web')
-                ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
+
+//            foreach ([null, ...array_unique(config('filament-spatie-laravel-translatable-plugin.default_locales'))] as $locale) {
+//                Route::middleware('web')
+//                    ->namespace($this->namespace)
+//                    ->group(base_path('routes/web.php'));
+//            }
         });
     }
 

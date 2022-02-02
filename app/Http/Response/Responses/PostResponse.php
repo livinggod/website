@@ -41,21 +41,21 @@ class PostResponse extends BaseResponse
             return false;
         }
 
-        $currentLocaleSupported = ! $this->post->locales->filter()->only(App::currentLocale())->isEmpty();
-
-        if (! $currentLocaleSupported) {
-            $locale = $this->post->locales->filter()->keys()[0];
-
-            $this->redirectUrl = config("localization.allowed_locales.{$locale}.domain")."/{$this->post->getTranslation('slug', $locale)}";
-        } else {
-            // check if the given slug belongs to the locale
-
-            if (request()->path() !== $this->post->getTranslation('slug', App::currentLocale())) {
-                $locale = $this->post->locales->filter()->keys()[0];
-
-                $this->redirectUrl = config("localization.allowed_locales.{$locale}.domain")."/{$this->post->getTranslation('slug', $locale)}";
-            }
-        }
+//        $currentLocaleSupported = ! $this->post->locales->filter()->only(App::currentLocale())->isEmpty();
+//
+//        if (! $currentLocaleSupported) {
+//            $locale = $this->post->locales->filter()->keys()[0];
+//
+//            $this->redirectUrl = config("localization.allowed_locales.{$locale}.domain")."/{$this->post->getTranslation('slug', $locale)}";
+//        } else {
+//            // check if the given slug belongs to the locale
+//
+//            if (request()->path() !== $this->post->getTranslation('slug', App::currentLocale())) {
+//                $locale = $this->post->locales->filter()->keys()[0];
+//
+//                $this->redirectUrl = config("localization.allowed_locales.{$locale}.domain")."/{$this->post->getTranslation('slug', $locale)}";
+//            }
+//        }
 
         return true;
     }

@@ -1,3 +1,5 @@
+.DEFAULT_GOAL := control
+
 analyse:
 	./vendor/bin/phpstan analyse
 

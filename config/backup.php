@@ -1,12 +1,12 @@
 <?php
 
 use Spatie\Backup\Notifications\Notifiable;
-use Spatie\Backup\Notifications\Notifications\BackupHasFailed;
-use Spatie\Backup\Notifications\Notifications\BackupWasSuccessful;
-use Spatie\Backup\Notifications\Notifications\CleanupHasFailed;
-use Spatie\Backup\Notifications\Notifications\CleanupWasSuccessful;
-use Spatie\Backup\Notifications\Notifications\HealthyBackupWasFound;
-use Spatie\Backup\Notifications\Notifications\UnhealthyBackupWasFound;
+use Spatie\Backup\Notifications\Notifications\BackupHasFailedNotification;
+use Spatie\Backup\Notifications\Notifications\BackupWasSuccessfulNotification;
+use Spatie\Backup\Notifications\Notifications\CleanupHasFailedNotification;
+use Spatie\Backup\Notifications\Notifications\CleanupWasSuccessfulNotification;
+use Spatie\Backup\Notifications\Notifications\HealthyBackupWasFoundNotification;
+use Spatie\Backup\Notifications\Notifications\UnhealthyBackupWasFoundNotification;
 use Spatie\Backup\Tasks\Cleanup\Strategies\DefaultStrategy;
 use Spatie\Backup\Tasks\Monitor\HealthChecks\MaximumAgeInDays;
 use Spatie\Backup\Tasks\Monitor\HealthChecks\MaximumStorageInMegabytes;
@@ -29,7 +29,7 @@ return [
                  * The list of directories and files that will be included in the backup.
                  */
                 'include' => [
-                    base_path(),
+//                    base_path(),
                 ],
 
                 /*
@@ -127,7 +127,7 @@ return [
              * The disk names on which the backups will be stored.
              */
             'disks' => [
-                's3',
+                'local'
             ],
         ],
 
@@ -159,12 +159,12 @@ return [
     'notifications' => [
 
         'notifications' => [
-            BackupHasFailed::class => ['slack'],
-            UnhealthyBackupWasFound::class => ['slack'],
-            CleanupHasFailed::class => ['slack'],
-            BackupWasSuccessful::class => ['slack'],
-            HealthyBackupWasFound::class => ['slack'],
-            CleanupWasSuccessful::class => ['slack'],
+            BackupHasFailedNotification::class => ['slack'],
+            UnhealthyBackupWasFoundNotification::class => ['slack'],
+            CleanupHasFailedNotification::class => ['slack'],
+            BackupWasSuccessfulNotification::class => [],
+            HealthyBackupWasFoundNotification::class => [],
+            CleanupWasSuccessfulNotification::class => [],
         ],
 
         /*
@@ -205,7 +205,7 @@ return [
     'monitor_backups' => [
         [
             'name' => env('APP_NAME', 'laravel-backup'),
-            'disks' => ['s3'],
+            'disks' => ['local'],
             'health_checks' => [
                 MaximumAgeInDays::class => 1,
                 MaximumStorageInMegabytes::class => 5000,

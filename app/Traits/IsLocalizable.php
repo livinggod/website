@@ -11,6 +11,6 @@ trait IsLocalizable
 {
     public function scopeLocalized(Builder $builder): Builder
     {
-        return $builder->where('locales->' . App::currentLocale(), true);
+        return $builder->whereJsonContains('locales', app()->currentLocale());
     }
 }
