@@ -1,1 +1,1 @@
-{!! \Illuminate\Support\Str::markdown($content) !!}
+{!! \Illuminate\Support\Str::markdown($content ?? '') !!}

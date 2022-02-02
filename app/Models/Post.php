@@ -19,8 +19,8 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Translatable\HasTranslations;
 
 /**
- * @property string $title
- * @property string $description
+ * @property string     $title
+ * @property string     $description
  * @property Collection $locales
  */
 class Post extends Model implements HasMedia
@@ -37,12 +37,12 @@ class Post extends Model implements HasMedia
 
     protected $casts = [
         'publish_at' => 'datetime',
-        'locales' => 'collection',
-        'content' => 'object',
+        'locales'    => 'collection',
+        'content'    => 'object',
     ];
 
     protected $hidden = [
-        'image'
+        'image',
     ];
 
     public array $translatable = ['title', 'description', 'content', 'slug'];
@@ -87,25 +87,18 @@ class Post extends Model implements HasMedia
 
     public function calculateRead(): int
     {
-        return 0;
         $words = 0;
         $content = $this->getTranslation('content', app()->getLocale());
 
-        // Content is flexible
-        if (is_array($content)) {
-            $words = str_word_count(
-                strip_tags(
-                    Flexible::render($content)
-                )
-            );
-        } else {
-            foreach (optional(json_decode($content, true))['blocks'] ?? [] as $block) {
-                try {
-                    $words += str_word_count($block['data']['text']);
-                } catch (Exception $e) {
-                }
-            }
+        if (!is_array($content)) {
+            return 1;
         }
+
+        $words = str_word_count(
+            strip_tags(
+                Flexible::render($content)
+            )
+        );
 
         if (! $words) {
             return 1;
@@ -116,7 +109,7 @@ class Post extends Model implements HasMedia
 
     public static function getCachedLatestPosts(int $amount): Collection
     {
-        return cache()->remember('latest_articles_' . App::currentLocale() . '_' . $amount, now()->addHour(),
+        return cache()->remember('latest_articles_'.App::currentLocale().'_'.$amount, now()->addHour(),
             fn () => Post::published()->localized()->orderBy('publish_at', 'desc')->take($amount)->get()
         );
     }
