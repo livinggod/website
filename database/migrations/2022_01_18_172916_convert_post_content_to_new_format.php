@@ -25,7 +25,7 @@ return new class extends Migration {
                         }
 
                         foreach ($content as $block) {
-                            if (isset($block['type']) || (isset($block['layout']) && $block['layout'] ?? '' !== 'wysiwyg')) {
+                            if (isset($block['type']) || (isset($block['layout']) && ($block['layout'] ?? '') !== 'wysiwyg')) {
                                 continue; // already converted
                             }
 
@@ -77,6 +77,7 @@ return new class extends Migration {
                             'type' => 'paragraph',
                         ],
                     ];
+
                     $model->setTranslation('content', $locale, $final);
                 }
 

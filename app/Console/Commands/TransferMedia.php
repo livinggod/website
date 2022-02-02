@@ -1,12 +1,16 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
+namespace App\Console\Commands;
 
-return new class extends Migration
+use Illuminate\Console\Command;
+
+class TransferMedia extends Command
 {
-    public function up()
+    protected $signature = 'media:transform';
+
+    protected $description = 'Transform media to spatie media library';
+
+    public function handle()
     {
         $queries = [
             [\App\Models\Page::query(), 'image'],
@@ -26,4 +30,4 @@ return new class extends Migration
             });
         }
     }
-};
+}

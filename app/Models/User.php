@@ -125,4 +125,9 @@ class User extends Authenticatable implements HasMedia, FilamentUser
     {
         return $this->isSuperAdmin() || $this->can('manage-settings');
     }
+
+    public function canManageBackups(): bool
+    {
+        return $this->isSuperAdmin() || $this->can('manage-backups');
+    }
 }

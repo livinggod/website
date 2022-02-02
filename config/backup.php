@@ -162,9 +162,9 @@ return [
             BackupHasFailedNotification::class => ['slack'],
             UnhealthyBackupWasFoundNotification::class => ['slack'],
             CleanupHasFailedNotification::class => ['slack'],
-            BackupWasSuccessfulNotification::class => ['slack'],
-            HealthyBackupWasFoundNotification::class => ['slack'],
-            CleanupWasSuccessfulNotification::class => ['slack'],
+            BackupWasSuccessfulNotification::class => [],
+            HealthyBackupWasFoundNotification::class => [],
+            CleanupWasSuccessfulNotification::class => [],
         ],
 
         /*
