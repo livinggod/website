@@ -7,6 +7,7 @@ use App\Models\Post;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\App;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class PostResponse extends BaseResponse
 {
@@ -41,21 +42,23 @@ class PostResponse extends BaseResponse
             return false;
         }
 
-//        $currentLocaleSupported = ! $this->post->locales->filter()->only(App::currentLocale())->isEmpty();
-//
-//        if (! $currentLocaleSupported) {
-//            $locale = $this->post->locales->filter()->keys()[0];
-//
-//            $this->redirectUrl = config("localization.allowed_locales.{$locale}.domain")."/{$this->post->getTranslation('slug', $locale)}";
-//        } else {
-//            // check if the given slug belongs to the locale
-//
-//            if (request()->path() !== $this->post->getTranslation('slug', App::currentLocale())) {
-//                $locale = $this->post->locales->filter()->keys()[0];
-//
-//                $this->redirectUrl = config("localization.allowed_locales.{$locale}.domain")."/{$this->post->getTranslation('slug', $locale)}";
-//            }
-//        }
+        $currentLocaleSupported = $this->post->locales->contains(App::currentLocale());
+
+        if (! $currentLocaleSupported) {
+            $locale = $this->post->locales->filter()->first();
+
+
+            $this->redirectUrl = LaravelLocalization::getLocalizedUrl($locale, $this->post->getTranslation('slug', $locale));
+        } else {
+            $path = request()->path();
+            foreach (LaravelLocalization::getSupportedLanguagesKeys() as $key) {
+                $path = str_replace($key.'/', '', $path);
+            }
+
+            if ($path !== $this->post->getTranslation('slug', App::currentLocale())) {
+                $this->redirectUrl = LaravelLocalization::getLocalizedUrl(App::currentLocale(), $this->post->getTranslation('slug', App::currentLocale()));
+            }
+        }
 
         return true;
     }

@@ -29,8 +29,9 @@
          x-transition:leave-end="transform opacity-0 scale-95"
     >
         <div class="py-1" role="none">
-            @foreach(config('localization.allowed_locales') as $key => $locale)
-                <a href="{{ $locale['domain'].'/'.ltrim(request()->path(), '/') }}" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1">{{ $key }}</a>
+            @foreach(\Mcamara\LaravelLocalization\Facades\LaravelLocalization::getSupportedLocales() as $key => $locale)
+{{--                <a href="{{ $locale['domain'].'/'.ltrim(request()->path(), '/') }}" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1">{{ $key }}</a>--}}
+                <a href="{{ \Mcamara\LaravelLocalization\Facades\LaravelLocalization::getLocalizedUrl($key, request()->path()) }}" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1">{{ $key }}</a>
             @endforeach
         </div>
     </div>
