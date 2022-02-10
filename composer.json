@@ -31,6 +31,7 @@
         "laravel/tinker": "^2.5",
         "league/flysystem-aws-s3-v3": "~1.0",
         "livewire/livewire": "^2.4",
+        "mcamara/laravel-localization": "^1.7",
         "optimistdigital/nova-translatable": "^1.9",
         "quintenbuis/laravel-instant-login": "^1.0",
         "reworck/filament-settings": "dev-main",
