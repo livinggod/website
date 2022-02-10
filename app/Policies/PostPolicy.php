@@ -42,4 +42,9 @@ class PostPolicy
     {
         return $user->can('delete-post');
     }
+
+    public function deleteAny(User $user): bool
+    {
+        return $user->can('delete-post');
+    }
 }
