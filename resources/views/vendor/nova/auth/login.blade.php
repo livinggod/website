@@ -54,6 +54,5 @@
         <button class="w-full btn btn-default btn-primary hover:bg-primary-dark" type="submit">
             {{ __('Login') }}
         </button>
-        <x-instant-login::button />
     </form>
 @endsection

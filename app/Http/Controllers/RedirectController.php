@@ -11,7 +11,6 @@ class RedirectController extends Controller
 {
     public function __invoke(Request $request, ?string $slug = '/'): View|RedirectResponse
     {
-
         session()->remove('active');
 
         $baseResponse = ResponseFactory::createFromSlug($slug);

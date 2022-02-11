@@ -12,7 +12,7 @@
                         <a href="{{ route('page', $post->slug) }}" class="absolute inset-0"></a>
                         <div class="flex px-10 py-2">
                             <img class="h-12 w-12 object-cover rounded-lg"
-                                 src="{{ $post->getFirstMedia()->getUrl() }}"
+                                 src="{{ $post->getFirstMediaUrl() }}"
                                  alt="">
                             <div class="ml-6">
                                 <a href="{{ route('page', $post->topic->slug) }}" class="relative z-10 hover:underline text-gray-400 p-1 -ml-1 text-xs">

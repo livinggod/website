@@ -41,7 +41,7 @@
     {{ $slot }}
 </div>
 <x-footer/>
-@include('cookieConsent::index')
+@include('cookie-consent::index')
 <livewire:scripts />
 <div class="relative z-50">
     <x-impersonate::banner />

@@ -14,15 +14,9 @@ class PageFactory extends Factory
     {
         return [
             'title' => $title = $this->faker->title,
-            'image' => 'pages/'.Str::uuid().'.jpg',
-            'url' => '/'.Str::slug($title),
-            'content' => $this->fakeEditorJS(),
-            'locales' => ['en' => true, 'nl' => true],
+            'url' => Str::slug($title),
+            'content' => ['en' => []],
+            'locales' => ['en', 'nl'],
         ];
-    }
-
-    protected function fakeEditorJS(): string
-    {
-        return '{"time":1615732528852,"blocks":[{"type":"paragraph","data":{"text":"Lorem ipsum dolor sit amet."}}],"version":"2.19.0"}';
     }
 }

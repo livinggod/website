@@ -31,7 +31,8 @@ class Search extends Component
     {
         $this->items = Post::with([
             'topic',
-            'user'
+            'user',
+            'media'
         ])->where('title', 'LIKE', "%{$this->search}%")->published()->orderBy('publish_at', 'desc')->take(10)->get();
     }
 

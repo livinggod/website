@@ -4,12 +4,12 @@
             <div class="md:flex items-center justify-between flex-wrap">
                 <div class="md:w-0 flex-1 flex items-center">
                     <p class="ml-3 font-medium text-white">
-                        {!! trans('cookieConsent::texts.message') !!}
+                        {!! trans('cookie-consent::texts.message') !!}
                     </p>
                 </div>
                 <div class="order-3 mt-8 flex-shrink-0 w-full sm:order-2 sm:mt-0 md:w-auto">
                     <button class="flex mx-auto items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-livinggod-green-100 bg-white hover:bg-gray-200 transition duration-100 focus:outline-none js-cookie-consent-agree cookie-consent__agree">
-                        {{ trans('cookieConsent::texts.agree') }}
+                        {{ trans('cookie-consent::texts.agree') }}
                     </button>
                 </div>
             </div>

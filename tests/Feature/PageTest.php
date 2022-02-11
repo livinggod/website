@@ -15,9 +15,10 @@ class PageTest extends TestCase
     {
         $this->withExceptionHandling()->get('/page')->assertStatus(404);
 
-        Page::factory()->create([
+        /** @var Page $page */
+        $page = Page::factory()->create([
             'title' => 'Test Page',
-            'url' => '/test-page',
+            'url' => 'test-page',
         ]);
 
         $this->get('/test-page')->assertStatus(200)->assertSee('Test Page');
