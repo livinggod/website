@@ -27,10 +27,11 @@
             </div>
             <div class="mx-auto flex justify-center items-center mt-10">
                 <a href="{{ store('facebook_social') }}" target="_blank" rel="noopener" class="mx-2 text-gray-400 hover:text-gray-500">
-                    <x-bi-facebook class="h-6 w-6" />
+{{--                    <x-bi-facebook class="h-6 w-6" />--}}
                 </a>
                 <a href="{{ store('instagram_social') }}" target="_blank" rel="noopener" class="mx-2 text-gray-400 hover:text-gray-500">
-                    <x-bi-instagram class="h-6 w-6" />
+{{--                    <x-bi-instagram class="h-6 w-6" />--}}
+{{--                    TODO: replace icons--}}
                 </a>
             </div>
         </div>

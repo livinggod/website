@@ -25,30 +25,25 @@ class RedirectTest extends TestCase
             'title' => ['en' => 'test', 'nl' => 'test draaien'],
             'slug' => ['en' => 'test', 'nl' => 'test-draaien'],
             'description' => ['en' => 'test', 'nl' => 'test draaien'],
-            'content' => ['en' => '{"time":1615732528852,"blocks":[{"type":"paragraph","data":{"text":"testing the test"}}],"version":"2.19.0"}', 'nl' => '{"time":1615732528852,"blocks":[{"type":"paragraph","data":{"text":"testing the test"}}],"version":"2.19.0"}'],
+            'content' => ['en' => []],
             'publish_at' => now(),
             'ready' => true,
-            'locales' => ['en' => false, 'nl' => true],
+            'locales' => ['nl'],
         ]);
 
 
-        config()->set('localization.allowed_locales.en.domain', request()->getSchemeAndHttpHost());
-        config()->set('localization.allowed_locales.nl.domain', null);
         $this->get('test-draaien')->assertRedirect();
         $this->get('test')->assertRedirect();
 
-        config()->set('localization.allowed_locales.en.domain', null);
-        config()->set('localization.allowed_locales.nl.domain', request()->getSchemeAndHttpHost());
 
-        App::setLocale('nl');
+        app()->setLocale('nl');
         $this->get('test-draaien')->assertStatus(200);
 
         $post->update([
-            'locales' => ['en' => true, 'nl' => true],
+            'locales' => ['en', 'nl'],
         ]);
 
-        config()->set('localization.allowed_locales.en.domain', request()->getSchemeAndHttpHost());
-        config()->set('localization.allowed_locales.nl.domain', null);
+        app()->setLocale('en');
 
         $this->get('test')->assertStatus(200);
     }

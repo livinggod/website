@@ -82,7 +82,7 @@ class User extends Authenticatable implements HasMedia, FilamentUser
         SEOTools::opengraph()->setUrl(url()->current());
         SEOTools::setCanonical(url()->current());
         SEOTools::twitter()->setSite('@livinggodnet');
-        SEOTools::jsonLd()->addImage($this->getFirstMedia()->getUrl());
+        SEOTools::jsonLd()->addImage($this->getFirstMediaUrl());
     }
 
     public function canImpersonate(self $impersonated = null): bool
@@ -116,7 +116,7 @@ class User extends Authenticatable implements HasMedia, FilamentUser
         return true;
     }
 
-    public function newFactory(): UserFactory
+    public static function newFactory(): UserFactory
     {
         return new UserFactory();
     }

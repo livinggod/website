@@ -55,7 +55,7 @@ class SearchTest extends TestCase
             ->assertSet('items', new Collection())
             ->assertDontSee('Test Post')
             ->call('toggle')
-            ->set('search', 'tes')
+            ->set('search', 'Tes')
             ->assertNotSet('items', new Collection())
             ->assertSee('Test Post')
             ->set('search', '::string::')
