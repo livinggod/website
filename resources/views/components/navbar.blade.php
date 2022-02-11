@@ -35,16 +35,16 @@
                 </div>
                 <x-locale-switch class="md:hidden"></x-locale-switch>
                 <nav class="hidden md:flex space-x-10 h-full">
-                    <x-nav-link :href="route('page', 'articles')" :active="request()->segment(1) === 'articles' || session('active') === 'article'">
+                    <x-nav-link :href="route('page', 'articles')" :active="request()->fullUrlIs(route('page', 'articles')) || session('active') === 'article'">
                         @lang('Articles')
                     </x-nav-link>
-                    <x-nav-link :href="route('page', 'about')" :active="request()->segment(1) === 'about'">
+                    <x-nav-link :href="route('page', 'about')" :active="request()->fullUrlIs(route('page', 'about'))">
                         @lang('About')
                     </x-nav-link>
-                    <x-nav-link :href="route('page', 'what-we-believe')" :active="request()->segment(1) === 'what-we-believe'">
+                    <x-nav-link :href="route('page', 'what-we-believe')" :active="request()->fullUrlIs(route('page', 'what-we-believe'))">
                         @lang('What we believe')
                     </x-nav-link>
-                    <x-nav-link :href="route('page', 'abc')" :active="request()->segment(1) === 'abc'">
+                    <x-nav-link :href="route('page', 'abc')" :active="request()->fullUrlIs(route('page', 'abc'))">
                         @lang('The abc')
                     </x-nav-link>
                 </nav>
