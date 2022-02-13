@@ -2,12 +2,9 @@
 
 namespace App\Models;
 
-use Advoor\NovaEditorJs\NovaEditorJs;
 use App\Directives\Flexible;
-use App\Traits\ConvertsToWebp;
 use App\Traits\IsLocalizable;
 use Artesaos\SEOTools\Facades\SEOTools;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
@@ -34,7 +31,10 @@ class Page extends Model implements HasMedia
         'image'
     ];
 
-    public array $translatable = ['title', 'content'];
+    public array $translatable = [
+        'title',
+        'content'
+    ];
 
     protected $casts = [
         'content' => 'array',
