@@ -17,7 +17,10 @@ class NewsletterController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $valid = $request->validate([
-            'email' => 'required|email'
+            'email' => 'required|email',
+            'g-recaptcha-response' => 'required|captcha'
+        ], [
+            'g-recaptcha-response.captcha' => 'something wen\'t wrong!'
         ]);
 
         if (! Newsletter::where('email', 'quinten.buis@gmail.com')->exists() && Subscriber::findByEmail($request->email)) {
