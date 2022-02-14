@@ -46,5 +46,6 @@
 <div class="relative z-50">
     <x-impersonate::banner />
 </div>
+{!! \Anhskohbo\NoCaptcha\Facades\NoCaptcha::renderJs(app()->getLocale()) !!}
 </body>
 </html>
