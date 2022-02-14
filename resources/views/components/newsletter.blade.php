@@ -2,8 +2,8 @@
     @csrf
     <div>
         @include('components.inputs.input')
-        <div class="mt-3 hidden">
-            {!! \Anhskohbo\NoCaptcha\Facades\NoCaptcha::display(['data-theme' => 'dark']) !!}
+        <div class="mt-3">
+            {!! \Anhskohbo\NoCaptcha\Facades\NoCaptcha::display() !!}
         </div>
         @if ($errors->has('g-recaptcha-response'))
             <span class="test-red-600">{{ $errors->first('g-recaptcha-response') }}</span>
