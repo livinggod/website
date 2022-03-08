@@ -2,6 +2,7 @@
 
 namespace App\Extensions\Locale\Renderers;
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\App;
 
 class ENRenderer extends BaseRenderer
