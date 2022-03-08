@@ -24,3 +24,6 @@ packages/*
 .envault.json
 
 plugins/
+
+.php-cs-fixer.cache
+.php-cs-fixer.php
