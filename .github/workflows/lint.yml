@@ -16,6 +16,6 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: 'PHP-CS-Fixer Linter'
-          force-add: 'true'
+          force-add: 'false'
           name: PHP-CS-Fixer
           email: php-cs-fixer@github.com
