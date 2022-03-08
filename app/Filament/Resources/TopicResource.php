@@ -4,7 +4,6 @@ namespace App\Filament\Resources;
 
 use App\Filament\Cards\TimestampCard;
 use App\Filament\Resources\TopicResource\Pages;
-use App\Filament\Resources\TopicResource\RelationManagers;
 use App\Models\Topic;
 use Filament\Forms;
 use Filament\Resources\Concerns\Translatable;
@@ -12,15 +11,17 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
-use Illuminate\Support\Str;
 
 class TopicResource extends Resource
 {
     use Translatable;
 
     protected static ?string $model = Topic::class;
+
     protected static ?string $slug = 'blog/topics';
+
     protected static ?string $navigationIcon = 'heroicon-o-light-bulb';
+
     protected static ?string $navigationGroup = 'Blog';
 
     public static function form(Form $form): Form

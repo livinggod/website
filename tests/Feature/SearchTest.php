@@ -6,7 +6,6 @@ use App\Http\Livewire\Search;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Collection;
 use Livewire\Livewire;
 use Tests\TestCase;

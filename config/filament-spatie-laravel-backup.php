@@ -27,7 +27,7 @@ return [
     */
 
     'polling' => [
-        'interval' => '4s'
+        'interval' => '4s',
     ],
 
     /*

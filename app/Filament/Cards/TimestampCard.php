@@ -2,7 +2,6 @@
 
 namespace App\Filament\Cards;
 
-
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\Placeholder;
 

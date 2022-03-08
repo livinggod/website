@@ -3,8 +3,6 @@
 namespace Tests\Feature;
 
 use App\Domain\SendPortal\Facades\SendPortal;
-use App\Domain\SendPortal\Models\Subscriber;
-use App\Extensions\Locale\Locale;
 use App\Mail\NewsletterOptInMail;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Mail;
@@ -51,13 +49,15 @@ class NewsletterTest extends TestCase
         SendPortal::shouldReceive('post')->andReturn(['data'=> ['tags' => []]]);
 
         $url = URL::temporarySignedRoute(
-            'opt-in', now()->addMinutes(120), ['email' => 'test@test.com', 'language' => 'nl']
+            'opt-in',
+            now()->addMinutes(120),
+            ['email' => 'test@test.com', 'language' => 'nl']
         );
 
         $this
             ->get($url)
             ->assertRedirect(
-                uri: config("localization.allowed_locales.nl.domain")
+                uri: config('localization.allowed_locales.nl.domain')
             );
     }
 
@@ -70,7 +70,7 @@ class NewsletterTest extends TestCase
                     'email'           => 'test@test.com',
                     'unsubscribed_at' => null,
                     'tags'            => [],
-                ]
+                ],
             ],
         ];
     }

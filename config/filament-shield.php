@@ -16,7 +16,7 @@ return [
         'super_admin_role_name' => 'super_admin',
         'filament_user' => [
             'role_name' => 'filament_user',
-            'enabled' => true
+            'enabled' => true,
         ],
     ],
 
@@ -79,7 +79,6 @@ return [
         'custom_permissions' => true,
     ],
 
-
     /*
     |--------------------------------------------------------------------------
     | Only
@@ -112,7 +111,6 @@ return [
         'resources' => [],
     ],
 
-
     /*
     |--------------------------------------------------------------------------
     | Except
@@ -126,16 +124,16 @@ return [
 
     'except' => [
         'pages' => [
-            'Dashboard'
+            'Dashboard',
         ],
         'widgets' => [
             'AccountWidget',
-            'FilamentInfoWidget'
+            'FilamentInfoWidget',
         ],
         'resources' => [],
     ],
 
-    /**
+    /*
      * Register `RolePolicy` for `RoleResource`
      */
     'register_role_policy' => true,

@@ -7,7 +7,6 @@ use App\Events\PostSaved;
 use App\Traits\ConvertsToWebp;
 use App\Traits\IsLocalizable;
 use Artesaos\SEOTools\Facades\SEOTools;
-use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -31,7 +30,7 @@ class Post extends Model implements HasMedia
     use IsLocalizable;
     use InteractsWithMedia;
 
-    const WORDS_PER_MINUTE_FALLBACK = 150;
+    public const WORDS_PER_MINUTE_FALLBACK = 150;
 
     protected $guarded = [];
 
@@ -90,7 +89,7 @@ class Post extends Model implements HasMedia
         $words = 0;
         $content = $this->getTranslation('content', app()->getLocale());
 
-        if (!is_array($content)) {
+        if (! is_array($content)) {
             return 1;
         }
 
@@ -104,13 +103,15 @@ class Post extends Model implements HasMedia
             return 1;
         }
 
-        return (int)round($words / (store('wordsperminute') ?? self::WORDS_PER_MINUTE_FALLBACK), 0, PHP_ROUND_HALF_EVEN);
+        return (int) round($words / (store('wordsperminute') ?? self::WORDS_PER_MINUTE_FALLBACK), 0, PHP_ROUND_HALF_EVEN);
     }
 
     public static function getCachedLatestPosts(int $amount): Collection
     {
-        return cache()->remember('latest_articles_'.App::currentLocale().'_'.$amount, now()->addHour(),
-            fn () => Post::published()->localized()->orderBy('publish_at', 'desc')->take($amount)->get()
+        return cache()->remember(
+            'latest_articles_'.App::currentLocale().'_'.$amount,
+            now()->addHour(),
+            fn () => self::published()->localized()->orderBy('publish_at', 'desc')->take($amount)->get()
         );
     }
 

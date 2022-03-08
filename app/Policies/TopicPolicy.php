@@ -17,7 +17,7 @@ class TopicPolicy
      */
     public function viewAny(User $user)
     {
-        if($user->can('view_any_topic')) {
+        if ($user->can('view_any_topic')) {
             return true;
         }
     }
@@ -76,5 +76,4 @@ class TopicPolicy
     {
         return $user->can('delete_any_topic');
     }
-
 }

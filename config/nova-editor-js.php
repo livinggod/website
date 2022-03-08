@@ -1,7 +1,7 @@
 <?php
 
 return [
-    /**
+    /*
      * Editor settings
      */
     'editorSettings' => [
@@ -10,28 +10,28 @@ return [
         'autofocus' => false,
     ],
 
-    /**
+    /*
      * Configure tools
      */
     'toolSettings' => [
         'header' => [
             'activated' => true,
             'placeholder' => 'Heading',
-            'shortcut' => 'CMD+SHIFT+H'
+            'shortcut' => 'CMD+SHIFT+H',
         ],
         'list' => [
             'activated' => true,
             'inlineToolbar' => true,
-            'shortcut' => 'CMD+SHIFT+L'
+            'shortcut' => 'CMD+SHIFT+L',
         ],
         'code' => [
             'activated' => false,
             'placeholder' => '',
-            'shortcut' => 'CMD+SHIFT+C'
+            'shortcut' => 'CMD+SHIFT+C',
         ],
         'link' => [
             'activated' => false,
-            'shortcut' => 'CMD+SHIFT+L'
+            'shortcut' => 'CMD+SHIFT+L',
         ],
         'image' => [
             'activated' => true,
@@ -47,7 +47,7 @@ return [
                 'adjustments' => [
                     'brightness' => false, // -100 to 100
                     'contrast' => false, // -100 to 100
-                    'gamma' => false // 0.1 to 9.99
+                    'gamma' => false, // 0.1 to 9.99
                 ],
                 'effects' => [
                     'blur' => false, // 0 to 100
@@ -55,7 +55,7 @@ return [
                     'greyscale' => false, // true or false
                     'sepia' => false, // true or false
                     'sharpen' => false, // 0 to 100
-                ]
+                ],
             ],
             'thumbnails' => [
                 // Specify as many thumbnails as required. Key is used as the name.
@@ -68,7 +68,7 @@ return [
                     'adjustments' => [
                         'brightness' => false, // -100 to 100
                         'contrast' => false, // -100 to 100
-                        'gamma' => false // 0.1 to 9.99
+                        'gamma' => false, // 0.1 to 9.99
                     ],
                     'effects' => [
                         'blur' => false, // 0 to 100
@@ -76,9 +76,9 @@ return [
                         'greyscale' => false, // true or false
                         'sepia' => false, // true or false
                         'sharpen' => false, // 0 to 100
-                    ]
-                ]
-            ]
+                    ],
+                ],
+            ],
         ],
         'inlineCode' => [
             'activated' => true,
@@ -111,12 +111,12 @@ return [
                 'codepen' => true,
                 'imgur' => false,
                 'vimeo' => true,
-                'youtube' => true
+                'youtube' => true,
             ],
         ],
     ],
 
-    /**
+    /*
      * Output validation config
      * https://github.com/editor-js/editorjs-php
      */
@@ -128,20 +128,19 @@ return [
                 ],
                 'level' => [
                     'type' => 'int',
-                    'canBeOnly' => [1, 2, 3, 4, 5]
-                ]
+                    'canBeOnly' => [1, 2, 3, 4, 5],
+                ],
             ],
             'paragraph' => [
                 'text' => [
                     'type' => 'string',
-                    'allowedTags' => 'i,b,u,a[href],span[class],code[class],mark[class]'
-                ]
+                    'allowedTags' => 'i,b,u,a[href],span[class],code[class],mark[class]',
+                ],
             ],
             'list' => [
                 'style' => [
                     'type' => 'string',
-                    'canBeOnly' =>
-                        [
+                    'canBeOnly' => [
                             0 => 'ordered',
                             1 => 'unordered',
                         ],
@@ -169,32 +168,32 @@ return [
                             'data' => [
                                 '-' => [
                                     'type' => 'string',
-                                ]
+                                ],
                             ],
-                        ]
+                        ],
                     ],
                 ],
                 'caption' => [
-                    'type' => 'string'
+                    'type' => 'string',
                 ],
                 'withBorder' => [
-                    'type' => 'boolean'
+                    'type' => 'boolean',
                 ],
                 'withBackground' => [
-                    'type' => 'boolean'
+                    'type' => 'boolean',
                 ],
                 'stretched' => [
-                    'type' => 'boolean'
-                ]
+                    'type' => 'boolean',
+                ],
             ],
             'code' => [
                 'code' => [
-                    'type' => 'string'
-                ]
+                    'type' => 'string',
+                ],
             ],
             'linkTool' => [
                 'link' => [
-                    'type' => 'string'
+                    'type' => 'string',
                 ],
                 'meta' => [
                     'type' => 'array',
@@ -211,10 +210,10 @@ return [
                                 'url' => [
                                     'type' => 'string',
                                 ],
-                            ]
-                        ]
-                    ]
-                ]
+                            ],
+                        ],
+                    ],
+                ],
             ],
             'checklist' => [
                 'items' => [
@@ -225,11 +224,11 @@ return [
                             'data' => [
                                 'text' => [
                                     'type' => 'string',
-                                    'required' => false
+                                    'required' => false,
                                 ],
                                 'checked' => [
                                     'type' => 'boolean',
-                                    'required' => false
+                                    'required' => false,
                                 ],
                             ],
 
@@ -249,40 +248,40 @@ return [
                             'data' => [
                                 '-' => [
                                     'type' => 'string',
-                                    'allowedTags' => 'i,b,u,a[href],span[class],code[class],mark[class]'
-                                ]
-                            ]
-                        ]
-                    ]
-                ]
+                                    'allowedTags' => 'i,b,u,a[href],span[class],code[class],mark[class]',
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
             ],
             'raw' => [
                 'html' => [
                     'type' => 'string',
                     'allowedTags' => '*',
-                ]
+                ],
             ],
             'embed' => [
                 'service' => [
-                    'type' => 'string'
+                    'type' => 'string',
                 ],
                 'source' => [
-                    'type' => 'string'
+                    'type' => 'string',
                 ],
                 'embed' => [
-                    'type' => 'string'
+                    'type' => 'string',
                 ],
                 'width' => [
-                    'type' => 'int'
+                    'type' => 'int',
                 ],
                 'height' => [
-                    'type' => 'int'
+                    'type' => 'int',
                 ],
                 'caption' => [
                     'type' => 'string',
                     'required' => false,
                 ],
-            ]
-        ]
-    ]
+            ],
+        ],
+    ],
 ];

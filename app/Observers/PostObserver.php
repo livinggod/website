@@ -6,7 +6,6 @@ use App\Models\Post;
 
 class PostObserver
 {
-
     public function creating(Post $post): void
     {
         $user = auth()->user();

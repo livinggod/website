@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 class BaseModel implements Arrayable
 {
     protected array $data;
+
     protected ?string $endpoint = null;
 
     public function __construct(array $data = [])

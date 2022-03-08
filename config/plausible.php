@@ -2,6 +2,6 @@
 
 return [
     'events' => [
-        'newsletter' => 'Newsletter Signups'
+        'newsletter' => 'Newsletter Signups',
     ],
 ];

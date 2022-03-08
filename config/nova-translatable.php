@@ -1,10 +1,8 @@
 <?php
 
-
-
 return [
 
-    /**
+    /*
      * The locales which the `translatable` wrapper will use by default.
      *
      * Can be a:
@@ -13,8 +11,7 @@ return [
      */
     'locales' => ['en' => 'English', 'nl' => 'Nederlands'],
 
-
-    /**
+    /*
      * If enabled, the Nova's current locale will always be displayed as
      * the first locale in the tabs arrangement.
      *
@@ -22,8 +19,7 @@ return [
      */
     'prioritize_nova_locale' => true,
 
-
-    /**
+    /*
      * Defines the display type for the translatable tabs.
      *
      * Available options are: 'row', 'column'

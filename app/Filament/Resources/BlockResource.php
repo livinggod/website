@@ -4,7 +4,6 @@ namespace App\Filament\Resources;
 
 use App\Filament\Cards\TimestampCard;
 use App\Filament\Resources\BlockResource\Pages;
-use App\Filament\Resources\BlockResource\RelationManagers;
 use App\Models\Block;
 use Filament\Forms;
 use Filament\Resources\Concerns\Translatable;
@@ -18,8 +17,11 @@ class BlockResource extends Resource
     use Translatable;
 
     protected static ?string $model = Block::class;
+
     protected static ?string $slug = 'content/blocks';
+
     protected static ?string $navigationGroup = 'Content';
+
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
     public static function form(Form $form): Form

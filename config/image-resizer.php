@@ -13,5 +13,5 @@ return [
         '500x500', // Author Image Article Page
         '700x700', // Author Page Image
         '800x600', // Highlight image
-    ]
+    ],
 ];
