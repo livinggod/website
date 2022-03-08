@@ -10,7 +10,7 @@ jobs:
       - name: PHP-CS-Fixer
         uses: docker://oskarstark/php-cs-fixer-ga
         with:
-          args: --config=.php-cs-fixer.php
+          args: --config=.php-cs-fixer.dist.php
       - name: Commit
         uses: github-actions-x/commit@v2.8
         with:
