@@ -2,7 +2,6 @@
 
 namespace App\Http\Response\Responses;
 
-use App\Extensions\Locale\Locale;
 use App\Models\Post;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -30,7 +29,7 @@ class PostResponse extends BaseResponse
         session()->flash('active', 'article');
 
         return view('posts.show', [
-            'post' => $this->post
+            'post' => $this->post,
         ]);
     }
 
@@ -46,7 +45,6 @@ class PostResponse extends BaseResponse
 
         if (! $currentLocaleSupported) {
             $locale = $this->post->locales->filter()->first();
-
 
             $this->redirectUrl = LaravelLocalization::getLocalizedUrl($locale, $this->post->getTranslation('slug', $locale));
         } else {

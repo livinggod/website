@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Cache;
 
 class HomeResponse extends BaseResponse
 {
-
     public function handle(): View
     {
         return view('pages.home', [
@@ -30,7 +29,7 @@ class HomeResponse extends BaseResponse
             return Post::with(['user', 'topic', 'media'])->localized()->published()->orderBy('publish_at', 'desc')->first()->makeHidden(['content', 'published']);
         }
 
-        return Cache::remember('highlight_' . App::currentLocale(), now()->addHour(), function () {
+        return Cache::remember('highlight_'.App::currentLocale(), now()->addHour(), function () {
 
             // TODO: Set highlight per locale
             $highlight = null;
@@ -50,7 +49,7 @@ class HomeResponse extends BaseResponse
             return Post::with(['user', 'topic', 'media'])->published()->localized()->orderBy('publish_at', 'desc')->take(8)->get();
         }
 
-        return Cache::remember('homepage_posts_' . App::currentLocale(), now()->addHour(), function () {
+        return Cache::remember('homepage_posts_'.App::currentLocale(), now()->addHour(), function () {
             return Post::with(['user', 'topic', 'media'])->published()->localized()->orderBy('publish_at', 'desc')->take(8)->get();
         });
     }

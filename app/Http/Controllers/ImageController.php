@@ -16,17 +16,17 @@ class ImageController extends Controller
 
         $resizedPath = 'resizes/'.$size.'/'.$file;
 
-        if (!Storage::exists('public/'.$resizedPath)) {
+        if (! Storage::exists('public/'.$resizedPath)) {
             $image = Image::load(storage_path('app/public/'.$file))->optimize();
             @list($width, $height) = explode('x', $size);
 
             if ($height) {
-                $image->fit(MANIPULATIONS::FIT_CONTAIN, (int)$width, (int)$height);
+                $image->fit(MANIPULATIONS::FIT_CONTAIN, (int) $width, (int) $height);
             } else {
-                $image->width((int)$width);
+                $image->width((int) $width);
             }
 
-            if (!is_dir(storage_path('app/public/'.pathinfo($resizedPath, PATHINFO_DIRNAME)))) {
+            if (! is_dir(storage_path('app/public/'.pathinfo($resizedPath, PATHINFO_DIRNAME)))) {
                 mkdir(storage_path('app/public/'.pathinfo($resizedPath, PATHINFO_DIRNAME)), 0755, true);
             }
 

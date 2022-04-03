@@ -17,8 +17,11 @@ class UserResource extends Resource
     use Translatable;
 
     protected static ?string $model = User::class;
+
     protected static ?string $slug = 'settings/users';
+
     protected static ?string $navigationIcon = 'heroicon-o-users';
+
     protected static ?string $navigationGroup = 'Settings';
 
     public static function form(Form $form): Form
@@ -48,7 +51,7 @@ class UserResource extends Resource
                 Forms\Components\SpatieMediaLibraryFileUpload::make('avatar')
                     ->image(),
 
-                Forms\Components\BelongsToManyMultiSelect::make('user_roles')->relationship('roles', 'name')
+                Forms\Components\BelongsToManyMultiSelect::make('user_roles')->relationship('roles', 'name'),
             ]);
     }
 

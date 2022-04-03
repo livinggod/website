@@ -4,13 +4,12 @@ use App\Models\Post;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Migrations\Migration;
 
-return new class extends Migration
-{
+return new class extends Migration {
     public function up()
     {
         $localesToCheck = [
             'en',
-            'nl'
+            'nl',
         ];
 
         $queries = [

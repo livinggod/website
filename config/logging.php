@@ -100,9 +100,9 @@ return [
             'path' => storage_path('logs/laravel.log'),
         ],
 
-	'larabug' => [
+    'larabug' => [
             'driver' => 'larabug',
-    	],
+        ],
     ],
 
 ];

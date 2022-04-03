@@ -20,8 +20,11 @@ class PostResource extends Resource
     use Translatable;
 
     protected static ?string $model = Post::class;
+
     protected static ?string $slug = 'blog/posts';
+
     protected static ?string $navigationIcon = 'heroicon-o-newspaper';
+
     protected static ?string $navigationGroup = 'Blog';
 
     public static function form(Form $form): Form
@@ -144,8 +147,7 @@ class PostResource extends Resource
             ->when(
                 ! auth()->user()->isSuperAdmin()
                 || ! auth()->user()->can('view-posts'),
-                fn (Builder $builder) =>
-                    $builder->whereBelongsTo(auth()->user())
+                fn (Builder $builder) => $builder->whereBelongsTo(auth()->user())
             );
     }
 }

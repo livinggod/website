@@ -1,0 +1,21 @@
+on: [push, pull_request]
+name: Lint Code
+jobs:
+  php-cs-fixer:
+    name: PHP-CS-Fixer
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: PHP-CS-Fixer
+        uses: docker://oskarstark/php-cs-fixer-ga
+        with:
+          args: --config=.php-cs-fixer.dist.php
+      - name: Commit
+        uses: github-actions-x/commit@v2.8
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'PHP-CS-Fixer Linter'
+          force-add: 'false'
+          name: PHP-CS-Fixer
+          email: php-cs-fixer@github.com

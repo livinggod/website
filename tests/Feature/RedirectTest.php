@@ -3,11 +3,9 @@
 namespace Tests\Feature;
 
 use App\Models\Post;
-use App\Models\Redirect;
 use App\Models\Topic;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\App;
 use Tests\TestCase;
 
 class RedirectTest extends TestCase
@@ -31,10 +29,8 @@ class RedirectTest extends TestCase
             'locales' => ['nl'],
         ]);
 
-
         $this->get('test-draaien')->assertRedirect();
         $this->get('test')->assertRedirect();
-
 
         app()->setLocale('nl');
         $this->get('test-draaien')->assertStatus(200);

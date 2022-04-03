@@ -1,10 +1,8 @@
 <?php
 
-use App\Http\Controllers\ImageController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\NewsletterOptInController;
 use App\Http\Controllers\RedirectController;
-use App\Http\Controllers\RedirectSubdomainController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/newsletter', [NewsletterController::class, 'store'])->name('newsletter.store');

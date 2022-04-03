@@ -28,17 +28,17 @@ class Page extends Model implements HasMedia
     ];
 
     protected $hidden = [
-        'image'
+        'image',
     ];
 
     public array $translatable = [
         'title',
-        'content'
+        'content',
     ];
 
     protected $casts = [
         'content' => 'array',
-        'locales' => 'array'
+        'locales' => 'array',
     ];
 
     public function setMeta(): void

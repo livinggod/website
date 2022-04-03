@@ -8,7 +8,9 @@ use Spatie\Valuestore\Valuestore;
 
 function getLatestPosts(int $amount = 5): Collection
 {
-    return Cache::remember('latest_articles_'.App::currentLocale().'_'.$amount, now()->addHour(),
+    return Cache::remember(
+        'latest_articles_'.App::currentLocale().'_'.$amount,
+        now()->addHour(),
         fn () => Post::published()->localized()->orderBy('publish_at', 'desc')->take($amount)->get()
     );
 }

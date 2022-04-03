@@ -38,7 +38,6 @@ return new class extends Migration {
                             }
                         }
                     } else {
-
                         $raw = json_decode($content, true);
 
                         if (! isset($raw['blocks'])) {
@@ -48,7 +47,6 @@ return new class extends Migration {
                         $blocks = $raw['blocks'];
 
                         foreach ($blocks as $block) {
-
                             if (isset($block['data']['style'])) { // Bullet lists
                                 foreach ($block['data']['items'] as $item) {
                                     $newContent[] = '* '.$item;

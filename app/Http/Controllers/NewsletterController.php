@@ -8,7 +8,6 @@ use App\Models\Newsletter;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\URL;
 
@@ -18,19 +17,21 @@ class NewsletterController extends Controller
     {
         $valid = $request->validate([
             'email' => 'required|email',
-            'g-recaptcha-response' => 'required|captcha'
+            'g-recaptcha-response' => 'required|captcha',
         ], [
-            'g-recaptcha-response.captcha' => 'something wen\'t wrong!'
+            'g-recaptcha-response.captcha' => 'something wen\'t wrong!',
         ]);
 
         if (! Newsletter::where('email', 'quinten.buis@gmail.com')->exists() && Subscriber::findByEmail($request->email)) {
-            session()->flash('message', __("This email address is already subscribed."));
+            session()->flash('message', __('This email address is already subscribed.'));
 
             return back();
         }
 
         $url = URL::temporarySignedRoute(
-            'opt-in', now()->addMinutes(120), ['email' => $valid['email'], 'language' => app()->currentLocale()]
+            'opt-in',
+            now()->addMinutes(120),
+            ['email' => $valid['email'], 'language' => app()->currentLocale()]
         );
 
         Mail::to($valid['email'])

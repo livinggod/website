@@ -14,7 +14,7 @@ class Newsletter extends Model
     public static function remember(string $email): self
     {
         return static::create([
-            'email' => $email
+            'email' => $email,
         ]);
     }
 }

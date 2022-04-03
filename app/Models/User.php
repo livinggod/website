@@ -2,11 +2,9 @@
 
 namespace App\Models;
 
-use App\Traits\ConvertsToWebp;
 use Artesaos\SEOTools\Facades\SEOTools;
 use Database\Factories\UserFactory;
 use Filament\Models\Contracts\FilamentUser;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -37,7 +35,7 @@ class User extends Authenticatable implements HasMedia, FilamentUser
     public string $imageProperty = 'avatar';
 
     public array $translatable = [
-        'bio'
+        'bio',
     ];
 
     protected $fillable = [
@@ -62,7 +60,7 @@ class User extends Authenticatable implements HasMedia, FilamentUser
     protected $with = [
         'roles',
         'permissions',
-        'media'
+        'media',
     ];
 
     public function posts(): HasMany

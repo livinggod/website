@@ -4,7 +4,6 @@ namespace App\Http\Response\Responses;
 
 use App\Models\Post;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Collection;
 
 class ArticlesResponse extends BaseResponse
 {
