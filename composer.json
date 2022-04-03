@@ -13,6 +13,7 @@
         "artesaos/seotools": "^v0.22.0",
         "bezhansalleh/filament-shield": "^v1.1.4",
         "blade-ui-kit/blade-heroicons": "^1.3.0",
+        "doctrine/dbal": "^3.3",
         "filament/filament": "^v2.10.6",
         "filament/spatie-laravel-media-library-plugin": "^v2.10.6",
         "filament/spatie-laravel-translatable-plugin": "^v2.10.6",
