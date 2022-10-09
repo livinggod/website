@@ -25,7 +25,6 @@ use Spatie\Translatable\HasTranslations;
 class Post extends Model implements HasMedia
 {
     use HasFactory;
-    use ConvertsToWebp;
     use HasTranslations;
     use IsLocalizable;
     use InteractsWithMedia;
